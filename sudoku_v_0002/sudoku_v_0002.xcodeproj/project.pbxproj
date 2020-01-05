@@ -12,6 +12,7 @@
 		23482A8423C14A7700EE88EB /* swap_colums_small.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482A8323C14A7700EE88EB /* swap_colums_small.swift */; };
 		23482A8623C14A9800EE88EB /* swap_rows_area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482A8523C14A9800EE88EB /* swap_rows_area.swift */; };
 		23482A8823C14AAA00EE88EB /* swap_colums_area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482A8723C14AAA00EE88EB /* swap_colums_area.swift */; };
+		23482AAA23C16CAA00EE88EB /* remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482AA923C16CAA00EE88EB /* remove.swift */; };
 		23C4719423BFEC2F00B87E41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C4719323BFEC2F00B87E41 /* AppDelegate.swift */; };
 		23C4719623BFEC2F00B87E41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C4719523BFEC2F00B87E41 /* SceneDelegate.swift */; };
 		23C4719823BFEC2F00B87E41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C4719723BFEC2F00B87E41 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 		23482A8323C14A7700EE88EB /* swap_colums_small.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swap_colums_small.swift; sourceTree = "<group>"; };
 		23482A8523C14A9800EE88EB /* swap_rows_area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swap_rows_area.swift; sourceTree = "<group>"; };
 		23482A8723C14AAA00EE88EB /* swap_colums_area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swap_colums_area.swift; sourceTree = "<group>"; };
+		23482AA923C16CAA00EE88EB /* remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = remove.swift; sourceTree = "<group>"; };
 		23C4719023BFEC2F00B87E41 /* sudoku_v_0002.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sudoku_v_0002.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23C4719323BFEC2F00B87E41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23C4719523BFEC2F00B87E41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				23482A8323C14A7700EE88EB /* swap_colums_small.swift */,
 				23482A8523C14A9800EE88EB /* swap_rows_area.swift */,
 				23482A8723C14AAA00EE88EB /* swap_colums_area.swift */,
+				23482AA923C16CAA00EE88EB /* remove.swift */,
 			);
 			path = func;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				23482A7F23C149D900EE88EB /* transposing.swift in Sources */,
 				23482A8823C14AAA00EE88EB /* swap_colums_area.swift in Sources */,
 				23C4719623BFEC2F00B87E41 /* SceneDelegate.swift in Sources */,
+				23482AAA23C16CAA00EE88EB /* remove.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

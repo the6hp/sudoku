@@ -125,6 +125,8 @@ class ViewController: UIViewController {
         filling()
     }
     @IBAction func remove(_ sender: Any) {
+        allNumbers_text = remove_all (array: allNumbers)
+        filling_text()
     }
     
     @IBAction func cleanAll(_ sender: Any) {
@@ -135,14 +137,18 @@ class ViewController: UIViewController {
         allNumbers = [1,2,3,4,5,6,7,8,9,4,5,6,7,8,9,1,2,3,7,8,9,1,2,3,4,5,6,2,3,4,5,6,7,8,9,1,5,6,7,8,9,1,2,3,4,8,9,1,2,3,4,5,6,7,3,4,5,6,7,8,9,1,2,6,7,8,9,1,2,3,4,5,9,1,2,3,4,5,6,7,8]
     }
     
+    @IBAction func filling_text(_ sender: Any) {
+        filling_text()
+    }
+    
+    
     @IBAction func testButton(_ sender: Any) {
 
     }
     
 
     var allNumbers = [1,2,3,4,5,6,7,8,9,4,5,6,7,8,9,1,2,3,7,8,9,1,2,3,4,5,6,2,3,4,5,6,7,8,9,1,5,6,7,8,9,1,2,3,4,8,9,1,2,3,4,5,6,7,3,4,5,6,7,8,9,1,2,6,7,8,9,1,2,3,4,5,9,1,2,3,4,5,6,7,8]
-    
-    
+    var allNumbers_text = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "4", "5", "6", "7", "8", "9", "1", "2", "3", "7", "8", "9", "1", "2", "3", "4", "5", "6", "2", "3", "4", "5", "6", "7", "8", "9", "1", "5", "6", "7", "8", "9", "1", "2", "3", "4", "8", "9", "1", "2", "3", "4", "5", "6", "7", "3", "4", "5", "6", "7", "8", "9", "1", "2", "6", "7", "8", "9", "1", "2", "3", "4", "5", "9", "1", "2", "3", "4", "5", "6", "7", "8"]
     
     
     func filling() {
@@ -227,6 +233,90 @@ class ViewController: UIViewController {
         label_97.text = String (allNumbers[78])
         label_98.text = String (allNumbers[79])
         label_99.text = String (allNumbers[80])
+    }
+    
+    func filling_text () {
+        label_11.text = allNumbers_text[0]
+        label_12.text = allNumbers_text[1]
+        label_13.text = allNumbers_text[2]
+        label_14.text = allNumbers_text[3]
+        label_15.text = allNumbers_text[4]
+        label_16.text = allNumbers_text[5]
+        label_17.text = allNumbers_text[6]
+        label_18.text = allNumbers_text[7]
+        label_19.text = allNumbers_text[8]
+        label_21.text = allNumbers_text[9]
+        label_22.text = allNumbers_text[10]
+        label_23.text = allNumbers_text[11]
+        label_24.text = allNumbers_text[12]
+        label_25.text = allNumbers_text[13]
+        label_26.text = allNumbers_text[14]
+        label_27.text = allNumbers_text[15]
+        label_28.text = allNumbers_text[16]
+        label_29.text = allNumbers_text[17]
+        label_31.text = allNumbers_text[18]
+        label_32.text = allNumbers_text[19]
+        label_33.text = allNumbers_text[20]
+        label_34.text = allNumbers_text[21]
+        label_35.text = allNumbers_text[22]
+        label_36.text = allNumbers_text[23]
+        label_37.text = allNumbers_text[24]
+        label_38.text = allNumbers_text[25]
+        label_39.text = allNumbers_text[26]
+        label_41.text = allNumbers_text[27]
+        label_42.text = allNumbers_text[28]
+        label_43.text = allNumbers_text[29]
+        label_44.text = allNumbers_text[30]
+        label_45.text = allNumbers_text[31]
+        label_46.text = allNumbers_text[32]
+        label_47.text = allNumbers_text[33]
+        label_48.text = allNumbers_text[34]
+        label_49.text = allNumbers_text[35]
+        label_51.text = allNumbers_text[36]
+        label_52.text = allNumbers_text[37]
+        label_53.text = allNumbers_text[38]
+        label_54.text = allNumbers_text[39]
+        label_55.text = allNumbers_text[40]
+        label_56.text = allNumbers_text[41]
+        label_57.text = allNumbers_text[42]
+        label_58.text = allNumbers_text[43]
+        label_59.text = allNumbers_text[44]
+        label_61.text = allNumbers_text[45]
+        label_62.text = allNumbers_text[46]
+        label_63.text = allNumbers_text[47]
+        label_64.text = allNumbers_text[48]
+        label_65.text = allNumbers_text[49]
+        label_66.text = allNumbers_text[50]
+        label_67.text = allNumbers_text[51]
+        label_68.text = allNumbers_text[52]
+        label_69.text = allNumbers_text[53]
+        label_71.text = allNumbers_text[54]
+        label_72.text = allNumbers_text[55]
+        label_73.text = allNumbers_text[56]
+        label_74.text = allNumbers_text[57]
+        label_75.text = allNumbers_text[58]
+        label_76.text = allNumbers_text[59]
+        label_77.text = allNumbers_text[60]
+        label_78.text = allNumbers_text[61]
+        label_79.text = allNumbers_text[62]
+        label_81.text = allNumbers_text[63]
+        label_82.text = allNumbers_text[64]
+        label_83.text = allNumbers_text[65]
+        label_84.text = allNumbers_text[66]
+        label_85.text = allNumbers_text[67]
+        label_86.text = allNumbers_text[68]
+        label_87.text = allNumbers_text[69]
+        label_88.text = allNumbers_text[70]
+        label_89.text = allNumbers_text[71]
+        label_91.text = allNumbers_text[72]
+        label_92.text = allNumbers_text[73]
+        label_93.text = allNumbers_text[74]
+        label_94.text = allNumbers_text[75]
+        label_95.text = allNumbers_text[76]
+        label_96.text = allNumbers_text[77]
+        label_97.text = allNumbers_text[78]
+        label_98.text = allNumbers_text[79]
+        label_99.text = allNumbers_text[80]
     }
     
     func cleanAll() {

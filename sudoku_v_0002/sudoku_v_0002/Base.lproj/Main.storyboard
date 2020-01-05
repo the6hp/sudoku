@@ -743,6 +743,14 @@
                                     <action selector="testButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7of-MB-qIA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a79-Ky-DZL">
+                                <rect key="frame" x="23" y="592" width="70" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="filling_text"/>
+                                <connections>
+                                    <action selector="filling_text:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JQB-MO-PxF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
