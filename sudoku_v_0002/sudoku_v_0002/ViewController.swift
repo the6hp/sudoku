@@ -105,16 +105,24 @@ class ViewController: UIViewController {
         filling()
     }
     @IBAction func transposingAll(_ sender: Any) {
-        transposing()
+        allNumbers = transposing(array: allNumbers)
         filling()
     }
     @IBAction func swap_rows_small(_ sender: Any) {
+        allNumbers = swap_rows_small_all (array: allNumbers)
+        filling()
     }
     @IBAction func swap_colums_small(_ sender: Any) {
+        allNumbers = swap_colums_small_all (array: allNumbers)
+        filling()
     }
     @IBAction func swap_rows_area(_ sender: Any) {
+        allNumbers = swap_rows_area_all (array: allNumbers)
+        filling()
     }
     @IBAction func swap_colums_area(_ sender: Any) {
+        allNumbers = swap_colums_area_all (array: allNumbers)
+        filling()
     }
     @IBAction func remove(_ sender: Any) {
     }
@@ -128,14 +136,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func testButton(_ sender: Any) {
-        test()
-    }
-    
-    
-    
-    
-    
-    func test () {
+
     }
     
 
@@ -312,27 +313,8 @@ class ViewController: UIViewController {
         label_99.text = ""
     }
     
-
-    func transposing () {
-        var newNumbersTransposing = [Int]()
-        var mTransposing:Int = 0
-        let nTransposing:Int = 9
-        var countNumberTransposing = 0
-        repeat {
-            repeat {
-                let cTransposing = allNumbers[countNumberTransposing]
-                newNumbersTransposing.append(cTransposing)
-                countNumberTransposing = countNumberTransposing + nTransposing
-            } while countNumberTransposing <= 80
-            
-            mTransposing = mTransposing + 1
-            countNumberTransposing = mTransposing
-        } while mTransposing <= 8
-        allNumbers = newNumbersTransposing
-    }
     
-
     
-
+    
 }
 

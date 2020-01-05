@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23482A7F23C149D900EE88EB /* transposing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482A7E23C149D900EE88EB /* transposing.swift */; };
+		23482A8223C14A6300EE88EB /* swap_rows_small.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482A8123C14A6300EE88EB /* swap_rows_small.swift */; };
+		23482A8423C14A7700EE88EB /* swap_colums_small.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482A8323C14A7700EE88EB /* swap_colums_small.swift */; };
+		23482A8623C14A9800EE88EB /* swap_rows_area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482A8523C14A9800EE88EB /* swap_rows_area.swift */; };
+		23482A8823C14AAA00EE88EB /* swap_colums_area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482A8723C14AAA00EE88EB /* swap_colums_area.swift */; };
 		23C4719423BFEC2F00B87E41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C4719323BFEC2F00B87E41 /* AppDelegate.swift */; };
 		23C4719623BFEC2F00B87E41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C4719523BFEC2F00B87E41 /* SceneDelegate.swift */; };
 		23C4719823BFEC2F00B87E41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C4719723BFEC2F00B87E41 /* ViewController.swift */; };
@@ -16,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23482A7E23C149D900EE88EB /* transposing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transposing.swift; sourceTree = "<group>"; };
+		23482A8123C14A6300EE88EB /* swap_rows_small.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swap_rows_small.swift; sourceTree = "<group>"; };
+		23482A8323C14A7700EE88EB /* swap_colums_small.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swap_colums_small.swift; sourceTree = "<group>"; };
+		23482A8523C14A9800EE88EB /* swap_rows_area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swap_rows_area.swift; sourceTree = "<group>"; };
+		23482A8723C14AAA00EE88EB /* swap_colums_area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swap_colums_area.swift; sourceTree = "<group>"; };
 		23C4719023BFEC2F00B87E41 /* sudoku_v_0002.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sudoku_v_0002.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23C4719323BFEC2F00B87E41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23C4719523BFEC2F00B87E41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +47,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23482A8023C14A1D00EE88EB /* func */ = {
+			isa = PBXGroup;
+			children = (
+				23482A7E23C149D900EE88EB /* transposing.swift */,
+				23482A8123C14A6300EE88EB /* swap_rows_small.swift */,
+				23482A8323C14A7700EE88EB /* swap_colums_small.swift */,
+				23482A8523C14A9800EE88EB /* swap_rows_area.swift */,
+				23482A8723C14AAA00EE88EB /* swap_colums_area.swift */,
+			);
+			path = func;
+			sourceTree = "<group>";
+		};
 		23C4718723BFEC2E00B87E41 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +78,7 @@
 		23C4719223BFEC2F00B87E41 /* sudoku_v_0002 */ = {
 			isa = PBXGroup;
 			children = (
+				23482A8023C14A1D00EE88EB /* func */,
 				23C4719323BFEC2F00B87E41 /* AppDelegate.swift */,
 				23C4719523BFEC2F00B87E41 /* SceneDelegate.swift */,
 				23C4719723BFEC2F00B87E41 /* ViewController.swift */,
@@ -139,7 +162,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				23C4719823BFEC2F00B87E41 /* ViewController.swift in Sources */,
+				23482A8623C14A9800EE88EB /* swap_rows_area.swift in Sources */,
 				23C4719423BFEC2F00B87E41 /* AppDelegate.swift in Sources */,
+				23482A8223C14A6300EE88EB /* swap_rows_small.swift in Sources */,
+				23482A8423C14A7700EE88EB /* swap_colums_small.swift in Sources */,
+				23482A7F23C149D900EE88EB /* transposing.swift in Sources */,
+				23482A8823C14AAA00EE88EB /* swap_colums_area.swift in Sources */,
 				23C4719623BFEC2F00B87E41 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
