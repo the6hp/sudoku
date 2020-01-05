@@ -14,9 +14,4 @@
         
         
 
-        
-        print(originalMassiv)
-        return originalMassiv
-    }
-    
-    swap(array: allNumbers)
+print(original_massiv)
