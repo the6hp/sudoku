@@ -1,6 +1,6 @@
 import Foundation
 
-func int_to_string (array: [Int]) -> [String] {
+func int_to_string_all (array: [Int]) -> [String] {
     var res = [String]()
     let arrayCount = array.count
     var i = 0

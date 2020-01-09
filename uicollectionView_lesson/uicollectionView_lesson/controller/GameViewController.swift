@@ -47,6 +47,7 @@ class GameViewController: UIViewController {
         } while e_e < e
         
         mainArray.allNumbers_text = remove_all(array: mainArray.allNumbers)
+        fill_array_all()
     }
     
     @IBAction func averageGameButton(_ sender: Any) {

@@ -21,10 +21,6 @@ func swap_colums_area_all (array: [Int]) -> [Int]  {
         break
     }
     
-    print(one)
-    print(two)
-    
-    
     var a: Int = one * 3
     var b: Int = two * 3
     var i: Int = 0

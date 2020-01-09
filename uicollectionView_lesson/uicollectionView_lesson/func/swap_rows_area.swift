@@ -21,9 +21,6 @@ func swap_rows_area_all (array: [Int]) -> [Int]  {
         break
     }
     
-    print(one)
-    print(two)
-    
     var i: Int = 0
     var a: Int = one * 27
     var b: Int = two * 27

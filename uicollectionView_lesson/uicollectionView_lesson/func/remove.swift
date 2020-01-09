@@ -15,7 +15,7 @@ func remove_all (array: [Int]) -> [String] {
         var a = Int.random(in: 0..<81)
         resMassiv[a] = ""
         countDelete += 1
-    } while countDelete < 20
+    } while countDelete < 2
 
     return resMassiv
 }

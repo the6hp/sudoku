@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23189CD723C7E2D600D5E312 /* check_array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CD623C7E2D600D5E312 /* check_array.swift */; };
+		23189CD923C7E87500D5E312 /* check_array_on_null.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CD823C7E87500D5E312 /* check_array_on_null.swift */; };
+		23189CDB23C7EB0F00D5E312 /* end_game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CDA23C7EB0F00D5E312 /* end_game.swift */; };
+		23189CDD23C7EF0100D5E312 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CDC23C7EF0100D5E312 /* PopUpViewController.swift */; };
 		23868FBE23C69646007C4408 /* variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23868FBD23C69646007C4408 /* variables.swift */; };
-		2386EEE823C672800056A825 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386EEE723C672800056A825 /* ProfileViewController.swift */; };
+		23868FC023C797F0007C4408 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23868FBF23C797F0007C4408 /* MainViewController.swift */; };
+		23868FC223C797FF007C4408 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23868FC123C797FF007C4408 /* StatisticViewController.swift */; };
+		23868FC623C7D20F007C4408 /* fill_array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23868FC523C7D20F007C4408 /* fill_array.swift */; };
 		2386EEEA23C6728C0056A825 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386EEE923C6728C0056A825 /* GameViewController.swift */; };
 		2386EEEC23C6729A0056A825 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386EEEB23C6729A0056A825 /* SettingsViewController.swift */; };
 		2386EEEE23C679110056A825 /* baseArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386EEED23C679110056A825 /* baseArray.swift */; };
@@ -31,8 +37,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23189CD623C7E2D600D5E312 /* check_array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = check_array.swift; sourceTree = "<group>"; };
+		23189CD823C7E87500D5E312 /* check_array_on_null.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = check_array_on_null.swift; sourceTree = "<group>"; };
+		23189CDA23C7EB0F00D5E312 /* end_game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = end_game.swift; sourceTree = "<group>"; };
+		23189CDC23C7EF0100D5E312 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		23868FBD23C69646007C4408 /* variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = variables.swift; sourceTree = "<group>"; };
-		2386EEE723C672800056A825 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		23868FBF23C797F0007C4408 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		23868FC123C797FF007C4408 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
+		23868FC523C7D20F007C4408 /* fill_array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fill_array.swift; sourceTree = "<group>"; };
 		2386EEE923C6728C0056A825 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2386EEEB23C6729A0056A825 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2386EEED23C679110056A825 /* baseArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baseArray.swift; sourceTree = "<group>"; };
@@ -78,6 +90,10 @@
 				2386EEFA23C67DED0056A825 /* remove.swift */,
 				2386EEFC23C67E7E0056A825 /* int_to_string.swift */,
 				2386EEFE23C67E8C0056A825 /* string_to_int.swift */,
+				23868FC523C7D20F007C4408 /* fill_array.swift */,
+				23189CD623C7E2D600D5E312 /* check_array.swift */,
+				23189CD823C7E87500D5E312 /* check_array_on_null.swift */,
+				23189CDA23C7EB0F00D5E312 /* end_game.swift */,
 			);
 			path = func;
 			sourceTree = "<group>";
@@ -127,9 +143,11 @@
 			isa = PBXGroup;
 			children = (
 				23FEDAF923C6082D00EC60B6 /* ViewController.swift */,
-				2386EEE723C672800056A825 /* ProfileViewController.swift */,
 				2386EEE923C6728C0056A825 /* GameViewController.swift */,
 				2386EEEB23C6729A0056A825 /* SettingsViewController.swift */,
+				23868FBF23C797F0007C4408 /* MainViewController.swift */,
+				23868FC123C797FF007C4408 /* StatisticViewController.swift */,
+				23189CDC23C7EF0100D5E312 /* PopUpViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -215,23 +233,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23189CDB23C7EB0F00D5E312 /* end_game.swift in Sources */,
 				2386EEF523C67DB70056A825 /* swap_rows_area.swift in Sources */,
 				2386EEFD23C67E7E0056A825 /* int_to_string.swift in Sources */,
 				2386EEEA23C6728C0056A825 /* GameViewController.swift in Sources */,
-				2386EEE823C672800056A825 /* ProfileViewController.swift in Sources */,
 				2386EEEE23C679110056A825 /* baseArray.swift in Sources */,
+				23868FC223C797FF007C4408 /* StatisticViewController.swift in Sources */,
 				2386EEF923C67DE20056A825 /* swap_colums_area.swift in Sources */,
+				23189CDD23C7EF0100D5E312 /* PopUpViewController.swift in Sources */,
 				2386EEF323C67D990056A825 /* swap_rows_small.swift in Sources */,
 				23FEDB0E23C60B9400EC60B6 /* cell.swift in Sources */,
+				23868FC623C7D20F007C4408 /* fill_array.swift in Sources */,
 				23FEDAFA23C6082D00EC60B6 /* ViewController.swift in Sources */,
 				23FEDAF623C6082D00EC60B6 /* AppDelegate.swift in Sources */,
 				23FEDAF823C6082D00EC60B6 /* SceneDelegate.swift in Sources */,
 				2386EEFF23C67E8C0056A825 /* string_to_int.swift in Sources */,
+				23189CD723C7E2D600D5E312 /* check_array.swift in Sources */,
 				23FEDB0A23C609B800EC60B6 /* MainCollectionViewCell.swift in Sources */,
 				23868FBE23C69646007C4408 /* variables.swift in Sources */,
 				2386EEFB23C67DED0056A825 /* remove.swift in Sources */,
 				2386EEF123C67D790056A825 /* transposing.swift in Sources */,
+				23868FC023C797F0007C4408 /* MainViewController.swift in Sources */,
 				2386EEF723C67DCE0056A825 /* swap_colums_small.swift in Sources */,
+				23189CD923C7E87500D5E312 /* check_array_on_null.swift in Sources */,
 				2386EEEC23C6729A0056A825 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
