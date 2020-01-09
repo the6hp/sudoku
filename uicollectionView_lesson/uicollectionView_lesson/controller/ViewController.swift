@@ -52,20 +52,27 @@ class ViewController: UIViewController {
     
 }
 
+
+//Создание и заполнение ячеек игрового поля
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mainArray.allNumbers_text.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as? MainCollectionViewCell {
-            
             itemCell.nameLabel.text = mainArray.allNumbers_text[indexPath.row]
-            
             return itemCell
         }
         return UICollectionViewCell()
     }
+    
+    
+    
+    
+    
+    
+    
+    
     
     func change_color () {
      //   collectionView.cellForItem(at: place as IndexPath)?.backgroundColor = UIColor.black

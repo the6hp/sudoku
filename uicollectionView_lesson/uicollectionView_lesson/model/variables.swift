@@ -9,5 +9,5 @@
 import Foundation
 
 struct variables {
-    static var selectCell: IndexPath?
+    static var selectCell: IndexPath? //номер выбанной ячейки на игровом поле
 }

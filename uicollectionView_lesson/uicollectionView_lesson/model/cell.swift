@@ -9,7 +9,7 @@
 import Foundation
 
 struct CellStruct {
-    var name: String?
+    var name: String? //Цифра в ячейке
 }
 
 

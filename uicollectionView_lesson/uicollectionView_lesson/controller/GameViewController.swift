@@ -1,10 +1,4 @@
-//
-//  GameViewController.swift
-//  uicollectionView_lesson
-//
-//  Created by Alexander Penkov on 08.01.2020.
-//  Copyright © 2020 Alexander Penkov. All rights reserved.
-//
+//Экран выбора сложности игры
 
 import UIKit
 
@@ -12,8 +6,6 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func easyGameButton(_ sender: Any) {
