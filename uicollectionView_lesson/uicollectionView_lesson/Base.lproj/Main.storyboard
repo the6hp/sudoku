@@ -486,10 +486,131 @@
                     <view key="view" contentMode="scaleToFill" id="5m2-GB-X6c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g5v-Mp-6QJ">
+                                <rect key="frame" x="47" y="138" width="320" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GGP-Sw-EIz"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Лёгкий"/>
+                                    <segment title="Средний"/>
+                                    <segment title="Сложный"/>
+                                    <segment title="Эксперт"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeIndex:" destination="xAA-5g-MfC" eventType="valueChanged" id="VOX-IX-e8l"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Игр сыграно:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbm-m5-r2B">
+                                <rect key="frame" x="10" y="209" width="358" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Игр завершено:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0R-b6-zBg">
+                                <rect key="frame" x="10" y="249" width="358" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juS-Kl-hrK">
+                                <rect key="frame" x="250" y="209" width="100" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttz-VL-8yb">
+                                <rect key="frame" x="250" y="249" width="100" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Коэффициент побед:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnO-6S-2du">
+                                <rect key="frame" x="10" y="289" width="358" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Лучшая серия побед:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ic-tj-OLy">
+                                <rect key="frame" x="10" y="329" width="358" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Лучшее время:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOK-sj-H4s">
+                                <rect key="frame" x="10" y="369" width="358" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Среднее время:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdo-Z9-KqK">
+                                <rect key="frame" x="10" y="409" width="358" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WD-ck-eNc">
+                                <rect key="frame" x="250" y="369" width="100" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qk7-v5-V6h">
+                                <rect key="frame" x="250" y="289" width="100" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwN-qz-X4e">
+                                <rect key="frame" x="250" y="329" width="100" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcs-Xx-SJq">
+                                <rect key="frame" x="250" y="409" width="100" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="g5v-Mp-6QJ" firstAttribute="top" secondItem="Oax-al-Lab" secondAttribute="top" constant="50" id="5z5-xG-PZh"/>
+                            <constraint firstItem="g5v-Mp-6QJ" firstAttribute="leading" secondItem="Oax-al-Lab" secondAttribute="leading" constant="47" id="884-KF-bCz"/>
+                            <constraint firstItem="Oax-al-Lab" firstAttribute="trailing" secondItem="g5v-Mp-6QJ" secondAttribute="trailing" constant="47" id="MtP-oY-LvW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Oax-al-Lab"/>
                     </view>
                     <navigationItem key="navigationItem" title="Статистика" id="CXl-oc-lQK"/>
+                    <connections>
+                        <outlet property="averageTimeLabel" destination="cdo-Z9-KqK" id="MCT-1d-2aQ"/>
+                        <outlet property="averageTimeLabelText" destination="Tcs-Xx-SJq" id="STU-x8-4ld"/>
+                        <outlet property="bestTimeLabel" destination="XOK-sj-H4s" id="CU2-R5-bCx"/>
+                        <outlet property="bestTimeLabelText" destination="1WD-ck-eNc" id="S4X-KI-frb"/>
+                        <outlet property="bestWinStreakLabelText" destination="FwN-qz-X4e" id="GV6-MO-ZKU"/>
+                        <outlet property="betWinStreakLabel" destination="4ic-tj-OLy" id="fGp-dL-6Cl"/>
+                        <outlet property="gamesCompletedLabel" destination="c0R-b6-zBg" id="aPx-pn-E4d"/>
+                        <outlet property="gamesCompletedLabelText" destination="ttz-VL-8yb" id="4gy-L5-VHQ"/>
+                        <outlet property="gamesPlayedLabel" destination="bbm-m5-r2B" id="lGz-xJ-Lni"/>
+                        <outlet property="gamesPlayedLabelText" destination="juS-Kl-hrK" id="o3m-Ch-GNX"/>
+                        <outlet property="segmentedControl" destination="g5v-Mp-6QJ" id="zzH-fR-HV1"/>
+                        <outlet property="winRateLabel" destination="QnO-6S-2du" id="KAa-2o-TBV"/>
+                        <outlet property="winRateLabelText" destination="qk7-v5-V6h" id="geo-7Z-BNO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X3A-hp-Tea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -646,7 +767,7 @@
         <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mbW-MM-AdA"/>
+        <segue reference="bXh-U1-bUK"/>
         <segue reference="5aD-R0-JbH"/>
     </inferredMetricsTieBreakers>
 </document>
