@@ -11,14 +11,31 @@ import UIKit
 class MainCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var miniNameLabel_1: UILabel!
+    @IBOutlet weak var miniNameLabel_2: UILabel!
+    @IBOutlet weak var miniNameLabel_3: UILabel!
+    @IBOutlet weak var miniNameLabel_4: UILabel!
+    @IBOutlet weak var miniNameLabel_5: UILabel!
+    @IBOutlet weak var miniNameLabel_6: UILabel!
+    @IBOutlet weak var miniNameLabel_7: UILabel!
+    @IBOutlet weak var miniNameLabel_8: UILabel!
+    @IBOutlet weak var miniNameLabel_9: UILabel!
+        
     
     
     var CellFull: CellStruct? {
         didSet {
             nameLabel.text = CellFull?.name
+            miniNameLabel_1.text = CellFull?.name
+            miniNameLabel_2.text = CellFull?.name
+            miniNameLabel_3.text = CellFull?.name
+            miniNameLabel_4.text = CellFull?.name
+            miniNameLabel_5.text = CellFull?.name
+            miniNameLabel_6.text = CellFull?.name
+            miniNameLabel_7.text = CellFull?.name
+            miniNameLabel_8.text = CellFull?.name
+            miniNameLabel_9.text = CellFull?.name
         }
     }
-    
-
-    
+        
 }

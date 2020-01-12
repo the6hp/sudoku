@@ -4,8 +4,19 @@ import UIKit
 
 class GameViewController: UIViewController {
 
+    
+    @IBOutlet weak var easyButtonGameView: UIButton!
+    @IBOutlet weak var averageButtonGameView: UIButton!
+    @IBOutlet weak var hardButtonGameView: UIButton!
+    @IBOutlet weak var expertButtonGameView: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonSelectGame()
+        //Убрать нижную границу у нав бара
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        //Убираем текст кнопки "Назад"
+        self.navigationItem.backBarButtonItem?.title = ""
     }
     
     @IBAction func easyGameButton(_ sender: Any) {
@@ -62,5 +73,25 @@ class GameViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    
+    func buttonSelectGame () {
+        easyButtonGameView.backgroundColor = .clear
+        easyButtonGameView.layer.cornerRadius = 25
+        easyButtonGameView.layer.borderWidth = 1
+        easyButtonGameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        averageButtonGameView.backgroundColor = .clear
+        averageButtonGameView.layer.cornerRadius = 25
+        averageButtonGameView.layer.borderWidth = 1
+        averageButtonGameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        hardButtonGameView.backgroundColor = .clear
+        hardButtonGameView.layer.cornerRadius = 25
+        hardButtonGameView.layer.borderWidth = 1
+        hardButtonGameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        expertButtonGameView.backgroundColor = .clear
+        expertButtonGameView.layer.cornerRadius = 25
+        expertButtonGameView.layer.borderWidth = 1
+        expertButtonGameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    }
 }
