@@ -1,14 +1,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
-            
-
     @IBAction func test_button(_ sender: Any) {
-        add_cancel_array_all(Number: 1)
+        fill_array_all()
         collectionView.reloadData()
+        saveData()
     }
 
     //------------------------------------------------------//
@@ -41,7 +40,7 @@ class ViewController: UIViewController {
                 mainArray.testArray[a][0] = ""
             }
         }
-        
+        same_number_all()
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -78,11 +77,12 @@ class ViewController: UIViewController {
                        mainArray.testArray[a][0] = ""
                    }
                }
-        
+        same_number_all()
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
         }
+        saveData()
     }
     
     //------------------------------------------------------//
@@ -115,11 +115,12 @@ class ViewController: UIViewController {
                        mainArray.testArray[a][0] = ""
                    }
                }
-        
+        same_number_all()
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
         }
+        saveData()
     }
     
     //------------------------------------------------------//
@@ -152,11 +153,12 @@ class ViewController: UIViewController {
                        mainArray.testArray[a][0] = ""
                    }
                }
-        
+        same_number_all()
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
         }
+        saveData()
     }
     
     //------------------------------------------------------//
@@ -189,11 +191,12 @@ class ViewController: UIViewController {
                        mainArray.testArray[a][0] = ""
                    }
                }
-        
+        same_number_all()
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
         }
+        saveData()
     }
     
     //------------------------------------------------------//
@@ -226,11 +229,12 @@ class ViewController: UIViewController {
                        mainArray.testArray[a][0] = ""
                    }
                }
-        
+        same_number_all()
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
         }
+        saveData()
     }
     
     //------------------------------------------------------//
@@ -263,11 +267,12 @@ class ViewController: UIViewController {
                        mainArray.testArray[a][0] = ""
                    }
                }
-        
+        same_number_all()
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
         }
+        saveData()
     }
     
     //------------------------------------------------------//
@@ -300,11 +305,12 @@ class ViewController: UIViewController {
                        mainArray.testArray[a][0] = ""
                    }
                }
-        
+        same_number_all()
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
         }
+        saveData()
     }
     
     //------------------------------------------------------//
@@ -337,24 +343,23 @@ class ViewController: UIViewController {
                        mainArray.testArray[a][0] = ""
                    }
                }
-        
+        same_number_all()
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
         }
+        saveData()
     }
     
     //------------------------------------------------------//
     //Кнопка "Отменить"
     //------------------------------------------------------//
 
-    
     @IBAction func cancelButton(_ sender: Any) {
             cancel_all()
             collectionView.reloadData()
-
+            saveData()
     }
-    
     
     //------------------------------------------------------//
     //Кнопка "Удалить"
@@ -366,6 +371,7 @@ class ViewController: UIViewController {
             if a != nil && mainArray.testArray[a][2] == "2" {
                 mainArray.testArray[a][0] = ""
                 collectionView.reloadData()
+                saveData()
             }
         }
     }
@@ -425,24 +431,19 @@ class ViewController: UIViewController {
     
     //------------------------------------------------------//
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
         timerSec()
         variables.savedGame = true
+        saveData()
     }
-    
-    
-
-    
 }
 
-
-//------------------------------------------------------//
-//Создание и заполнение ячеек игрового поля
-//------------------------------------------------------//
+    //------------------------------------------------------//
+    //Создание и заполнение ячеек игрового поля
+    //------------------------------------------------------//
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -450,8 +451,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as? MainCollectionViewCell {
-            
-            
+
             note_count_add_or_remove()
                         
             if mainArray.testArray[indexPath.row][3] == "0" {
@@ -478,42 +478,67 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 itemCell.miniNameLabel_9.text = mainArray.testArray[indexPath.row][12]
 
             }
+
+            //Кастомные границы ячейки
+   
+            if mainArray.borderArray[indexPath.row] == 0 {
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 0.3)
+            } else if mainArray.borderArray[indexPath.row] == 1 {
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 0.3)
+            } else if mainArray.borderArray[indexPath.row] == 2 {
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+            } else if mainArray.borderArray[indexPath.row] == 3 {
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 0.3)
+                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+            }
             
             //Заполнение цветом ячеек
-            //1 - Обычный стартовый фон всего поля
+            
             if mainArray.testArray[indexPath.row][1] == "1" {
-                itemCell.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            //2 - Фон выбранной ячейки
+                itemCell.layer.backgroundColor = variables.color1
             } else if mainArray.testArray[indexPath.row][1] == "2" {
-                itemCell.layer.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-            //3 - Фон выделения областей при выборе ячейки
+                itemCell.layer.backgroundColor = variables.color2
             } else if mainArray.testArray[indexPath.row][1] == "3" {
-                itemCell.layer.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 0.2493122799)
+                itemCell.layer.backgroundColor = variables.color3
+            } else if mainArray.testArray[indexPath.row][1] == "4" {
+                itemCell.layer.backgroundColor = variables.color4
             }
-            
-            itemCell.layer.borderWidth = 1.0 //толщина границы ячейки
-            
+                        
             //Цвет текста
-            //1 - Цвет шрифта изначальных значений
+            
             if mainArray.testArray[indexPath.row][2] == "1" {
-                itemCell.nameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            //2 - Цвет шрифта заполненных пользователем значений
+                itemCell.nameLabel.textColor = variables.color5
             } else if mainArray.testArray[indexPath.row][2] == "2" {
-                itemCell.nameLabel.textColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+                itemCell.nameLabel.textColor = variables.color6
             }
+    
+            
             
             return itemCell
         }
+
         return UICollectionViewCell()
     }
     
     //------------------------------------------------------//
 
-
+    
     
     func change_color () {
         collectionView.reloadData()
         collectionView.cellForItem(at: IndexPath.init(row: 1, section: 0))?.backgroundColor = UIColor.init(red: 79, green: 158, blue: 236, alpha: 1.0)
+        saveData()
     }
     
     
@@ -540,8 +565,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             
             //Закрашиваем областя
             select_line_and_area_all(number: a)
-            
+            same_number_all()
+    
             collectionView.reloadData()
+            saveData()
     }
         
     //------------------------------------------------------//
@@ -564,9 +591,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     //------------------------------------------------------//
 
-    
-    
-    
     
     
     

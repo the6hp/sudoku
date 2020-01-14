@@ -31,6 +31,8 @@
 		23932A2223CA540700AFEF10 /* note_count_add_or_remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23932A2123CA540700AFEF10 /* note_count_add_or_remove.swift */; };
 		23932A2423CA6AF700AFEF10 /* cancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23932A2323CA6AF700AFEF10 /* cancel.swift */; };
 		23932A2623CA6BDC00AFEF10 /* add_cancel_array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23932A2523CA6BDC00AFEF10 /* add_cancel_array.swift */; };
+		23932A4D23CE589300AFEF10 /* localData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23932A4C23CE589300AFEF10 /* localData.swift */; };
+		23932A4F23CE612F00AFEF10 /* same_number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23932A4E23CE612F00AFEF10 /* same_number.swift */; };
 		23FEDAF623C6082D00EC60B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FEDAF523C6082D00EC60B6 /* AppDelegate.swift */; };
 		23FEDAF823C6082D00EC60B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FEDAF723C6082D00EC60B6 /* SceneDelegate.swift */; };
 		23FEDAFA23C6082D00EC60B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FEDAF923C6082D00EC60B6 /* ViewController.swift */; };
@@ -66,6 +68,8 @@
 		23932A2123CA540700AFEF10 /* note_count_add_or_remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = note_count_add_or_remove.swift; sourceTree = "<group>"; };
 		23932A2323CA6AF700AFEF10 /* cancel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cancel.swift; sourceTree = "<group>"; };
 		23932A2523CA6BDC00AFEF10 /* add_cancel_array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_cancel_array.swift; sourceTree = "<group>"; };
+		23932A4C23CE589300AFEF10 /* localData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = localData.swift; sourceTree = "<group>"; };
+		23932A4E23CE612F00AFEF10 /* same_number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = same_number.swift; sourceTree = "<group>"; };
 		23FEDAF223C6082D00EC60B6 /* uicollectionView_lesson.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uicollectionView_lesson.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23FEDAF523C6082D00EC60B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23FEDAF723C6082D00EC60B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				23932A2123CA540700AFEF10 /* note_count_add_or_remove.swift */,
 				23932A2323CA6AF700AFEF10 /* cancel.swift */,
 				23932A2523CA6BDC00AFEF10 /* add_cancel_array.swift */,
+				23932A4E23CE612F00AFEF10 /* same_number.swift */,
 			);
 			path = func;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				23FEDB0D23C60B9400EC60B6 /* cell.swift */,
 				2386EEED23C679110056A825 /* baseArray.swift */,
 				23868FBD23C69646007C4408 /* variables.swift */,
+				23932A4C23CE589300AFEF10 /* localData.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -257,6 +263,8 @@
 				2386EEEE23C679110056A825 /* baseArray.swift in Sources */,
 				23868FC223C797FF007C4408 /* StatisticViewController.swift in Sources */,
 				2386EEF923C67DE20056A825 /* swap_colums_area.swift in Sources */,
+				23932A4D23CE589300AFEF10 /* localData.swift in Sources */,
+				23932A4F23CE612F00AFEF10 /* same_number.swift in Sources */,
 				23189CDD23C7EF0100D5E312 /* PopUpViewController.swift in Sources */,
 				2386EEF323C67D990056A825 /* swap_rows_small.swift in Sources */,
 				23932A2623CA6BDC00AFEF10 /* add_cancel_array.swift in Sources */,
@@ -422,6 +430,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MVZ2D7626T;
 				INFOPLIST_FILE = uicollectionView_lesson/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -439,6 +448,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MVZ2D7626T;
 				INFOPLIST_FILE = uicollectionView_lesson/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

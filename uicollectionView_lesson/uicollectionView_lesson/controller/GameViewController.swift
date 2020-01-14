@@ -21,6 +21,8 @@ class GameViewController: UIViewController {
     
     @IBAction func easyGameButton(_ sender: Any) {
         self.tabBarController?.tabBar.isHidden = true
+        mainArray.testArray = mainArray.defaultArray
+        
         let a = Int.random(in: 1..<10)
         let b = Int.random(in: 1..<100)
         let c = Int.random(in: 1..<100)
@@ -59,6 +61,8 @@ class GameViewController: UIViewController {
         
         mainArray.allNumbers_text = remove_all(array: mainArray.allNumbers)
         fill_array_all()
+        variables.savedGame = true
+        saveData()
     }
     
     @IBAction func averageGameButton(_ sender: Any) {

@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,17 +19,18 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gqZ-od-q1K">
                                 <rect key="frame" x="0.0" y="118" width="414" height="404"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="J6G-Lr-ALs">
-                                    <size key="itemSize" width="40" height="40"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="CQp-Yb-SRc">
+                                    <size key="itemSize" width="36" height="36"/>
+                                    <size key="estimatedItemSize" width="40" height="40"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCell" id="rGx-mS-rkX" customClass="MainCollectionViewCell" customModule="uicollectionView_lesson" customModuleProvider="target">
-                                        <rect key="frame" x="4" y="0.0" width="36" height="36"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="menuCell" translatesAutoresizingMaskIntoConstraints="NO" id="rGx-mS-rkX" customClass="MainCollectionViewCell" customModule="uicollectionView_lesson" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="0.0" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bzh-pZ-nv8">
                                             <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -103,7 +105,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                        </view>
+                                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="8"/>
+                                        </collectionViewCellContentView>
+                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                         <size key="customSize" width="36" height="36"/>
                                         <connections>
                                             <outlet property="miniNameLabel_1" destination="3lz-1B-ab3" id="XPQ-I2-bqU"/>
@@ -768,6 +772,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bXh-U1-bUK"/>
-        <segue reference="5aD-R0-JbH"/>
+        <segue reference="wkQ-Sj-QR1"/>
     </inferredMetricsTieBreakers>
 </document>

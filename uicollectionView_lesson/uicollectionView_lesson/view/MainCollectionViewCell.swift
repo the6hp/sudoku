@@ -10,6 +10,17 @@ import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
     
+    override func prepareForReuse() -> Void {
+        self.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.white, thickness: 1)
+        self.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.white, thickness: 1)
+        self.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.white, thickness: 1)
+        self.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.white, thickness: 1)
+        isSelected = false
+        super.prepareForReuse()
+    }
+
+    
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var miniNameLabel_1: UILabel!
     @IBOutlet weak var miniNameLabel_2: UILabel!
@@ -20,8 +31,9 @@ class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var miniNameLabel_7: UILabel!
     @IBOutlet weak var miniNameLabel_8: UILabel!
     @IBOutlet weak var miniNameLabel_9: UILabel!
-        
     
+    
+            
     
     var CellFull: CellStruct? {
         didSet {
