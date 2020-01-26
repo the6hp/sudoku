@@ -10,6 +10,13 @@ import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
     
+//    class CustomFlowLayout : UICollectionViewFlowLayout {
+//      var insertingIndexPaths = [IndexPath]()
+//
+//    }
+    
+    
+    
     override func prepareForReuse() -> Void {
         self.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.white, thickness: 1)
         self.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.white, thickness: 1)
@@ -50,4 +57,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         }
     }
         
+    
+    
+    
 }

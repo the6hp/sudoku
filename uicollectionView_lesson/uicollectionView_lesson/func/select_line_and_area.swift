@@ -5,6 +5,9 @@
 import Foundation
 
 func select_line_and_area_all (number: Int) {
+    
+    if settings.selectedArea == true {
+    
     //Делаем новые выделения
     let line_h_1 = [0,1,2,9,10,11,18,19,20]
     let line_h_2 = [3,4,5,12,13,14,21,22,23]
@@ -203,4 +206,5 @@ func select_line_and_area_all (number: Int) {
         i += 1
     } while i < 9
     
+    }
 }

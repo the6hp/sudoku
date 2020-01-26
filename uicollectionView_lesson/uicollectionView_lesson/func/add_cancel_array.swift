@@ -6,4 +6,6 @@ func add_cancel_array_all (Number: Int) {
     var b = "\(Number)"
     a.insert(b, at: 13)
     mainArray.oldCancelArray.append(a)
+    
+    saveData()
 }

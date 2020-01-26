@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2317516823D0F1010017DC67 /* StopGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317516723D0F1010017DC67 /* StopGameViewController.swift */; };
+		2317516A23D30E0E0017DC67 /* error_number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317516923D30E0D0017DC67 /* error_number.swift */; };
+		2317516C23D489180017DC67 /* resetting_the_selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317516B23D489180017DC67 /* resetting_the_selection.swift */; };
+		2317516E23D4D1FF0017DC67 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317516D23D4D1FF0017DC67 /* SettingsTableViewCell.swift */; };
+		2317517223DC54FA0017DC67 /* new_remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317517123DC54FA0017DC67 /* new_remove.swift */; };
+		2317517623DC95FA0017DC67 /* checking_the_solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317517523DC95FA0017DC67 /* checking_the_solution.swift */; };
+		2317517823DD0C990017DC67 /* hide_used_numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317517723DD0C990017DC67 /* hide_used_numbers.swift */; };
+		2317517E23DE11C40017DC67 /* tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2317517D23DE11C40017DC67 /* tap.mp3 */; };
+		2317518023DE121F0017DC67 /* tap2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2317517F23DE121F0017DC67 /* tap2.wav */; };
 		23189CD723C7E2D600D5E312 /* check_array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CD623C7E2D600D5E312 /* check_array.swift */; };
 		23189CD923C7E87500D5E312 /* check_array_on_null.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CD823C7E87500D5E312 /* check_array_on_null.swift */; };
 		23189CDB23C7EB0F00D5E312 /* end_game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CDA23C7EB0F00D5E312 /* end_game.swift */; };
@@ -44,6 +53,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2317516723D0F1010017DC67 /* StopGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopGameViewController.swift; sourceTree = "<group>"; };
+		2317516923D30E0D0017DC67 /* error_number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = error_number.swift; sourceTree = "<group>"; };
+		2317516B23D489180017DC67 /* resetting_the_selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetting_the_selection.swift; sourceTree = "<group>"; };
+		2317516D23D4D1FF0017DC67 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		2317517123DC54FA0017DC67 /* new_remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = new_remove.swift; sourceTree = "<group>"; };
+		2317517523DC95FA0017DC67 /* checking_the_solution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checking_the_solution.swift; sourceTree = "<group>"; };
+		2317517723DD0C990017DC67 /* hide_used_numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hide_used_numbers.swift; sourceTree = "<group>"; };
+		2317517D23DE11C40017DC67 /* tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tap.mp3; path = ../../../../Downloads/tap.mp3; sourceTree = "<group>"; };
+		2317517F23DE121F0017DC67 /* tap2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap2.wav; path = ../../../../Downloads/tap2.wav; sourceTree = "<group>"; };
 		23189CD623C7E2D600D5E312 /* check_array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = check_array.swift; sourceTree = "<group>"; };
 		23189CD823C7E87500D5E312 /* check_array_on_null.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = check_array_on_null.swift; sourceTree = "<group>"; };
 		23189CDA23C7EB0F00D5E312 /* end_game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = end_game.swift; sourceTree = "<group>"; };
@@ -93,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2317517B23DE11350017DC67 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				2317517D23DE11C40017DC67 /* tap.mp3 */,
+				2317517F23DE121F0017DC67 /* tap2.wav */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
 		2386EEEF23C67D5C0056A825 /* func */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +141,11 @@
 				23932A2323CA6AF700AFEF10 /* cancel.swift */,
 				23932A2523CA6BDC00AFEF10 /* add_cancel_array.swift */,
 				23932A4E23CE612F00AFEF10 /* same_number.swift */,
+				2317516923D30E0D0017DC67 /* error_number.swift */,
+				2317516B23D489180017DC67 /* resetting_the_selection.swift */,
+				2317517123DC54FA0017DC67 /* new_remove.swift */,
+				2317517523DC95FA0017DC67 /* checking_the_solution.swift */,
+				2317517723DD0C990017DC67 /* hide_used_numbers.swift */,
 			);
 			path = func;
 			sourceTree = "<group>";
@@ -138,6 +170,7 @@
 		23FEDAF423C6082D00EC60B6 /* uicollectionView_lesson */ = {
 			isa = PBXGroup;
 			children = (
+				2317517B23DE11350017DC67 /* audio */,
 				23FEDAF523C6082D00EC60B6 /* AppDelegate.swift */,
 				23FEDAF723C6082D00EC60B6 /* SceneDelegate.swift */,
 				2386EEEF23C67D5C0056A825 /* func */,
@@ -168,6 +201,7 @@
 				23868FBF23C797F0007C4408 /* MainViewController.swift */,
 				23868FC123C797FF007C4408 /* StatisticViewController.swift */,
 				23189CDC23C7EF0100D5E312 /* PopUpViewController.swift */,
+				2317516723D0F1010017DC67 /* StopGameViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -179,6 +213,7 @@
 				2386EEED23C679110056A825 /* baseArray.swift */,
 				23868FBD23C69646007C4408 /* variables.swift */,
 				23932A4C23CE589300AFEF10 /* localData.swift */,
+				2317516D23D4D1FF0017DC67 /* SettingsTableViewCell.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -241,8 +276,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2317518023DE121F0017DC67 /* tap2.wav in Resources */,
 				23FEDB0223C6082F00EC60B6 /* LaunchScreen.storyboard in Resources */,
 				23FEDB1323C61C3F00EC60B6 /* Assets.xcassets in Resources */,
+				2317517E23DE11C40017DC67 /* tap.mp3 in Resources */,
 				23FEDAFD23C6082D00EC60B6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,20 +299,27 @@
 				2386EEEA23C6728C0056A825 /* GameViewController.swift in Sources */,
 				2386EEEE23C679110056A825 /* baseArray.swift in Sources */,
 				23868FC223C797FF007C4408 /* StatisticViewController.swift in Sources */,
+				2317516A23D30E0E0017DC67 /* error_number.swift in Sources */,
 				2386EEF923C67DE20056A825 /* swap_colums_area.swift in Sources */,
 				23932A4D23CE589300AFEF10 /* localData.swift in Sources */,
 				23932A4F23CE612F00AFEF10 /* same_number.swift in Sources */,
+				2317517623DC95FA0017DC67 /* checking_the_solution.swift in Sources */,
 				23189CDD23C7EF0100D5E312 /* PopUpViewController.swift in Sources */,
 				2386EEF323C67D990056A825 /* swap_rows_small.swift in Sources */,
 				23932A2623CA6BDC00AFEF10 /* add_cancel_array.swift in Sources */,
 				23FEDB0E23C60B9400EC60B6 /* cell.swift in Sources */,
 				23868FC623C7D20F007C4408 /* fill_array.swift in Sources */,
 				23932A2423CA6AF700AFEF10 /* cancel.swift in Sources */,
+				2317516E23D4D1FF0017DC67 /* SettingsTableViewCell.swift in Sources */,
+				2317516C23D489180017DC67 /* resetting_the_selection.swift in Sources */,
 				23189D5323CA11A700D5E312 /* clear_help.swift in Sources */,
 				23FEDAFA23C6082D00EC60B6 /* ViewController.swift in Sources */,
+				2317517823DD0C990017DC67 /* hide_used_numbers.swift in Sources */,
+				2317517223DC54FA0017DC67 /* new_remove.swift in Sources */,
 				23FEDAF623C6082D00EC60B6 /* AppDelegate.swift in Sources */,
 				23FEDAF823C6082D00EC60B6 /* SceneDelegate.swift in Sources */,
 				2386EEFF23C67E8C0056A825 /* string_to_int.swift in Sources */,
+				2317516823D0F1010017DC67 /* StopGameViewController.swift in Sources */,
 				23189CD723C7E2D600D5E312 /* check_array.swift in Sources */,
 				23FEDB0A23C609B800EC60B6 /* MainCollectionViewCell.swift in Sources */,
 				23868FBE23C69646007C4408 /* variables.swift in Sources */,
@@ -427,6 +471,7 @@
 		23FEDB0723C6082F00EC60B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MVZ2D7626T;
 				INFOPLIST_FILE = uicollectionView_lesson/Info.plist;
@@ -445,6 +490,7 @@
 		23FEDB0823C6082F00EC60B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MVZ2D7626T;
 				INFOPLIST_FILE = uicollectionView_lesson/Info.plist;

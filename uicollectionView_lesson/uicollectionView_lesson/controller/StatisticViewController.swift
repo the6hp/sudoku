@@ -13,7 +13,7 @@ class StatisticViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         changeBorder()
-
+        startStatistics()
     }
     
     @IBOutlet weak var gamesPlayedLabel: UILabel!
@@ -31,40 +31,48 @@ class StatisticViewController: UIViewController {
     @IBOutlet weak var bestTimeLabelText: UILabel!
     @IBOutlet weak var averageTimeLabelText: UILabel!
     
-    
+    func startStatistics () {
+        gamesPlayedLabelText.text = String(statistics.statisticsEasyGamesPlayed)
+        gamesCompletedLabelText.text = String(statistics.statisticEasyGamesCompleted)
+        winRateLabelText.text = String(statistics.statisticEasyWinRate)
+        bestWinStreakLabelText.text = String(statistics.statisticEasyBestWinStreak)
+        bestTimeLabelText.text = String(statistics.statisticEasyBestTime)
+        averageTimeLabelText.text = String(statistics.statisticEasyAverageTime)
+    }
+
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBAction func changeIndex(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex
         {
         case 0:
-            gamesPlayedLabelText.text = "0"
-            gamesCompletedLabelText.text = "0"
-            winRateLabelText.text = "0"
-            bestWinStreakLabelText.text = "0"
-            bestTimeLabelText.text = "00:00"
-            averageTimeLabelText.text = "00:00"
+            gamesPlayedLabelText.text = String(statistics.statisticsEasyGamesPlayed)
+            gamesCompletedLabelText.text = String(statistics.statisticEasyGamesCompleted)
+            winRateLabelText.text = String(statistics.statisticEasyWinRate)
+            bestWinStreakLabelText.text = String(statistics.statisticEasyBestWinStreak)
+            bestTimeLabelText.text = String(statistics.statisticEasyBestTime)
+            averageTimeLabelText.text = String(statistics.statisticEasyAverageTime)
         case 1:
-            gamesPlayedLabelText.text = "1"
-            gamesCompletedLabelText.text = "1"
-            winRateLabelText.text = "1"
-            bestWinStreakLabelText.text = "1"
-            bestTimeLabelText.text = "01:01"
-            averageTimeLabelText.text = "10:10"
+            gamesPlayedLabelText.text = String(statistics.statisticsAverageGamesPlayed)
+            gamesCompletedLabelText.text = String(statistics.statisticAverageGamesCompleted)
+            winRateLabelText.text = String(statistics.statisticAverageWinRate)
+            bestWinStreakLabelText.text = String(statistics.statisticAverageBestWinStreak)
+            bestTimeLabelText.text = String(statistics.statisticAverageBestTime)
+            averageTimeLabelText.text = String(statistics.statisticAverageAverageTime)
         case 2:
-            gamesPlayedLabelText.text = "2"
-            gamesCompletedLabelText.text = "2"
-            winRateLabelText.text = "2"
-            bestWinStreakLabelText.text = "2"
-            bestTimeLabelText.text = "02:02"
-            averageTimeLabelText.text = "20:20"
+            gamesPlayedLabelText.text = String(statistics.statisticsHardGamesPlayed)
+            gamesCompletedLabelText.text = String(statistics.statisticHardGamesCompleted)
+            winRateLabelText.text = String(statistics.statisticHardWinRate)
+            bestWinStreakLabelText.text = String(statistics.statisticHardBestWinStreak)
+            bestTimeLabelText.text = String(statistics.statisticHardBestTime)
+            averageTimeLabelText.text = String(statistics.statisticHardAverageTime)
         case 3:
-            gamesPlayedLabelText.text = "3"
-            gamesCompletedLabelText.text = "3"
-            winRateLabelText.text = "3"
-            bestWinStreakLabelText.text = "3"
-            bestTimeLabelText.text = "03:03"
-            averageTimeLabelText.text = "30:30"
+            gamesPlayedLabelText.text = String(statistics.statisticsExpertGamesPlayed)
+            gamesCompletedLabelText.text = String(statistics.statisticExpertGamesCompleted)
+            winRateLabelText.text = String(statistics.statisticExpertWinRate)
+            bestWinStreakLabelText.text = String(statistics.statisticExpertBestWinStreak)
+            bestTimeLabelText.text = String(statistics.statisticExpertBestTime)
+            averageTimeLabelText.text = String(statistics.statisticExpertAverageTime)
         default:
             break
         }
@@ -82,9 +90,39 @@ class StatisticViewController: UIViewController {
 
     }
     
-    
-    
+    @IBAction func resetStatistics(_ sender: Any) {
+            statistics.statisticsEasyGamesPlayed = 0
+            statistics.statisticEasyGamesCompleted = 0
+            statistics.statisticEasyWinRate = 0
+            statistics.statisticEasyBestWinStreak = 0
+            statistics.statisticEasyBestTime = 0
+            statistics.statisticEasyAverageTime = 0
+
+            statistics.statisticsAverageGamesPlayed = 0
+            statistics.statisticAverageGamesCompleted = 0
+            statistics.statisticAverageWinRate = 0
+            statistics.statisticAverageBestWinStreak = 0
+            statistics.statisticAverageBestTime = 0
+            statistics.statisticAverageAverageTime = 0
+
+            statistics.statisticsHardGamesPlayed = 0
+            statistics.statisticHardGamesCompleted = 0
+            statistics.statisticHardWinRate = 0
+            statistics.statisticHardBestWinStreak = 0
+            statistics.statisticHardBestTime = 0
+            statistics.statisticHardAverageTime = 0
+
+            statistics.statisticsExpertGamesPlayed = 0
+            statistics.statisticExpertGamesCompleted = 0
+            statistics.statisticExpertWinRate = 0
+            statistics.statisticExpertBestWinStreak = 0
+            statistics.statisticExpertBestTime = 0
+            statistics.statisticExpertAverageTime = 0
+        
+    }  
 }
+
+
 
 
 //------------------------------------------------------//

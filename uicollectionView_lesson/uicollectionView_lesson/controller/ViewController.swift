@@ -1,46 +1,139 @@
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioPlayerDelegate {
+
+    //Звук тапа по кнопке
+    let tapSound = URL(fileURLWithPath: Bundle.main.path(forResource: "tap", ofType: "mp3")!)
+    var audioPlayer = AVAudioPlayer()
     
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBAction func test_button(_ sender: Any) {
-        fill_array_all()
-        collectionView.reloadData()
+
+    //------------------------------------------------------//
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        timerSec()
+        variables.savedGame = true
+        sizeViewButton()
+        errorLabelCount()
+        
+        
+        //Добавление правой кнопки в навбаре
+        //self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Настройки", style: .plain, target: self, action: #selector(testButton))
+
+        
+        //Блокируется ли экран при бездействии
+        if settings.autolockScreen == true {
+            UIApplication.shared.isIdleTimerDisabled = false
+        } else if settings.autolockScreen == false {
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
+        
+        //Показывать таймер или нет
+        if settings.timer == true {
+            labelTimer.isHidden = false
+            stopGameButtonOutlet.isHidden = false
+        } else if settings.timer == false {
+            labelTimer.isHidden = true
+            stopGameButtonOutlet.isHidden = true
+        }
+        
+        
         saveData()
     }
 
+    
+    @objc func testButton () {
+        print("test")
+    }
+    
     //------------------------------------------------------//
     //Кнопка с цифрой "1"
     //------------------------------------------------------//
 
+    @IBAction func stopGameButton(_ sender: Any) {
+        StopGame()
+        timerS.invalidate()
+    }
+    
+    @IBOutlet weak var stopGameButtonOutlet: UIButton!
+    
+    @IBOutlet weak var cancelButtonOutletLabel: UILabel!
+    @IBOutlet weak var removeButtonOutletLabel: UILabel!
+    @IBOutlet weak var noteButtonOutletLabel: UILabel!
+    @IBOutlet weak var helpButtonOutletLabel: UILabel!
+    
+    @IBOutlet weak var errorLabel: UILabel!
+    
+    @IBOutlet weak var mainButton_1_Outlet: UIButton!
+    @IBOutlet weak var mainButton_2_Outlet: UIButton!
+    @IBOutlet weak var mainButton_3_Outlet: UIButton!
+    @IBOutlet weak var mainButton_4_Outlet: UIButton!
+    @IBOutlet weak var mainButton_5_Outlet: UIButton!
+    @IBOutlet weak var mainButton_6_Outlet: UIButton!
+    @IBOutlet weak var mainButton_7_Outlet: UIButton!
+    @IBOutlet weak var mainButton_8_Outlet: UIButton!
+    @IBOutlet weak var mainButton_9_Outlet: UIButton!
+    
     @IBAction func mainButton_1(_ sender: Any) {
         if variables.selectCell != nil {
-        add_cancel_array_all(Number: variables.selectCell![1])
-        }
-        if variables.changeButtonNote == 0 {
+            
+            resetting_the_selection_all()
             if variables.selectCell != nil {
+            add_cancel_array_all(Number: variables.selectCell![1])
+            }
+            if variables.changeButtonNote == 0 {
+                if variables.selectCell != nil {
+                    let a = variables.selectCell![1]
+                    clear_help_all(number: a)
+                    if mainArray.testArray[a][0] == "" {
+                        mainArray.testArray[a][0] = "1"
+                        mainArray.testArray[a][2] = "2"
+                    } else if mainArray.testArray[a][0] == "1" && mainArray.testArray[a][2] == "2"  {
+                        mainArray.testArray[a][0] = ""
+                    } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
+                        mainArray.testArray[a][0] = "1"
+                    }
+                }
+            } else if variables.changeButtonNote == 1 && mainArray.testArray[variables.selectCell![1]][0] == "" {
                 let a = variables.selectCell![1]
-                clear_help_all(number: a)
-                if mainArray.testArray[a][0] == "" {
-                    mainArray.testArray[a][0] = "1"
-                    mainArray.testArray[a][2] = "2"
-                } else if mainArray.testArray[a][0] == "1" && mainArray.testArray[a][2] == "2"  {
+                if variables.selectCell != nil && mainArray.testArray[a][4] == "" {
+                    mainArray.testArray[a][4] = "1"
+                } else if variables.selectCell != nil && mainArray.testArray[a][4] == "1" {
+                    mainArray.testArray[a][4] = ""
                     mainArray.testArray[a][0] = ""
-                } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
-                    mainArray.testArray[a][0] = "1"
                 }
             }
-        } else {
-            let a = variables.selectCell![1]
-            if variables.selectCell != nil && mainArray.testArray[a][4] == "" {
-                mainArray.testArray[a][4] = "1"
-            } else if variables.selectCell != nil && mainArray.testArray[a][4] == "1" {
-                mainArray.testArray[a][4] = ""
-                mainArray.testArray[a][0] = ""
+            same_number_all()
+            
+            if settings.autocheckError == true {
+                error_number_all() //красим ячейку с ошибкой
+            }
+            
+            
+        }
+        
+        if hide_used_numbers_all(num: "1") == 1 {
+            mainButton_1_Outlet.setTitleColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), for: .normal)
+        } else if hide_used_numbers_all(num: "1") == 0 {
+            mainButton_1_Outlet.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        }
+        
+       
+        if settings.sound == true {
+            do {
+                 audioPlayer = try AVAudioPlayer(contentsOf: tapSound)
+                 audioPlayer.play()
+            } catch {
+               // couldn't load file :(
             }
         }
-        same_number_all()
+
+
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -53,31 +146,55 @@ class ViewController: UIViewController {
 
     @IBAction func mainButton_2(_ sender: Any) {
         if variables.selectCell != nil {
-        add_cancel_array_all(Number: variables.selectCell![1])
-        }
-         if variables.changeButtonNote == 0 {
-                   if variables.selectCell != nil {
+            
+
+            
+            
+            resetting_the_selection_all()
+            if variables.selectCell != nil {
+            add_cancel_array_all(Number: variables.selectCell![1])
+            }
+             if variables.changeButtonNote == 0 {
+                       if variables.selectCell != nil {
+                           let a = variables.selectCell![1]
+                           clear_help_all(number: a)
+                           if mainArray.testArray[a][0] == "" {
+                               mainArray.testArray[a][0] = "2"
+                               mainArray.testArray[a][2] = "2"
+                           } else if mainArray.testArray[a][0] == "2" && mainArray.testArray[a][2] == "2"  {
+                               mainArray.testArray[a][0] = ""
+                           } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
+                               mainArray.testArray[a][0] = "2"
+                           }
+                       }
+                   } else if variables.changeButtonNote == 1 && mainArray.testArray[variables.selectCell![1]][0] == "" {
                        let a = variables.selectCell![1]
-                       clear_help_all(number: a)
-                       if mainArray.testArray[a][0] == "" {
-                           mainArray.testArray[a][0] = "2"
-                           mainArray.testArray[a][2] = "2"
-                       } else if mainArray.testArray[a][0] == "2" && mainArray.testArray[a][2] == "2"  {
+                       if variables.selectCell != nil && mainArray.testArray[a][5] == "" {
+                           mainArray.testArray[a][5] = "2"
+                       } else if variables.selectCell != nil && mainArray.testArray[a][5] == "2" {
+                           mainArray.testArray[a][5] = ""
                            mainArray.testArray[a][0] = ""
-                       } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
-                           mainArray.testArray[a][0] = "2"
                        }
                    }
-               } else {
-                   let a = variables.selectCell![1]
-                   if variables.selectCell != nil && mainArray.testArray[a][5] == "" {
-                       mainArray.testArray[a][5] = "2"
-                   } else if variables.selectCell != nil && mainArray.testArray[a][5] == "2" {
-                       mainArray.testArray[a][5] = ""
-                       mainArray.testArray[a][0] = ""
-                   }
-               }
-        same_number_all()
+            same_number_all()
+            if settings.autocheckError == true {
+                error_number_all() //красим ячейку с ошибкой
+            }
+            
+            if settings.sound == true {
+                do {
+                     audioPlayer = try AVAudioPlayer(contentsOf: tapSound)
+                     audioPlayer.play()
+                } catch {
+                   // couldn't load file :(
+                }
+            }
+
+            
+            
+        }
+        
+
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -91,31 +208,58 @@ class ViewController: UIViewController {
 
     @IBAction func mainButton_3(_ sender: Any) {
         if variables.selectCell != nil {
-        add_cancel_array_all(Number: variables.selectCell![1])
-        }
-        if variables.changeButtonNote == 0 {
-                   if variables.selectCell != nil {
+            
+
+            resetting_the_selection_all()
+
+            if variables.selectCell != nil {
+            add_cancel_array_all(Number: variables.selectCell![1])
+            }
+            if variables.changeButtonNote == 0 {
+                       if variables.selectCell != nil {
+                           let a = variables.selectCell![1]
+                           clear_help_all(number: a)
+                           if mainArray.testArray[a][0] == "" {
+                               mainArray.testArray[a][0] = "3"
+                               mainArray.testArray[a][2] = "2"
+                           } else if mainArray.testArray[a][0] == "3" && mainArray.testArray[a][2] == "2"  {
+                               mainArray.testArray[a][0] = ""
+                           } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
+                               mainArray.testArray[a][0] = "3"
+                           }
+                       }
+                   } else if variables.changeButtonNote == 1 && mainArray.testArray[variables.selectCell![1]][0] == "" {
                        let a = variables.selectCell![1]
-                       clear_help_all(number: a)
-                       if mainArray.testArray[a][0] == "" {
-                           mainArray.testArray[a][0] = "3"
-                           mainArray.testArray[a][2] = "2"
-                       } else if mainArray.testArray[a][0] == "3" && mainArray.testArray[a][2] == "2"  {
+                       if variables.selectCell != nil && mainArray.testArray[a][6] == "" {
+                           mainArray.testArray[a][6] = "3"
+                       } else if variables.selectCell != nil && mainArray.testArray[a][6] == "3" {
+                           mainArray.testArray[a][6] = ""
                            mainArray.testArray[a][0] = ""
-                       } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
-                           mainArray.testArray[a][0] = "3"
                        }
                    }
-               } else {
-                   let a = variables.selectCell![1]
-                   if variables.selectCell != nil && mainArray.testArray[a][6] == "" {
-                       mainArray.testArray[a][6] = "3"
-                   } else if variables.selectCell != nil && mainArray.testArray[a][6] == "3" {
-                       mainArray.testArray[a][6] = ""
-                       mainArray.testArray[a][0] = ""
-                   }
-               }
-        same_number_all()
+            same_number_all()
+            if settings.autocheckError == true {
+                error_number_all() //красим ячейку с ошибкой
+            }
+            
+            
+            
+            
+        }
+        
+        if settings.sound == true {
+            do {
+                 audioPlayer = try AVAudioPlayer(contentsOf: tapSound)
+                 audioPlayer.play()
+            } catch {
+               // couldn't load file :(
+            }
+        }
+
+        
+        
+        
+
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -129,31 +273,60 @@ class ViewController: UIViewController {
 
     @IBAction func mainButton_4(_ sender: Any) {
         if variables.selectCell != nil {
-        add_cancel_array_all(Number: variables.selectCell![1])
-        }
-        if variables.changeButtonNote == 0 {
-                   if variables.selectCell != nil {
+            
+
+            
+            resetting_the_selection_all()
+
+            if variables.selectCell != nil {
+            add_cancel_array_all(Number: variables.selectCell![1])
+            }
+            if variables.changeButtonNote == 0 {
+                       if variables.selectCell != nil {
+                           let a = variables.selectCell![1]
+                           clear_help_all(number: a)
+                           if mainArray.testArray[a][0] == "" {
+                               mainArray.testArray[a][0] = "4"
+                               mainArray.testArray[a][2] = "2"
+                           } else if mainArray.testArray[a][0] == "4" && mainArray.testArray[a][2] == "2"  {
+                               mainArray.testArray[a][0] = ""
+                           } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
+                               mainArray.testArray[a][0] = "4"
+                           }
+                       }
+                   } else if variables.changeButtonNote == 1 && mainArray.testArray[variables.selectCell![1]][0] == "" {
                        let a = variables.selectCell![1]
-                       clear_help_all(number: a)
-                       if mainArray.testArray[a][0] == "" {
-                           mainArray.testArray[a][0] = "4"
-                           mainArray.testArray[a][2] = "2"
-                       } else if mainArray.testArray[a][0] == "4" && mainArray.testArray[a][2] == "2"  {
+                       if variables.selectCell != nil && mainArray.testArray[a][7] == "" {
+                           mainArray.testArray[a][7] = "4"
+                       } else if variables.selectCell != nil && mainArray.testArray[a][7] == "4" {
+                           mainArray.testArray[a][7] = ""
                            mainArray.testArray[a][0] = ""
-                       } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
-                           mainArray.testArray[a][0] = "4"
                        }
                    }
-               } else {
-                   let a = variables.selectCell![1]
-                   if variables.selectCell != nil && mainArray.testArray[a][7] == "" {
-                       mainArray.testArray[a][7] = "4"
-                   } else if variables.selectCell != nil && mainArray.testArray[a][7] == "4" {
-                       mainArray.testArray[a][7] = ""
-                       mainArray.testArray[a][0] = ""
-                   }
-               }
-        same_number_all()
+            same_number_all()
+            if settings.autocheckError == true {
+                error_number_all() //красим ячейку с ошибкой
+            }
+            
+            
+            
+            
+        }
+        
+        
+        if settings.sound == true {
+            do {
+                 audioPlayer = try AVAudioPlayer(contentsOf: tapSound)
+                 audioPlayer.play()
+            } catch {
+               // couldn't load file :(
+            }
+        }
+
+        
+        
+        
+
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -167,31 +340,58 @@ class ViewController: UIViewController {
 
     @IBAction func mainButton_5(_ sender: Any) {
         if variables.selectCell != nil {
-        add_cancel_array_all(Number: variables.selectCell![1])
-        }
-        if variables.changeButtonNote == 0 {
-                   if variables.selectCell != nil {
+            
+            
+
+            
+            resetting_the_selection_all()
+
+            if variables.selectCell != nil {
+            add_cancel_array_all(Number: variables.selectCell![1])
+            }
+            if variables.changeButtonNote == 0 {
+                       if variables.selectCell != nil {
+                           let a = variables.selectCell![1]
+                           clear_help_all(number: a)
+                           if mainArray.testArray[a][0] == "" {
+                               mainArray.testArray[a][0] = "5"
+                               mainArray.testArray[a][2] = "2"
+                           } else if mainArray.testArray[a][0] == "5" && mainArray.testArray[a][2] == "2"  {
+                               mainArray.testArray[a][0] = ""
+                           } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
+                               mainArray.testArray[a][0] = "5"
+                           }
+                       }
+                   } else if variables.changeButtonNote == 1 && mainArray.testArray[variables.selectCell![1]][0] == "" {
                        let a = variables.selectCell![1]
-                       clear_help_all(number: a)
-                       if mainArray.testArray[a][0] == "" {
-                           mainArray.testArray[a][0] = "5"
-                           mainArray.testArray[a][2] = "2"
-                       } else if mainArray.testArray[a][0] == "5" && mainArray.testArray[a][2] == "2"  {
+                       if variables.selectCell != nil && mainArray.testArray[a][8] == "" {
+                           mainArray.testArray[a][8] = "5"
+                       } else if variables.selectCell != nil && mainArray.testArray[a][8] == "5" {
+                           mainArray.testArray[a][8] = ""
                            mainArray.testArray[a][0] = ""
-                       } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
-                           mainArray.testArray[a][0] = "5"
                        }
                    }
-               } else {
-                   let a = variables.selectCell![1]
-                   if variables.selectCell != nil && mainArray.testArray[a][8] == "" {
-                       mainArray.testArray[a][8] = "5"
-                   } else if variables.selectCell != nil && mainArray.testArray[a][8] == "5" {
-                       mainArray.testArray[a][8] = ""
-                       mainArray.testArray[a][0] = ""
-                   }
-               }
-        same_number_all()
+            same_number_all()
+            if settings.autocheckError == true {
+                error_number_all() //красим ячейку с ошибкой
+            }
+            
+            
+            
+        }
+        
+        if settings.sound == true {
+            do {
+                 audioPlayer = try AVAudioPlayer(contentsOf: tapSound)
+                 audioPlayer.play()
+            } catch {
+               // couldn't load file :(
+            }
+        }
+
+        
+        
+
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -205,31 +405,60 @@ class ViewController: UIViewController {
 
     @IBAction func mainButton_6(_ sender: Any) {
         if variables.selectCell != nil {
-        add_cancel_array_all(Number: variables.selectCell![1])
-        }
-        if variables.changeButtonNote == 0 {
-                   if variables.selectCell != nil {
+            
+            
+
+            
+            resetting_the_selection_all()
+
+            if variables.selectCell != nil {
+            add_cancel_array_all(Number: variables.selectCell![1])
+            }
+            if variables.changeButtonNote == 0 {
+                       if variables.selectCell != nil {
+                           let a = variables.selectCell![1]
+                           clear_help_all(number: a)
+                           if mainArray.testArray[a][0] == "" {
+                               mainArray.testArray[a][0] = "6"
+                               mainArray.testArray[a][2] = "2"
+                           } else if mainArray.testArray[a][0] == "6" && mainArray.testArray[a][2] == "2"  {
+                               mainArray.testArray[a][0] = ""
+                           } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
+                               mainArray.testArray[a][0] = "6"
+                           }
+                       }
+                   } else if variables.changeButtonNote == 1 && mainArray.testArray[variables.selectCell![1]][0] == "" {
                        let a = variables.selectCell![1]
-                       clear_help_all(number: a)
-                       if mainArray.testArray[a][0] == "" {
-                           mainArray.testArray[a][0] = "6"
-                           mainArray.testArray[a][2] = "2"
-                       } else if mainArray.testArray[a][0] == "6" && mainArray.testArray[a][2] == "2"  {
+                       if variables.selectCell != nil && mainArray.testArray[a][9] == "" {
+                           mainArray.testArray[a][9] = "6"
+                       } else if variables.selectCell != nil && mainArray.testArray[a][9] == "6" {
+                           mainArray.testArray[a][9] = ""
                            mainArray.testArray[a][0] = ""
-                       } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
-                           mainArray.testArray[a][0] = "6"
                        }
                    }
-               } else {
-                   let a = variables.selectCell![1]
-                   if variables.selectCell != nil && mainArray.testArray[a][9] == "" {
-                       mainArray.testArray[a][9] = "6"
-                   } else if variables.selectCell != nil && mainArray.testArray[a][9] == "6" {
-                       mainArray.testArray[a][9] = ""
-                       mainArray.testArray[a][0] = ""
-                   }
-               }
-        same_number_all()
+            same_number_all()
+            if settings.autocheckError == true {
+                error_number_all() //красим ячейку с ошибкой
+            }
+            
+            
+            
+            
+        }
+        
+        if settings.sound == true {
+            do {
+                 audioPlayer = try AVAudioPlayer(contentsOf: tapSound)
+                 audioPlayer.play()
+            } catch {
+               // couldn't load file :(
+            }
+        }
+
+        
+        
+        
+        
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -243,31 +472,56 @@ class ViewController: UIViewController {
 
     @IBAction func mainButton_7(_ sender: Any) {
         if variables.selectCell != nil {
-        add_cancel_array_all(Number: variables.selectCell![1])
-        }
-        if variables.changeButtonNote == 0 {
-                   if variables.selectCell != nil {
+            
+            
+
+            
+            resetting_the_selection_all()
+
+            if variables.selectCell != nil {
+            add_cancel_array_all(Number: variables.selectCell![1])
+            }
+            if variables.changeButtonNote == 0 {
+                       if variables.selectCell != nil {
+                           let a = variables.selectCell![1]
+                           clear_help_all(number: a)
+                           if mainArray.testArray[a][0] == "" {
+                               mainArray.testArray[a][0] = "7"
+                               mainArray.testArray[a][2] = "2"
+                           } else if mainArray.testArray[a][0] == "7" && mainArray.testArray[a][2] == "2"  {
+                               mainArray.testArray[a][0] = ""
+                           } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
+                               mainArray.testArray[a][0] = "7"
+                           }
+                       }
+                   } else if variables.changeButtonNote == 1 && mainArray.testArray[variables.selectCell![1]][0] == "" {
                        let a = variables.selectCell![1]
-                       clear_help_all(number: a)
-                       if mainArray.testArray[a][0] == "" {
-                           mainArray.testArray[a][0] = "7"
-                           mainArray.testArray[a][2] = "2"
-                       } else if mainArray.testArray[a][0] == "7" && mainArray.testArray[a][2] == "2"  {
+                       if variables.selectCell != nil && mainArray.testArray[a][10] == "" {
+                           mainArray.testArray[a][10] = "7"
+                       } else if variables.selectCell != nil && mainArray.testArray[a][10] == "7" {
+                           mainArray.testArray[a][10] = ""
                            mainArray.testArray[a][0] = ""
-                       } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
-                           mainArray.testArray[a][0] = "7"
                        }
                    }
-               } else {
-                   let a = variables.selectCell![1]
-                   if variables.selectCell != nil && mainArray.testArray[a][10] == "" {
-                       mainArray.testArray[a][10] = "7"
-                   } else if variables.selectCell != nil && mainArray.testArray[a][10] == "7" {
-                       mainArray.testArray[a][10] = ""
-                       mainArray.testArray[a][0] = ""
-                   }
-               }
-        same_number_all()
+            same_number_all()
+            if settings.autocheckError == true {
+                error_number_all() //красим ячейку с ошибкой
+            }
+            
+            
+            
+        }
+        if settings.sound == true {
+            do {
+                 audioPlayer = try AVAudioPlayer(contentsOf: tapSound)
+                 audioPlayer.play()
+            } catch {
+               // couldn't load file :(
+            }
+        }
+
+        
+
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -281,31 +535,53 @@ class ViewController: UIViewController {
 
     @IBAction func mainButton_8(_ sender: Any) {
         if variables.selectCell != nil {
-        add_cancel_array_all(Number: variables.selectCell![1])
-        }
-        if variables.changeButtonNote == 0 {
-                   if variables.selectCell != nil {
+            
+            
+
+            
+            resetting_the_selection_all()
+
+            if variables.selectCell != nil {
+            add_cancel_array_all(Number: variables.selectCell![1])
+            }
+            if variables.changeButtonNote == 0 {
+                       if variables.selectCell != nil {
+                           let a = variables.selectCell![1]
+                           clear_help_all(number: a)
+                           if mainArray.testArray[a][0] == "" {
+                               mainArray.testArray[a][0] = "8"
+                               mainArray.testArray[a][2] = "2"
+                           } else if mainArray.testArray[a][0] == "8" && mainArray.testArray[a][2] == "2"  {
+                               mainArray.testArray[a][0] = ""
+                           } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
+                               mainArray.testArray[a][0] = "8"
+                           }
+                       }
+                   } else if variables.changeButtonNote == 1 && mainArray.testArray[variables.selectCell![1]][0] == "" {
                        let a = variables.selectCell![1]
-                       clear_help_all(number: a)
-                       if mainArray.testArray[a][0] == "" {
-                           mainArray.testArray[a][0] = "8"
-                           mainArray.testArray[a][2] = "2"
-                       } else if mainArray.testArray[a][0] == "8" && mainArray.testArray[a][2] == "2"  {
+                       if variables.selectCell != nil && mainArray.testArray[a][11] == "" {
+                           mainArray.testArray[a][11] = "8"
+                       } else if variables.selectCell != nil && mainArray.testArray[a][11] == "8" {
+                           mainArray.testArray[a][11] = ""
                            mainArray.testArray[a][0] = ""
-                       } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
-                           mainArray.testArray[a][0] = "8"
                        }
                    }
-               } else {
-                   let a = variables.selectCell![1]
-                   if variables.selectCell != nil && mainArray.testArray[a][11] == "" {
-                       mainArray.testArray[a][11] = "8"
-                   } else if variables.selectCell != nil && mainArray.testArray[a][11] == "8" {
-                       mainArray.testArray[a][11] = ""
-                       mainArray.testArray[a][0] = ""
-                   }
-               }
-        same_number_all()
+            same_number_all()
+            if settings.autocheckError == true {
+                error_number_all() //красим ячейку с ошибкой
+            }
+        }
+        
+        if settings.sound == true {
+            do {
+                 audioPlayer = try AVAudioPlayer(contentsOf: tapSound)
+                 audioPlayer.play()
+            } catch {
+               // couldn't load file :(
+            }
+        }
+
+
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -319,31 +595,59 @@ class ViewController: UIViewController {
 
     @IBAction func mainButton_9(_ sender: Any) {
         if variables.selectCell != nil {
-        add_cancel_array_all(Number: variables.selectCell![1])
-        }
-        if variables.changeButtonNote == 0 {
-                   if variables.selectCell != nil {
+            
+            
+
+            
+            resetting_the_selection_all()
+
+            if variables.selectCell != nil {
+            add_cancel_array_all(Number: variables.selectCell![1])
+            }
+            if variables.changeButtonNote == 0 {
+                       if variables.selectCell != nil {
+                           let a = variables.selectCell![1]
+                           clear_help_all(number: a)
+                           if mainArray.testArray[a][0] == "" {
+                               mainArray.testArray[a][0] = "9"
+                               mainArray.testArray[a][2] = "2"
+                           } else if mainArray.testArray[a][0] == "9" && mainArray.testArray[a][2] == "2"  {
+                               mainArray.testArray[a][0] = ""
+                           } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
+                               mainArray.testArray[a][0] = "9"
+                           }
+                       }
+                   } else if variables.changeButtonNote == 1 && mainArray.testArray[variables.selectCell![1]][0] == "" {
                        let a = variables.selectCell![1]
-                       clear_help_all(number: a)
-                       if mainArray.testArray[a][0] == "" {
-                           mainArray.testArray[a][0] = "9"
-                           mainArray.testArray[a][2] = "2"
-                       } else if mainArray.testArray[a][0] == "9" && mainArray.testArray[a][2] == "2"  {
+                       if variables.selectCell != nil && mainArray.testArray[a][12] == "" {
+                           mainArray.testArray[a][12] = "9"
+                       } else if variables.selectCell != nil && mainArray.testArray[a][12] == "9" {
+                           mainArray.testArray[a][12] = ""
                            mainArray.testArray[a][0] = ""
-                       } else if mainArray.testArray[a][0] != "" && mainArray.testArray[a][2] == "2" {
-                           mainArray.testArray[a][0] = "9"
                        }
                    }
-               } else {
-                   let a = variables.selectCell![1]
-                   if variables.selectCell != nil && mainArray.testArray[a][12] == "" {
-                       mainArray.testArray[a][12] = "9"
-                   } else if variables.selectCell != nil && mainArray.testArray[a][12] == "9" {
-                       mainArray.testArray[a][12] = ""
-                       mainArray.testArray[a][0] = ""
-                   }
-               }
-        same_number_all()
+            same_number_all()
+            if settings.autocheckError == true {
+                error_number_all() //красим ячейку с ошибкой
+            }
+            
+            
+            
+        }
+        
+        if settings.sound == true {
+            do {
+                 audioPlayer = try AVAudioPlayer(contentsOf: tapSound)
+                 audioPlayer.play()
+            } catch {
+               // couldn't load file :(
+            }
+        }
+
+        
+        errorLabelCount()
+        
+
         collectionView.reloadData()
         if end_game_all() == true {
             popUpEndGame()
@@ -355,8 +659,12 @@ class ViewController: UIViewController {
     //Кнопка "Отменить"
     //------------------------------------------------------//
 
+    
+    @IBOutlet weak var cancelButtonOutlet: UIButton!
     @IBAction func cancelButton(_ sender: Any) {
+        if variables.selectCell != nil {
             cancel_all()
+        }
             collectionView.reloadData()
             saveData()
     }
@@ -365,6 +673,7 @@ class ViewController: UIViewController {
     //Кнопка "Удалить"
     //------------------------------------------------------//
 
+    @IBOutlet weak var removeButtonOutlet: UIButton!
     @IBAction func removeButton(_ sender: Any) {
         if variables.selectCell?[1] != nil {
             let a = variables.selectCell![1]
@@ -380,12 +689,13 @@ class ViewController: UIViewController {
     //Кнопка "Заметка"
     //------------------------------------------------------//
 
+    @IBOutlet weak var noteButtonOutlet: UIButton!
     @IBAction func noteButton(_ sender: Any) {
         if variables.changeButtonNote == 0 {
-            (sender as AnyObject).setBackgroundImage(UIImage(named: "pencil-on"), for: UIControl.State.normal)
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "pencil-2"), for: UIControl.State.normal)
             variables.changeButtonNote = 1
         } else {
-            (sender as AnyObject).setBackgroundImage(UIImage(named: "pencil_off"), for: UIControl.State.normal)
+            (sender as AnyObject).setBackgroundImage(UIImage(named: "pencil"), for: UIControl.State.normal)
             variables.changeButtonNote = 0
         }
     }
@@ -394,7 +704,9 @@ class ViewController: UIViewController {
     //Кнопка "Подсказка"
     //------------------------------------------------------//
 
+    @IBOutlet weak var helpButtonOutlet: UIButton!
     @IBAction func helpButton(_ sender: Any) {
+        print("counterM: ", counterM, "counterS: ", counterS)
     }
     
     
@@ -415,8 +727,11 @@ class ViewController: UIViewController {
             counterM += 1
             labelTimer.text = "\(counterM):00"
             timerSec()
-        } else if counterS < 10 {
+        } else if counterS < 10 && counterM < 10 {
             labelTimer.text = "0\(counterM):0\(counterS)"
+            counterS += 1
+        } else if counterS < 10 && counterM > 9 {
+            labelTimer.text = "\(counterM):0\(counterS)"
             counterS += 1
         } else if counterS >= 10 {
             labelTimer.text = "0\(counterM):\(counterS)"
@@ -431,14 +746,7 @@ class ViewController: UIViewController {
     
     //------------------------------------------------------//
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        timerSec()
-        variables.savedGame = true
-        saveData()
-    }
+
 }
 
     //------------------------------------------------------//
@@ -451,7 +759,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as? MainCollectionViewCell {
-
+            
             note_count_add_or_remove()
                         
             if mainArray.testArray[indexPath.row][3] == "0" {
@@ -479,29 +787,61 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
             }
 
-            //Кастомные границы ячейки
-   
-            if mainArray.borderArray[indexPath.row] == 0 {
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 0.3)
-            } else if mainArray.borderArray[indexPath.row] == 1 {
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 0.3)
-            } else if mainArray.borderArray[indexPath.row] == 2 {
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
-            } else if mainArray.borderArray[indexPath.row] == 3 {
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 0.3)
-                itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
-            }
+            
+            
+            
+                           //Кастомные границы ячейки
+                              // 0 - нет границ 1 - нижная 2 - правая 3 - нижная и правая 4 - верхная и левая 5 - верхная 6 - левая 7 - верхная и правая 8 - левая и нижная
+                                      let miniBorderColor: UIColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+                                      if mainArray.borderArray[indexPath.row] == 0 {
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+                                      } else if mainArray.borderArray[indexPath.row] == 1 {
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+                                      } else if mainArray.borderArray[indexPath.row] == 2 {
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+                                      } else if mainArray.borderArray[indexPath.row] == 3 {
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+                                      } else if mainArray.borderArray[indexPath.row] == 4 {
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 1)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+                                      } else if mainArray.borderArray[indexPath.row] == 5 {
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 1)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+                                      } else if mainArray.borderArray[indexPath.row] == 6 {
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+                                      } else if mainArray.borderArray[indexPath.row] == 7 {
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 1)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+                                      } else if mainArray.borderArray[indexPath.row] == 8 {
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
+                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+                                      }
+            
+            
+           
             
             //Заполнение цветом ячеек
             
@@ -513,6 +853,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 itemCell.layer.backgroundColor = variables.color3
             } else if mainArray.testArray[indexPath.row][1] == "4" {
                 itemCell.layer.backgroundColor = variables.color4
+            } else if mainArray.testArray[indexPath.row][1] == "5" {
+                itemCell.layer.backgroundColor = variables.color7
             }
                         
             //Цвет текста
@@ -523,13 +865,63 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 itemCell.nameLabel.textColor = variables.color6
             }
     
+      //      let widthView = Float(self.collectionView!.frame.width)
+            let widthView = Float(self.collectionView!.frame.width)
+            let heightView = Float(self.collectionView!.frame.height)
             
+         //   print("width ", widthView)
+         //   print("height ", heightView)
             
+            let screenWidth = UIScreen.main.bounds.width
+         //   print(screenWidth)
+
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            layout?.minimumLineSpacing = 0
+            layout?.minimumInteritemSpacing = 0
+              
+            if screenWidth == 375.0 {
+                layout?.itemSize.width = 40
+                layout?.itemSize.height = 40
+                collectionView.frame.size.width = 360
+                collectionView.frame.size.height = 360
+                itemCell.nameLabel.font.withSize(35)
+            } else if screenWidth == 320.0 {
+                layout?.itemSize.width = 33
+                layout?.itemSize.height = 33
+                collectionView.frame.size.width = 297
+                collectionView.frame.size.height = 297
+                itemCell.nameLabel.font.withSize(18)
+                itemCell.miniNameLabel_1.font.withSize(5)
+                itemCell.miniNameLabel_2.font.withSize(5)
+                itemCell.miniNameLabel_3.font.withSize(5)
+                itemCell.miniNameLabel_4.font.withSize(5)
+                itemCell.miniNameLabel_5.font.withSize(5)
+                itemCell.miniNameLabel_6.font.withSize(5)
+                itemCell.miniNameLabel_7.font.withSize(5)
+                itemCell.miniNameLabel_8.font.withSize(5)
+                itemCell.miniNameLabel_9.font.withSize(5)
+
+                itemCell.miniNameLabel_1.frame = CGRect(x: 0, y: 0, width: 11, height: 11)
+                itemCell.miniNameLabel_2.frame = CGRect(x: 11, y: 0, width: 11, height: 11)
+                itemCell.miniNameLabel_3.frame = CGRect(x: 22, y: 0, width: 11, height: 11)
+                itemCell.miniNameLabel_4.frame = CGRect(x: 0, y: 11, width: 11, height: 11)
+                itemCell.miniNameLabel_5.frame = CGRect(x: 11, y: 11, width: 11, height: 11)
+                itemCell.miniNameLabel_6.frame = CGRect(x: 22, y: 11, width: 11, height: 11)
+                itemCell.miniNameLabel_7.frame = CGRect(x: 0, y: 22, width: 11, height: 11)
+                itemCell.miniNameLabel_8.frame = CGRect(x: 11, y: 22, width: 11, height: 11)
+                itemCell.miniNameLabel_9.frame = CGRect(x: 22, y: 22, width: 11, height: 11)
+
+                
+                itemCell.nameLabel.frame.size.width = 33
+                itemCell.nameLabel.frame.size.height = 33
+ 
+            }
             return itemCell
         }
-
+          
         return UICollectionViewCell()
     }
+    
     
     //------------------------------------------------------//
 
@@ -550,7 +942,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView (_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             variables.selectCell = indexPath //получаем адрес выделенной ячейки
             print(variables.selectCell![1])
-        
+                
             //Красим выделенную ячейку
             let a = variables.selectCell![1]
             var i = 0
@@ -563,10 +955,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                     i += 1
             } while i <= 80
             
-            //Закрашиваем областя
-            select_line_and_area_all(number: a)
+            //Закрашиваем области
+            select_line_and_area_all(number: a) //выделяем сектор, линии по горизонтале и вертикале
             same_number_all()
-    
             collectionView.reloadData()
             saveData()
     }
@@ -591,7 +982,59 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     //------------------------------------------------------//
 
+    func StopGame() {
+        let popUpStop = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popUpStopid") as! StopGameViewController //Мы получаем ссылку на PopUpViewController, причем получаем ссылку мы при помощи метода, который обращается к StoryBoard и находит контроллер, у которого идентификатор popUpVCid.
+        self.addChild(popUpStop) //Добавляем полученный контроллер PopUpViewController в качестве дочернего к ViewController
+        popUpStop.view.frame = self.view.frame  // Размеры View нового контроллера мы устанавливаем равными размера View текущего контроллера.
+        self.view.addSubview(popUpStop.view) //Непосредственно выводим на экран то,  как отображается PopUpViewController. Т.е. добавляем View PopUpViewController в стек той кучи View, которые уже есть.
+        popUpStop.didMove(toParent: self) //Вызываем метод делегата, чтобы сообщить всем делегатам, о том, что контроллер мы отобразили.
+        }
+
+    func errorLabelCount () {
+        errorLabel.text = "Ошибки: \(variables.countError)/3"
+        if settings.errorLimit == true {
+            errorLabel.isHidden = false
+        } else if settings.errorLimit == false {
+            errorLabel.isHidden = true
+        }
+        
+    }
     
     
+    
+    func sizeViewButton () {
+        let screenWidth = UIScreen.main.bounds.width
+        switch screenWidth {
+        case 375:
+            self.cancelButtonOutlet.frame = CGRect(x: 27, y: 508, width: 40, height: 40)
+        case 320:
+            self.collectionView.frame = CGRect(x: 10, y: 95, width: 297, height: 297) // Игровое поле
+            
+            self.cancelButtonOutlet.frame = CGRect(x: 20, y: 410, width: 40, height: 40) // Кнопка "Отменить"
+            self.removeButtonOutlet.frame = CGRect(x: 100, y: 410, width: 40, height: 40) // Кнопка "Удалить"
+            self.noteButtonOutlet.frame = CGRect(x: 180, y: 410, width: 40, height: 40)
+            self.helpButtonOutlet.frame = CGRect(x: 260, y: 410, width: 40, height: 40)
+            
+            self.cancelButtonOutletLabel.frame = CGRect(x: 5, y: 445, width: 100, height: 40)
+            self.removeButtonOutletLabel.frame = CGRect(x: 90, y: 445, width: 100, height: 40)
+            self.noteButtonOutletLabel.frame = CGRect(x: 170, y: 445, width: 100, height: 40)
+            self.helpButtonOutletLabel.frame = CGRect(x: 242, y: 445, width: 100, height: 40)
+            
+            self.mainButton_1_Outlet.frame = CGRect(x: 0, y: 490, width: 40, height: 40)
+            self.mainButton_2_Outlet.frame = CGRect(x: 35, y: 490, width: 40, height: 40)
+            self.mainButton_3_Outlet.frame = CGRect(x: 70, y: 490, width: 40, height: 40)
+            self.mainButton_4_Outlet.frame = CGRect(x: 105, y: 490, width: 40, height: 40)
+            self.mainButton_5_Outlet.frame = CGRect(x: 140, y: 490, width: 40, height: 40)
+            self.mainButton_6_Outlet.frame = CGRect(x: 175, y: 490, width: 40, height: 40)
+            self.mainButton_7_Outlet.frame = CGRect(x: 210, y: 490, width: 40, height: 40)
+            self.mainButton_8_Outlet.frame = CGRect(x: 245, y: 490, width: 40, height: 40)
+            self.mainButton_9_Outlet.frame = CGRect(x: 280, y: 490, width: 40, height: 40)
+            
+        default:
+            break
+        }
+        collectionView.reloadData()
+    }
     
 }
+

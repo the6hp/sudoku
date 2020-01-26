@@ -22,7 +22,55 @@ class GameViewController: UIViewController {
     @IBAction func easyGameButton(_ sender: Any) {
         self.tabBarController?.tabBar.isHidden = true
         mainArray.testArray = mainArray.defaultArray
-        
+        random_level()
+        mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 0)
+        fill_array_all()
+        variables.savedGame = true
+        statistics.statisticsEasyGamesPlayed += 1
+        variables.countError = 0
+        saveData()
+    }
+    
+    @IBAction func averageGameButton(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = true
+        mainArray.testArray = mainArray.defaultArray
+        random_level()
+        mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 1)
+        fill_array_all()
+        variables.savedGame = true
+        statistics.statisticsAverageGamesPlayed += 1
+        variables.countError = 0
+
+        saveData()
+    }
+    
+    @IBAction func hardGameButton(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = true
+        mainArray.testArray = mainArray.defaultArray
+        random_level()
+        mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 2)
+        fill_array_all()
+        variables.savedGame = true
+        statistics.statisticsHardGamesPlayed += 1
+        variables.countError = 0
+
+        saveData()
+    }
+    
+    @IBAction func expertGameButton(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = true
+        mainArray.testArray = mainArray.defaultArray
+        random_level()
+        mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 3)
+        fill_array_all()
+        variables.savedGame = true
+        statistics.statisticsExpertGamesPlayed += 1
+        variables.countError = 0
+
+        saveData()
+    }
+    
+    func random_level () {
         let a = Int.random(in: 1..<10)
         let b = Int.random(in: 1..<100)
         let c = Int.random(in: 1..<100)
@@ -59,23 +107,10 @@ class GameViewController: UIViewController {
             e_e += 1
         } while e_e < e
         
-        mainArray.allNumbers_text = remove_all(array: mainArray.allNumbers)
-        fill_array_all()
-        variables.savedGame = true
-        saveData()
     }
     
-    @IBAction func averageGameButton(_ sender: Any) {
-        self.tabBarController?.tabBar.isHidden = true
-    }
     
-    @IBAction func hardGameButton(_ sender: Any) {
-        self.tabBarController?.tabBar.isHidden = true
-    }
     
-    @IBAction func expertGameButton(_ sender: Any) {
-        self.tabBarController?.tabBar.isHidden = true
-    }
     
     func buttonSelectGame () {
         easyButtonGameView.backgroundColor = .clear
