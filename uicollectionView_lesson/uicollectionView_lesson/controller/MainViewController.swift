@@ -1,11 +1,3 @@
-//
-//  MainViewController.swift
-//  uicollectionView_lesson
-//
-//  Created by Alexander Penkov on 09.01.2020.
-//  Copyright © 2020 Alexander Penkov. All rights reserved.
-//
-
 import UIKit
 
 class MainViewController: UIViewController {
@@ -16,12 +8,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainviewStatisticButton: UIButton!
     @IBOutlet weak var mainViewSettingsButton: UIButton!
     @IBOutlet weak var mainViewResumeGameButton: UIButton!
+    @IBOutlet weak var resumeTimeLevel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
         sizeElement()
         buttonMain()
-        
         //Убрать нижную границу у нав бара
         self.navigationController?.navigationBar.shadowImage = UIImage()
         //Убираем текст кнопки "Назад"
@@ -44,18 +37,50 @@ class MainViewController: UIViewController {
         mainViewSettingsButton.layer.borderWidth = 0.25
         mainViewSettingsButton.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
-        mainViewResumeGameButton.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-        mainViewResumeGameButton.layer.cornerRadius = 25
-        mainViewResumeGameButton.layer.borderWidth = 0
-        mainViewResumeGameButton.layer.borderColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-        mainViewResumeGameButton.titleLabel?.font = UIFont(name: "", size: 5)
-        mainViewResumeGameButton.setTitle("Первая строка\nВторая строка", for: .normal)
         
         if variables.savedGame == true {
             mainViewResumeGameButton.isHidden = false
+            resumeTimeLevel.isHidden = false
         } else {
             mainViewResumeGameButton.isHidden = true
+            resumeTimeLevel.isHidden = true
         }
+        
+        var levelGameLabel: String = ""
+        var timeGameLabel: String = ""
+        
+        if variables.levelGame == 0 {
+            levelGameLabel = "Легкий"
+        } else if variables.levelGame == 1 {
+            levelGameLabel = "Средний"
+        } else if variables.levelGame == 2 {
+            levelGameLabel = "Сложный"
+        } else if variables.levelGame == 3 {
+            levelGameLabel = "Эксперт"
+        }
+        
+        if variables.countSec < 10 && variables.countMin < 10 {
+            timeGameLabel = "0\(variables.countMin):0\(variables.countSec)"
+        } else if variables.countSec > 10 && variables.countMin < 10 {
+            timeGameLabel = "0\(variables.countMin):\(variables.countSec)"
+        } else if variables.countSec < 10 && variables.countMin > 10 {
+            timeGameLabel = "\(variables.countMin):0\(variables.countSec)"
+        } else if variables.countSec > 10 && variables.countMin > 10 {
+            timeGameLabel = "\(variables.countMin):\(variables.countSec)"
+        }
+        
+        
+        
+        
+        
+        
+        mainViewResumeGameButton.backgroundColor = #colorLiteral(red: 0.4078431373, green: 0.5568627451, blue: 0.8901960784, alpha: 1)
+        mainViewResumeGameButton.layer.cornerRadius = 25
+        mainViewResumeGameButton.layer.borderWidth = 0
+        mainViewResumeGameButton.layer.borderColor = #colorLiteral(red: 0.4078431373, green: 0.5568627451, blue: 0.8901960784, alpha: 1)
+        mainViewResumeGameButton.titleLabel?.font = UIFont(name: "", size: 12)
+        mainViewResumeGameButton.setTitle("Продолжить\n", for: .normal)
+        resumeTimeLevel.text = "\(levelGameLabel) \(timeGameLabel)"
     }
 
     @IBAction func continueGameButton(_ sender: Any) {
@@ -73,7 +98,10 @@ class MainViewController: UIViewController {
         case 375:
             self.mainPic.frame = CGRect(x: 87, y: 140, width: 200, height: 200)
         case 320:
-            self.mainPic.frame = CGRect(x: 27, y: 508, width: 40, height: 40)
+            self.mainPic.frame = CGRect(x: 85, y: 70, width: 150, height: 150)
+            self.resumeTimeLevel.frame = CGRect(x: 85, y: 300, width: 150, height: 40)
+        case 414:
+            self.resumeTimeLevel.frame = CGRect(x: 132, y: 595, width: 150, height: 40)
         default:
             break
         }

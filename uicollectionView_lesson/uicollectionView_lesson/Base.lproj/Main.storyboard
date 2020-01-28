@@ -301,7 +301,7 @@
                                     <action selector="helpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aqS-YT-8yr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="il4-U9-fbK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="il4-U9-fbK">
                                 <rect key="frame" x="333" y="90" width="55" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="7VW-QJ-Iiy"/>
@@ -601,11 +601,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g5v-Mp-6QJ">
-                                <rect key="frame" x="47" y="138" width="320" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="GGP-Sw-EIz"/>
-                                </constraints>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g5v-Mp-6QJ">
+                                <rect key="frame" x="36" y="109" width="320" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Лёгкий"/>
                                     <segment title="Средний"/>
@@ -713,11 +711,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="g5v-Mp-6QJ" firstAttribute="top" secondItem="Oax-al-Lab" secondAttribute="top" constant="50" id="5z5-xG-PZh"/>
-                            <constraint firstItem="g5v-Mp-6QJ" firstAttribute="leading" secondItem="Oax-al-Lab" secondAttribute="leading" constant="47" id="884-KF-bCz"/>
-                            <constraint firstItem="Oax-al-Lab" firstAttribute="trailing" secondItem="g5v-Mp-6QJ" secondAttribute="trailing" constant="47" id="MtP-oY-LvW"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Oax-al-Lab"/>
                     </view>
                     <navigationItem key="navigationItem" title="Статистика" id="CXl-oc-lQK"/>
@@ -732,6 +725,7 @@
                         <outlet property="gamesCompletedLabelText" destination="ttz-VL-8yb" id="4gy-L5-VHQ"/>
                         <outlet property="gamesPlayedLabel" destination="bbm-m5-r2B" id="lGz-xJ-Lni"/>
                         <outlet property="gamesPlayedLabelText" destination="juS-Kl-hrK" id="o3m-Ch-GNX"/>
+                        <outlet property="resetButtonOutlet" destination="4b9-xZ-R4R" id="cRL-Mp-x9B"/>
                         <outlet property="segmentedControl" destination="g5v-Mp-6QJ" id="zzH-fR-HV1"/>
                         <outlet property="winRateLabel" destination="QnO-6S-2du" id="KAa-2o-TBV"/>
                         <outlet property="winRateLabelText" destination="qk7-v5-V6h" id="geo-7Z-BNO"/>
@@ -793,8 +787,15 @@
                                 <rect key="frame" x="87" y="137" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVb-M8-9nL">
+                                <rect key="frame" x="105" y="511" width="171" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <color key="textColor" white="0.77801262842465757" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Cwp-dm-5RC" firstAttribute="trailing" secondItem="68A-Qy-nu1" secondAttribute="trailing" constant="50" id="4GT-cC-IYI"/>
                             <constraint firstItem="N5a-2u-Bga" firstAttribute="leading" secondItem="Cwp-dm-5RC" secondAttribute="leading" constant="50" id="50v-Br-Oqp"/>
@@ -824,6 +825,7 @@
                         <outlet property="mainViewResumeGameButton" destination="aCe-8H-Mr1" id="WRf-pE-XE1"/>
                         <outlet property="mainViewSettingsButton" destination="68A-Qy-nu1" id="BBo-8t-uEJ"/>
                         <outlet property="mainviewStatisticButton" destination="Scx-yf-rKk" id="ZCg-2Q-DFK"/>
+                        <outlet property="resumeTimeLevel" destination="MVb-M8-9nL" id="8Nv-Yi-tnU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8AF-aR-4Wr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -880,6 +882,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mbW-MM-AdA"/>
-        <segue reference="5aD-R0-JbH"/>
+        <segue reference="nhL-0T-dmG"/>
     </inferredMetricsTieBreakers>
 </document>

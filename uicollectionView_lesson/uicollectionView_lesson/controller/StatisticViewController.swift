@@ -12,6 +12,7 @@ class StatisticViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        sizeElementStatistics()
         changeBorder()
         startStatistics()
     }
@@ -48,28 +49,28 @@ class StatisticViewController: UIViewController {
         case 0:
             gamesPlayedLabelText.text = String(statistics.statisticsEasyGamesPlayed)
             gamesCompletedLabelText.text = String(statistics.statisticEasyGamesCompleted)
-            winRateLabelText.text = String(statistics.statisticEasyWinRate)
+            winRateLabelText.text = "\(String(statistics.statisticEasyWinRate)) %"
             bestWinStreakLabelText.text = String(statistics.statisticEasyBestWinStreak)
             bestTimeLabelText.text = String(statistics.statisticEasyBestTime)
             averageTimeLabelText.text = String(statistics.statisticEasyAverageTime)
         case 1:
             gamesPlayedLabelText.text = String(statistics.statisticsAverageGamesPlayed)
             gamesCompletedLabelText.text = String(statistics.statisticAverageGamesCompleted)
-            winRateLabelText.text = String(statistics.statisticAverageWinRate)
+            winRateLabelText.text = "\(String(statistics.statisticAverageWinRate)) %"
             bestWinStreakLabelText.text = String(statistics.statisticAverageBestWinStreak)
             bestTimeLabelText.text = String(statistics.statisticAverageBestTime)
             averageTimeLabelText.text = String(statistics.statisticAverageAverageTime)
         case 2:
             gamesPlayedLabelText.text = String(statistics.statisticsHardGamesPlayed)
             gamesCompletedLabelText.text = String(statistics.statisticHardGamesCompleted)
-            winRateLabelText.text = String(statistics.statisticHardWinRate)
+            winRateLabelText.text = "\(String(statistics.statisticHardWinRate)) %"
             bestWinStreakLabelText.text = String(statistics.statisticHardBestWinStreak)
             bestTimeLabelText.text = String(statistics.statisticHardBestTime)
             averageTimeLabelText.text = String(statistics.statisticHardAverageTime)
         case 3:
             gamesPlayedLabelText.text = String(statistics.statisticsExpertGamesPlayed)
             gamesCompletedLabelText.text = String(statistics.statisticExpertGamesCompleted)
-            winRateLabelText.text = String(statistics.statisticExpertWinRate)
+            winRateLabelText.text = "\(String(statistics.statisticExpertWinRate)) %"
             bestWinStreakLabelText.text = String(statistics.statisticExpertBestWinStreak)
             bestTimeLabelText.text = String(statistics.statisticExpertBestTime)
             averageTimeLabelText.text = String(statistics.statisticExpertAverageTime)
@@ -90,6 +91,7 @@ class StatisticViewController: UIViewController {
 
     }
     
+    @IBOutlet weak var resetButtonOutlet: UIButton!
     @IBAction func resetStatistics(_ sender: Any) {
             statistics.statisticsEasyGamesPlayed = 0
             statistics.statisticEasyGamesCompleted = 0
@@ -119,7 +121,40 @@ class StatisticViewController: UIViewController {
             statistics.statisticExpertBestTime = 0
             statistics.statisticExpertAverageTime = 0
         
-    }  
+    }
+    
+    
+    func sizeElementStatistics () {
+        let screenWidth = UIScreen.main.bounds.width
+        switch screenWidth {
+        case 375:
+            self.segmentedControl.frame = CGRect(x: 20, y: 100, width: 335, height: 32)
+        case 320:
+            self.segmentedControl.frame = CGRect(x: 5, y: 80, width: 310, height: 33)
+            
+            self.gamesPlayedLabel.frame = CGRect(x: 5, y: 150, width: 310, height: 35)
+            self.gamesCompletedLabel.frame = CGRect(x: 5, y: 185, width: 310, height: 35)
+            self.winRateLabel.frame = CGRect(x: 5, y: 220, width: 310, height: 35)
+            self.betWinStreakLabel.frame = CGRect(x: 5, y: 255, width: 310, height: 35)
+            self.bestTimeLabel.frame = CGRect(x: 5, y: 290, width: 310, height: 35)
+            self.averageTimeLabel.frame = CGRect(x: 5, y: 325, width: 310, height: 35)
+            
+            self.gamesPlayedLabelText.frame = CGRect(x: 230, y: 150, width: 80, height: 30)
+            self.gamesCompletedLabelText.frame = CGRect(x: 230, y: 185, width: 80, height: 30)
+            self.winRateLabelText.frame = CGRect(x: 230, y: 220, width: 80, height: 30)
+            self.bestWinStreakLabelText.frame = CGRect(x: 230, y: 255, width: 80, height: 30)
+            self.bestTimeLabelText.frame = CGRect(x: 230, y: 290, width: 80, height: 30)
+            self.averageTimeLabelText.frame = CGRect(x: 230, y: 325, width: 80, height: 30)
+            
+            self.resetButtonOutlet.frame = CGRect(x: 60, y: 380, width: 200, height: 30)
+            
+        default:
+            break
+        }
+
+    }
+    
+    
 }
 
 
@@ -150,3 +185,5 @@ extension CALayer {
 }
 
 //------------------------------------------------------//
+
+

@@ -2,8 +2,17 @@ import Foundation
 
 func saveData() {
     UserDefaults.standard.set(mainArray.testArray, forKey: "userArrayKey")
+    UserDefaults.standard.set(mainArray.endArray, forKey: "endArray")
+
     UserDefaults.standard.set(variables.savedGame, forKey: "SaveGame")
     UserDefaults.standard.set(mainArray.oldCancelArray, forKey: "userOldArrayKey")
+    UserDefaults.standard.set(variables.countSec, forKey: "countSec")
+    UserDefaults.standard.set(variables.countMin, forKey: "countMin")
+    UserDefaults.standard.set(variables.levelGame, forKey: "levelGame")
+
+    
+    
+
     //Настройки
     UserDefaults.standard.set(settings.sound, forKey: "setting_sound")
     UserDefaults.standard.set(settings.autolockScreen, forKey: "setting_autolockScreen")
@@ -56,8 +65,17 @@ func loadData() {
         mainArray.testArray = mainArray.defaultArray
     }
     
-    variables.savedGame = UserDefaults.standard.bool(forKey: "SaveGame")
+    if let endArray = UserDefaults.standard.array(forKey: "endArray") as? [Int] {
+        mainArray.endArray = endArray
+    }
     
+    
+    
+    variables.savedGame = UserDefaults.standard.bool(forKey: "SaveGame")
+    variables.countSec = UserDefaults.standard.integer(forKey: "countSec")
+    variables.countMin = UserDefaults.standard.integer(forKey: "countMin")
+    variables.levelGame = UserDefaults.standard.integer(forKey: "levelGame")
+
         
     // Настройки
     settings.sound = UserDefaults.standard.bool(forKey: "setting_sound")

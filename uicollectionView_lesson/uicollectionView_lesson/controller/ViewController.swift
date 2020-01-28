@@ -24,7 +24,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         
         //Добавление правой кнопки в навбаре
         //self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Настройки", style: .plain, target: self, action: #selector(testButton))
-
+        
         
         //Блокируется ли экран при бездействии
         if settings.autolockScreen == true {
@@ -262,6 +262,16 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
         collectionView.reloadData()
         if end_game_all() == true {
+            statistics_fill_all(level: variables.levelGame)
+            if variables.levelGame == 0 {
+                statistics.statisticEasyGamesCompleted += 1
+            } else if variables.levelGame == 1 {
+                statistics.statisticAverageGamesCompleted += 1
+            } else if variables.levelGame == 2 {
+                statistics.statisticHardGamesCompleted += 1
+            } else if variables.levelGame == 3 {
+                statistics.statisticExpertGamesCompleted += 1
+            }
             popUpEndGame()
         }
         saveData()
@@ -706,7 +716,10 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBOutlet weak var helpButtonOutlet: UIButton!
     @IBAction func helpButton(_ sender: Any) {
-        print("counterM: ", counterM, "counterS: ", counterS)
+        help_all()
+        
+        saveData()
+        collectionView.reloadData()
     }
     
     
@@ -715,35 +728,59 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     //------------------------------------------------------//
 
     @IBOutlet weak var labelTimer: UILabel!
-    var counterS = 0
-    var counterM = 0
+    var counterS = variables.countSec
+    var counterM = variables.countMin
     var timerS = Timer()
+
     @objc func timerAction() {
+        
+        
         if counterS >= 59 && counterM < 10 {
             counterM += 1
             labelTimer.text = "0\(counterM):00"
             timerSec()
+            variables.countMin = counterM
+            saveData()
         } else if counterS >= 59 && counterM >= 10 {
             counterM += 1
             labelTimer.text = "\(counterM):00"
             timerSec()
+            variables.countMin = counterM
+            saveData()
+
         } else if counterS < 10 && counterM < 10 {
             labelTimer.text = "0\(counterM):0\(counterS)"
             counterS += 1
+            variables.countSec = counterS
+            saveData()
+
         } else if counterS < 10 && counterM > 9 {
             labelTimer.text = "\(counterM):0\(counterS)"
             counterS += 1
-        } else if counterS >= 10 {
+            variables.countSec = counterS
+            saveData()
+
+        } else if counterS >= 10 && counterM < 10 {
             labelTimer.text = "0\(counterM):\(counterS)"
             counterS += 1
+            variables.countSec = counterS
+            saveData()
+
+        } else if counterS >= 10 && counterM >= 10 {
+            labelTimer.text = "\(counterM):\(counterS)"
+            counterS += 1
+            variables.countSec = counterS
+            saveData()
+
         }
      }
     func timerSec () {
         timerS.invalidate()
-        counterS = 0
+        counterS = variables.countSec
         timerS = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     
+
     //------------------------------------------------------//
 
 
@@ -878,14 +915,16 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
             layout?.minimumLineSpacing = 0
             layout?.minimumInteritemSpacing = 0
-              
-            if screenWidth == 375.0 {
+            
+            
+            switch screenWidth {
+            case 375:
                 layout?.itemSize.width = 40
                 layout?.itemSize.height = 40
                 collectionView.frame.size.width = 360
                 collectionView.frame.size.height = 360
                 itemCell.nameLabel.font.withSize(35)
-            } else if screenWidth == 320.0 {
+            case 320:
                 layout?.itemSize.width = 33
                 layout?.itemSize.height = 33
                 collectionView.frame.size.width = 297
@@ -911,10 +950,17 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 itemCell.miniNameLabel_8.frame = CGRect(x: 11, y: 22, width: 11, height: 11)
                 itemCell.miniNameLabel_9.frame = CGRect(x: 22, y: 22, width: 11, height: 11)
 
-                
                 itemCell.nameLabel.frame.size.width = 33
                 itemCell.nameLabel.frame.size.height = 33
- 
+            case 414:
+                layout?.itemSize.width = 40
+                layout?.itemSize.height = 40
+                collectionView.frame.size.width = 360
+                collectionView.frame.size.height = 360
+                itemCell.nameLabel.font.withSize(30)
+            default:
+                   break
+    
             }
             return itemCell
         }
@@ -1029,7 +1075,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             self.mainButton_7_Outlet.frame = CGRect(x: 210, y: 490, width: 40, height: 40)
             self.mainButton_8_Outlet.frame = CGRect(x: 245, y: 490, width: 40, height: 40)
             self.mainButton_9_Outlet.frame = CGRect(x: 280, y: 490, width: 40, height: 40)
-            
+        case 414:
+            self.collectionView.frame = CGRect(x: 27, y: 125, width: 360, height: 360)
         default:
             break
         }

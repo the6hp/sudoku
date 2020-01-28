@@ -1,6 +1,9 @@
 import Foundation
 
 func new_remove_all (array: [Int], difficulty: Int) -> [String] {
+    
+    mainArray.endArray = array
+    
     var max_item = 0
     
     var res_array = [String]()

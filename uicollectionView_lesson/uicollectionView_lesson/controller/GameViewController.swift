@@ -27,7 +27,11 @@ class GameViewController: UIViewController {
         fill_array_all()
         variables.savedGame = true
         statistics.statisticsEasyGamesPlayed += 1
+        statistics_fill_all(level: 0)
         variables.countError = 0
+        variables.levelGame = 0
+        variables.countSec = 0
+        variables.countMin = 0
         saveData()
     }
     
@@ -39,8 +43,11 @@ class GameViewController: UIViewController {
         fill_array_all()
         variables.savedGame = true
         statistics.statisticsAverageGamesPlayed += 1
+        statistics_fill_all(level: 1)
         variables.countError = 0
-
+        variables.levelGame = 1
+        variables.countSec = 0
+        variables.countMin = 0
         saveData()
     }
     
@@ -52,8 +59,11 @@ class GameViewController: UIViewController {
         fill_array_all()
         variables.savedGame = true
         statistics.statisticsHardGamesPlayed += 1
+        statistics_fill_all(level: 2)
         variables.countError = 0
-
+        variables.levelGame = 2
+        variables.countSec = 0
+        variables.countMin = 0
         saveData()
     }
     
@@ -61,12 +71,16 @@ class GameViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         mainArray.testArray = mainArray.defaultArray
         random_level()
-        mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 3)
+     //   mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 3)
+        mainArray.allNumbers_text = ["1", "2", "", "4", "5", "6", "7", "8", "9", "4", "5", "6", "7", "8", "9", "1", "2", "3", "7", "8", "9", "1", "2", "3", "4", "5", "6", "2", "3", "4", "5", "6", "7", "8", "9", "1", "5", "6", "7", "8", "9", "1", "2", "3", "4", "8", "9", "1", "2", "3", "4", "5", "6", "7", "3", "4", "5", "6", "7", "8", "9", "1", "2", "6", "7", "8", "9", "1", "2", "3", "4", "5", "9", "1", "2", "3", "4", "5", "6", "7", "8"]
         fill_array_all()
         variables.savedGame = true
         statistics.statisticsExpertGamesPlayed += 1
+        statistics_fill_all(level: 3)
         variables.countError = 0
-
+        variables.levelGame = 3
+        variables.countSec = 0
+        variables.countMin = 0
         saveData()
     }
     
@@ -116,21 +130,21 @@ class GameViewController: UIViewController {
         easyButtonGameView.backgroundColor = .clear
         easyButtonGameView.layer.cornerRadius = 25
         easyButtonGameView.layer.borderWidth = 1
-        easyButtonGameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        easyButtonGameView.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
         averageButtonGameView.backgroundColor = .clear
         averageButtonGameView.layer.cornerRadius = 25
         averageButtonGameView.layer.borderWidth = 1
-        averageButtonGameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        averageButtonGameView.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
         hardButtonGameView.backgroundColor = .clear
         hardButtonGameView.layer.cornerRadius = 25
         hardButtonGameView.layer.borderWidth = 1
-        hardButtonGameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        hardButtonGameView.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
         expertButtonGameView.backgroundColor = .clear
         expertButtonGameView.layer.cornerRadius = 25
         expertButtonGameView.layer.borderWidth = 1
-        expertButtonGameView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        expertButtonGameView.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
     }
 }

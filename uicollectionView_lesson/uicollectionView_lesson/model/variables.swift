@@ -7,6 +7,9 @@ struct variables {
     static var changeButtonNote: Int = 0 //состояние кнопки Заметка
     static var savedGame: Bool = false //Есть ли начатая игра
     static var countError: Int = 0 // Количество ошибок
+    static var countMin: Int = 0 // Минуты в таймере
+    static var countSec: Int = 0 // Секунды в таймере
+    static var levelGame: Int = 0 // Сложность игры
     
     //Заполнение цветом ячеек
     static var color1: CGColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) //1 - Обычный стартовый фон всего поля
