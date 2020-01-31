@@ -88,7 +88,6 @@ class StatisticViewController: UIViewController {
         betWinStreakLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 0.3)
         bestTimeLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 0.3)
         averageTimeLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 0.3)
-
     }
     
     @IBOutlet weak var resetButtonOutlet: UIButton!
@@ -120,15 +119,57 @@ class StatisticViewController: UIViewController {
             statistics.statisticExpertBestWinStreak = 0
             statistics.statisticExpertBestTime = 0
             statistics.statisticExpertAverageTime = 0
-        
     }
     
     
     func sizeElementStatistics () {
         let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
         switch screenWidth {
         case 375:
-            self.segmentedControl.frame = CGRect(x: 20, y: 100, width: 335, height: 32)
+            if screenHeight == 667 {
+                self.segmentedControl.frame = CGRect(x: 20, y: 80, width: 335, height: 32)
+                
+                self.gamesPlayedLabel.frame = CGRect(x: 5, y: 150, width: 365, height: 35)
+                self.gamesCompletedLabel.frame = CGRect(x: 5, y: 185, width: 365, height: 35)
+                self.winRateLabel.frame = CGRect(x: 5, y: 220, width: 365, height: 35)
+                self.betWinStreakLabel.frame = CGRect(x: 5, y: 255, width: 365, height: 35)
+                self.bestTimeLabel.frame = CGRect(x: 5, y: 290, width: 365, height: 35)
+                self.averageTimeLabel.frame = CGRect(x: 5, y: 325, width: 365, height: 35)
+                
+                self.gamesPlayedLabelText.frame = CGRect(x: 285, y: 150, width: 80, height: 30)
+                self.gamesCompletedLabelText.frame = CGRect(x: 285, y: 185, width: 80, height: 30)
+                self.winRateLabelText.frame = CGRect(x: 285, y: 220, width: 80, height: 30)
+                self.bestWinStreakLabelText.frame = CGRect(x: 285, y: 255, width: 80, height: 30)
+                self.bestTimeLabelText.frame = CGRect(x: 285, y: 290, width: 80, height: 30)
+                self.averageTimeLabelText.frame = CGRect(x: 285, y: 325, width: 80, height: 30)
+                
+                self.resetButtonOutlet.frame = CGRect(x: 87, y: 380, width: 200, height: 30)
+                
+            } else if screenHeight == 812 {
+                
+                self.segmentedControl.frame = CGRect(x: 20, y: 100, width: 335, height: 32)
+                
+                self.gamesPlayedLabel.frame = CGRect(x: 5, y: 160, width: 365, height: 35)
+                self.gamesCompletedLabel.frame = CGRect(x: 5, y: 195, width: 365, height: 35)
+                self.winRateLabel.frame = CGRect(x: 5, y: 230, width: 365, height: 35)
+                self.betWinStreakLabel.frame = CGRect(x: 5, y: 265, width: 365, height: 35)
+                self.bestTimeLabel.frame = CGRect(x: 5, y: 300, width: 365, height: 35)
+                self.averageTimeLabel.frame = CGRect(x: 5, y: 335, width: 365, height: 35)
+                
+                self.gamesPlayedLabelText.frame = CGRect(x: 285, y: 160, width: 80, height: 30)
+                self.gamesCompletedLabelText.frame = CGRect(x: 285, y: 195, width: 80, height: 30)
+                self.winRateLabelText.frame = CGRect(x: 285, y: 230, width: 80, height: 30)
+                self.bestWinStreakLabelText.frame = CGRect(x: 285, y: 265, width: 80, height: 30)
+                self.bestTimeLabelText.frame = CGRect(x: 285, y: 300, width: 80, height: 30)
+                self.averageTimeLabelText.frame = CGRect(x: 285, y: 335, width: 80, height: 30)
+                
+                self.resetButtonOutlet.frame = CGRect(x: 87, y: 390, width: 200, height: 30)
+                
+            } else {
+                self.segmentedControl.frame = CGRect(x: 20, y: 120, width: 335, height: 32)
+
+            }
         case 320:
             self.segmentedControl.frame = CGRect(x: 5, y: 80, width: 310, height: 33)
             
@@ -147,7 +188,68 @@ class StatisticViewController: UIViewController {
             self.averageTimeLabelText.frame = CGRect(x: 230, y: 325, width: 80, height: 30)
             
             self.resetButtonOutlet.frame = CGRect(x: 60, y: 380, width: 200, height: 30)
+        case 414:
+            if screenHeight == 736 {
+                
+                self.segmentedControl.frame = CGRect(x: 50, y: 80, width: 314, height: 33)
+                
+                self.gamesPlayedLabel.frame = CGRect(x: 5, y: 140, width: 405, height: 35)
+                self.gamesCompletedLabel.frame = CGRect(x: 5, y: 175, width: 405, height: 35)
+                self.winRateLabel.frame = CGRect(x: 5, y: 210, width: 405, height: 35)
+                self.betWinStreakLabel.frame = CGRect(x: 5, y: 245, width: 405, height: 35)
+                self.bestTimeLabel.frame = CGRect(x: 5, y: 280, width: 405, height: 35)
+                self.averageTimeLabel.frame = CGRect(x: 5, y: 315, width: 405, height: 35)
+                
+                self.gamesPlayedLabelText.frame = CGRect(x: 310, y: 140, width: 80, height: 30)
+                self.gamesCompletedLabelText.frame = CGRect(x: 310, y: 175, width: 80, height: 30)
+                self.winRateLabelText.frame = CGRect(x: 310, y: 210, width: 80, height: 30)
+                self.bestWinStreakLabelText.frame = CGRect(x: 310, y: 245, width: 80, height: 30)
+                self.bestTimeLabelText.frame = CGRect(x: 310, y: 280, width: 80, height: 30)
+                self.averageTimeLabelText.frame = CGRect(x: 310, y: 315, width: 80, height: 30)
+                
+                self.resetButtonOutlet.frame = CGRect(x: 107, y: 370, width: 200, height: 30)
+            } else if screenHeight == 896 {
+                
+                self.segmentedControl.frame = CGRect(x: 50, y: 100, width: 314, height: 33)
+                
+                self.gamesPlayedLabel.frame = CGRect(x: 5, y: 160, width: 405, height: 35)
+                self.gamesCompletedLabel.frame = CGRect(x: 5, y: 195, width: 405, height: 35)
+                self.winRateLabel.frame = CGRect(x: 5, y: 230, width: 405, height: 35)
+                self.betWinStreakLabel.frame = CGRect(x: 5, y: 265, width: 405, height: 35)
+                self.bestTimeLabel.frame = CGRect(x: 5, y: 300, width: 405, height: 35)
+                self.averageTimeLabel.frame = CGRect(x: 5, y: 335, width: 405, height: 35)
+                
+                self.gamesPlayedLabelText.frame = CGRect(x: 310, y: 160, width: 80, height: 30)
+                self.gamesCompletedLabelText.frame = CGRect(x: 310, y: 195, width: 80, height: 30)
+                self.winRateLabelText.frame = CGRect(x: 310, y: 230, width: 80, height: 30)
+                self.bestWinStreakLabelText.frame = CGRect(x: 310, y: 265, width: 80, height: 30)
+                self.bestTimeLabelText.frame = CGRect(x: 310, y: 300, width: 80, height: 30)
+                self.averageTimeLabelText.frame = CGRect(x: 310, y: 335, width: 80, height: 30)
+                
+                self.resetButtonOutlet.frame = CGRect(x: 107, y: 400, width: 200, height: 30)
+            } else {
+                
+                self.segmentedControl.frame = CGRect(x: 50, y: 120, width: 314, height: 33)
+                
+                self.gamesPlayedLabel.frame = CGRect(x: 5, y: 180, width: 405, height: 35)
+                self.gamesCompletedLabel.frame = CGRect(x: 5, y: 215, width: 405, height: 35)
+                self.winRateLabel.frame = CGRect(x: 5, y: 250, width: 405, height: 35)
+                self.betWinStreakLabel.frame = CGRect(x: 5, y: 285, width: 405, height: 35)
+                self.bestTimeLabel.frame = CGRect(x: 5, y: 320, width: 405, height: 35)
+                self.averageTimeLabel.frame = CGRect(x: 5, y: 355, width: 405, height: 35)
+                
+                self.gamesPlayedLabelText.frame = CGRect(x: 310, y: 180, width: 80, height: 30)
+                self.gamesCompletedLabelText.frame = CGRect(x: 310, y: 215, width: 80, height: 30)
+                self.winRateLabelText.frame = CGRect(x: 310, y: 250, width: 80, height: 30)
+                self.bestWinStreakLabelText.frame = CGRect(x: 310, y: 285, width: 80, height: 30)
+                self.bestTimeLabelText.frame = CGRect(x: 310, y: 320, width: 80, height: 30)
+                self.averageTimeLabelText.frame = CGRect(x: 310, y: 355, width: 80, height: 30)
+                
+                self.resetButtonOutlet.frame = CGRect(x: 107, y: 420, width: 200, height: 30)
+                
+            }
             
+
         default:
             break
         }

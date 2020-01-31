@@ -301,22 +301,16 @@
                                     <action selector="helpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aqS-YT-8yr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="il4-U9-fbK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="il4-U9-fbK">
                                 <rect key="frame" x="333" y="90" width="55" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="7VW-QJ-Iiy"/>
-                                    <constraint firstAttribute="height" constant="20" id="y6G-X6-wiR"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-6b-qKi">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-6b-qKi">
                                 <rect key="frame" x="391" y="93" width="13" height="13"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="13" id="8GT-UE-K9u"/>
-                                    <constraint firstAttribute="width" constant="13" id="OTk-s7-oJA"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="pause"/>
                                 <connections>
                                     <action selector="stopGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dar-Bt-Eq1"/>
@@ -331,12 +325,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="GT6-6b-qKi" firstAttribute="leading" secondItem="il4-U9-fbK" secondAttribute="trailing" constant="3" id="8E3-Oa-BC9"/>
-                            <constraint firstItem="il4-U9-fbK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="2" id="D2M-wG-HbT"/>
-                            <constraint firstItem="GT6-6b-qKi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="WBr-jo-F3x"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GT6-6b-qKi" secondAttribute="trailing" constant="10" id="ufO-Hr-evL"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Игра" leftItemsSupplementBackButton="YES" id="8Qi-PP-FHn"/>
@@ -377,29 +365,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uV4-a4-POL">
-                                <rect key="frame" x="91" y="243" width="233" height="145"/>
+                                <rect key="frame" x="91" y="243" width="233" height="219"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Игра пройдена!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I22-90-pwJ">
-                                        <rect key="frame" x="26" y="27" width="180" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5d-vL-MSJ">
-                                        <rect key="frame" x="86" y="95" width="60" height="30"/>
+                                        <rect key="frame" x="64" y="160" width="111" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Закрыть">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Новая игра">
+                                            <color key="titleColor" red="0.76329730308219179" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="popUpClose:" destination="mxH-2t-vL8" eventType="touchUpInside" id="Php-Ve-Pt3"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJ2-5Q-aB9">
+                                        <rect key="frame" x="95" y="74" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5S-wi-ebI">
+                                        <rect key="frame" x="95" y="113" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Победа" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I22-90-pwJ">
+                                        <rect key="frame" x="73" y="24" width="87" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.23707097053802814" green="0.42244966432394365" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.76943873602726742" green="0.76943873602726742" blue="0.76943873602726742" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -407,6 +409,10 @@
                     </view>
                     <connections>
                         <outlet property="MessageView" destination="uV4-a4-POL" id="46b-xD-pD0"/>
+                        <outlet property="closeButtonEndGamePopUp" destination="D5d-vL-MSJ" id="rBF-Cw-jWm"/>
+                        <outlet property="labelTitleEndGame" destination="I22-90-pwJ" id="8jd-0D-T4g"/>
+                        <outlet property="levelLabelEndGame" destination="CJ2-5Q-aB9" id="i32-C3-lWa"/>
+                        <outlet property="timeLabelEndGame" destination="b5S-wi-ebI" id="SEa-hs-Hdt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CBv-jH-FRD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

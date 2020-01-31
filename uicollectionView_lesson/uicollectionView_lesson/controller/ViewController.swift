@@ -47,6 +47,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
 
     
+    public func testUI () {
+    print("работает")
+    }
+    
+    
     @objc func testButton () {
         print("test")
     }
@@ -132,7 +137,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
                // couldn't load file :(
             }
         }
-
+        errorLabelCount()
 
         collectionView.reloadData()
         if end_game_all() == true {
@@ -193,7 +198,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             
             
         }
-        
+        errorLabelCount()
 
         collectionView.reloadData()
         if end_game_all() == true {
@@ -258,7 +263,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
         
         
-        
+        errorLabelCount()
 
         collectionView.reloadData()
         if end_game_all() == true {
@@ -335,7 +340,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
         
         
-        
+        errorLabelCount()
 
         collectionView.reloadData()
         if end_game_all() == true {
@@ -399,7 +404,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             }
         }
 
-        
+        errorLabelCount()
         
 
         collectionView.reloadData()
@@ -466,7 +471,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         }
 
         
-        
+        errorLabelCount()
         
         
         collectionView.reloadData()
@@ -530,7 +535,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             }
         }
 
-        
+        errorLabelCount()
 
         collectionView.reloadData()
         if end_game_all() == true {
@@ -590,7 +595,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
                // couldn't load file :(
             }
         }
-
+        errorLabelCount()
 
         collectionView.reloadData()
         if end_game_all() == true {
@@ -716,6 +721,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBOutlet weak var helpButtonOutlet: UIButton!
     @IBAction func helpButton(_ sender: Any) {
+       
         help_all()
         
         saveData()
@@ -1050,9 +1056,45 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func sizeViewButton () {
         let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
         switch screenWidth {
         case 375:
-            self.cancelButtonOutlet.frame = CGRect(x: 27, y: 508, width: 40, height: 40)
+            if screenHeight == 667 {
+                self.errorLabel.frame = CGRect(x: 7, y: 70, width: 100, height: 20)
+                self.labelTimer.frame = CGRect(x: 285, y: 70, width: 120, height: 20)
+                self.stopGameButtonOutlet.frame = CGRect(x: 340, y: 73, width: 15, height: 15)
+                self.collectionView.frame = CGRect(x: 7, y: 95, width: 360, height: 360) // Игровое поле
+                
+                self.cancelButtonOutlet.frame = CGRect(x: 40, y: 470, width: 40, height: 40) // Кнопка "Отменить"
+                self.removeButtonOutlet.frame = CGRect(x: 120, y: 470, width: 40, height: 40) // Кнопка "Удалить"
+                self.noteButtonOutlet.frame = CGRect(x: 200, y: 470, width: 40, height: 40)
+                self.helpButtonOutlet.frame = CGRect(x: 280, y: 470, width: 40, height: 40)
+                
+                self.cancelButtonOutletLabel.frame = CGRect(x: 31, y: 512, width: 100, height: 40)
+                self.removeButtonOutletLabel.frame = CGRect(x: 115, y: 512, width: 100, height: 40)
+                self.noteButtonOutletLabel.frame = CGRect(x: 190, y: 512, width: 100, height: 40)
+                self.helpButtonOutletLabel.frame = CGRect(x: 266, y: 512, width: 100, height: 40)
+                
+                self.mainButton_1_Outlet.frame = CGRect(x: 20, y: 555, width: 40, height: 40)
+                self.mainButton_2_Outlet.frame = CGRect(x: 55, y: 555, width: 40, height: 40)
+                self.mainButton_3_Outlet.frame = CGRect(x: 90, y: 555, width: 40, height: 40)
+                self.mainButton_4_Outlet.frame = CGRect(x: 125, y: 555, width: 40, height: 40)
+                self.mainButton_5_Outlet.frame = CGRect(x: 160, y: 555, width: 40, height: 40)
+                self.mainButton_6_Outlet.frame = CGRect(x: 195, y: 555, width: 40, height: 40)
+                self.mainButton_7_Outlet.frame = CGRect(x: 230, y: 555, width: 40, height: 40)
+                self.mainButton_8_Outlet.frame = CGRect(x: 265, y: 555, width: 40, height: 40)
+                self.mainButton_9_Outlet.frame = CGRect(x: 300, y: 555, width: 40, height: 40)
+                
+            } else if screenHeight == 812 {
+
+                self.errorLabel.frame = CGRect(x: 7, y: 90, width: 100, height: 20)
+                self.labelTimer.frame = CGRect(x: 295, y: 90, width: 120, height: 20)
+                self.stopGameButtonOutlet.frame = CGRect(x: 350, y: 93, width: 15, height: 15)
+                
+            } else {
+                self.cancelButtonOutlet.frame = CGRect(x: 27, y: 508, width: 40, height: 40)
+
+            }
         case 320:
             self.collectionView.frame = CGRect(x: 10, y: 95, width: 297, height: 297) // Игровое поле
             
@@ -1076,7 +1118,63 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             self.mainButton_8_Outlet.frame = CGRect(x: 245, y: 490, width: 40, height: 40)
             self.mainButton_9_Outlet.frame = CGRect(x: 280, y: 490, width: 40, height: 40)
         case 414:
-            self.collectionView.frame = CGRect(x: 27, y: 125, width: 360, height: 360)
+            if screenHeight == 736 {
+                self.errorLabel.frame = CGRect(x: 7, y: 70, width: 100, height: 20)
+                self.labelTimer.frame = CGRect(x: 330, y: 70, width: 120, height: 20)
+                self.stopGameButtonOutlet.frame = CGRect(x: 390, y: 73, width: 15, height: 15)
+                
+                self.collectionView.frame = CGRect(x: 27, y: 100, width: 360, height: 360) // Игровое поле
+                
+                self.cancelButtonOutlet.frame = CGRect(x: 60, y: 485, width: 40, height: 40) // Кнопка "Отменить"
+                self.removeButtonOutlet.frame = CGRect(x: 140, y: 485, width: 40, height: 40) // Кнопка "Удалить"
+                self.noteButtonOutlet.frame = CGRect(x: 220, y: 485, width: 40, height: 40)
+                self.helpButtonOutlet.frame = CGRect(x: 300, y: 485, width: 40, height: 40)
+                
+                self.cancelButtonOutletLabel.frame = CGRect(x: 51, y: 527, width: 100, height: 40)
+                self.removeButtonOutletLabel.frame = CGRect(x: 135, y: 527, width: 100, height: 40)
+                self.noteButtonOutletLabel.frame = CGRect(x: 210, y: 527, width: 100, height: 40)
+                self.helpButtonOutletLabel.frame = CGRect(x: 286, y: 527, width: 100, height: 40)
+                
+                self.mainButton_1_Outlet.frame = CGRect(x: 40, y: 575, width: 40, height: 40)
+                self.mainButton_2_Outlet.frame = CGRect(x: 75, y: 575, width: 40, height: 40)
+                self.mainButton_3_Outlet.frame = CGRect(x: 110, y: 575, width: 40, height: 40)
+                self.mainButton_4_Outlet.frame = CGRect(x: 145, y: 575, width: 40, height: 40)
+                self.mainButton_5_Outlet.frame = CGRect(x: 180, y: 575, width: 40, height: 40)
+                self.mainButton_6_Outlet.frame = CGRect(x: 215, y: 575, width: 40, height: 40)
+                self.mainButton_7_Outlet.frame = CGRect(x: 250, y: 575, width: 40, height: 40)
+                self.mainButton_8_Outlet.frame = CGRect(x: 285, y: 575, width: 40, height: 40)
+                self.mainButton_9_Outlet.frame = CGRect(x: 320, y: 575, width: 40, height: 40)
+                
+            } else if screenHeight == 896 {
+
+                self.collectionView.frame = CGRect(x: 27, y: 125, width: 360, height: 360)
+
+                self.cancelButtonOutlet.frame = CGRect(x: 60, y: 505, width: 40, height: 40) // Кнопка "Отменить"
+                self.removeButtonOutlet.frame = CGRect(x: 140, y: 505, width: 40, height: 40) // Кнопка "Удалить"
+                self.noteButtonOutlet.frame = CGRect(x: 220, y: 505, width: 40, height: 40)
+                self.helpButtonOutlet.frame = CGRect(x: 300, y: 505, width: 40, height: 40)
+                
+                self.cancelButtonOutletLabel.frame = CGRect(x: 51, y: 547, width: 100, height: 40)
+                self.removeButtonOutletLabel.frame = CGRect(x: 135, y: 547, width: 100, height: 40)
+                self.noteButtonOutletLabel.frame = CGRect(x: 210, y: 547, width: 100, height: 40)
+                self.helpButtonOutletLabel.frame = CGRect(x: 286, y: 547, width: 100, height: 40)
+                
+                self.mainButton_1_Outlet.frame = CGRect(x: 40, y: 595, width: 40, height: 40)
+                self.mainButton_2_Outlet.frame = CGRect(x: 75, y: 595, width: 40, height: 40)
+                self.mainButton_3_Outlet.frame = CGRect(x: 110, y: 595, width: 40, height: 40)
+                self.mainButton_4_Outlet.frame = CGRect(x: 145, y: 595, width: 40, height: 40)
+                self.mainButton_5_Outlet.frame = CGRect(x: 180, y: 595, width: 40, height: 40)
+                self.mainButton_6_Outlet.frame = CGRect(x: 215, y: 595, width: 40, height: 40)
+                self.mainButton_7_Outlet.frame = CGRect(x: 250, y: 595, width: 40, height: 40)
+                self.mainButton_8_Outlet.frame = CGRect(x: 285, y: 595, width: 40, height: 40)
+                self.mainButton_9_Outlet.frame = CGRect(x: 320, y: 595, width: 40, height: 40)
+                
+            } else {
+                self.collectionView.frame = CGRect(x: 27, y: 125, width: 360, height: 360)
+
+            }
+            
+            
         default:
             break
         }

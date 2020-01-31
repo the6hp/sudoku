@@ -94,14 +94,26 @@ class MainViewController: UIViewController {
     
     func sizeElement () {
         let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        print("Ширина: ",  screenWidth,"Высота: ",  screenHeight)
         switch screenWidth {
         case 375:
-            self.mainPic.frame = CGRect(x: 87, y: 140, width: 200, height: 200)
+            if screenHeight == 812 {
+                self.mainPic.frame = CGRect(x: 87, y: 140, width: 200, height: 200)
+            } else if screenHeight == 667 {
+                self.mainPic.frame = CGRect(x: 87, y: 90, width: 200, height: 200)
+                self.resumeTimeLevel.frame = CGRect(x: 110, y: 400, width: 155, height: 40)
+            }
         case 320:
             self.mainPic.frame = CGRect(x: 85, y: 70, width: 150, height: 150)
             self.resumeTimeLevel.frame = CGRect(x: 85, y: 300, width: 150, height: 40)
         case 414:
-            self.resumeTimeLevel.frame = CGRect(x: 132, y: 595, width: 150, height: 40)
+            if screenHeight == 736 {
+                self.mainPic.frame = CGRect(x: 107, y: 100, width: 200, height: 200)
+                self.resumeTimeLevel.frame = CGRect(x: 132, y: 467, width: 150, height: 40)
+            } else {
+                self.resumeTimeLevel.frame = CGRect(x: 132, y: 595, width: 150, height: 40)
+            }
         default:
             break
         }
