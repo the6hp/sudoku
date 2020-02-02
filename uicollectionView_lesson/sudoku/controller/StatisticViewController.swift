@@ -25,6 +25,10 @@ class StatisticViewController: UIViewController {
     @IBOutlet weak var averageTimeLabelText: UILabel!
     
     func startStatistics () {
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        
+        
         gamesPlayedLabelText.text = String(statistics.statisticsEasyGamesPlayed)
         gamesCompletedLabelText.text = String(statistics.statisticEasyGamesCompleted)
         winRateLabelText.text = "\(String(statistics.statisticEasyWinRate)) %"
@@ -112,8 +116,16 @@ class StatisticViewController: UIViewController {
             statistics.statisticExpertBestTime = 0
             statistics.statisticExpertAverageTime = 0
         
-            variables.timeArray = [Int]()
+            gamesPlayedLabelText.text = "0"
+            gamesCompletedLabelText.text = "0"
+            winRateLabelText.text = "0 %"
+            bestWinStreakLabelText.text = "0"
+            bestTimeLabelText.text = "00:00"
+            averageTimeLabelText.text = "00:00"
         
+            variables.timeArray = [Int]()
+            
+            
             saveData()
         }
     

@@ -20,8 +20,9 @@ class MainViewController: UIViewController {
         //Убираем текст кнопки "Назад"
         self.navigationItem.backBarButtonItem?.title = ""
         
-        
-        
+        //Красим заголовки навбара в черный
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
     }
     
     func buttonMain() {

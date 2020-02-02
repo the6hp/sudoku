@@ -18,6 +18,10 @@ class StopGameViewController: UIViewController {
         impactFeedbackgenerator.prepare()
         impactFeedbackgenerator.impactOccurred()
         
+        let nc = NotificationCenter.default
+        nc.post(name: NSNotification.Name(rawValue: "startTimerValue"), object: nil, userInfo: nil)
+        
+        
         moveOutStop()
     }
     
@@ -41,5 +45,15 @@ class StopGameViewController: UIViewController {
              self.view.removeFromSuperview()
          }
      }
+    
+    
+//    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
+//        var DestViewController: ViewController = segue.destination as! ViewController
+//        
+//        DestViewController.timerSec()
+//    }
+    
+    
+
 
 }

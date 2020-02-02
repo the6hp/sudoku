@@ -8,6 +8,22 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     let tapSound = URL(fileURLWithPath: Bundle.main.path(forResource: "tap", ofType: "mp3")!)
     var audioPlayer = AVAudioPlayer()
     
+//    let nc = NotificationCenter.defaultCenter()
+//    nc.addObserver(self, selector: #selector(printValue), name: "printValue", object: nil)
+    
+    
+    func timerObserver () {
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(startTimer), name: NSNotification.Name(rawValue: "startTimerValue"), object: nil)
+            
+    }
+
+    @objc func startTimer (notification:NSNotification) {
+        timerSec()
+        variables.hiddenCell = false
+        collectionView.reloadData()
+    }
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -22,7 +38,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         sizeViewButton()
         errorLabelCount()
         
-        
+        timerObserver()
         //Добавление правой кнопки в навбаре
         //self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Настройки", style: .plain, target: self, action: #selector(testButton))
         
@@ -48,15 +64,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
 
     
-    public func testUI () {
-    print("работает")
-    }
-    
-    
-    @objc func testButton () {
-        print("test")
-    }
-    
     //------------------------------------------------------//
     //Кнопка с цифрой "1"
     //------------------------------------------------------//
@@ -64,6 +71,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     @IBAction func stopGameButton(_ sender: Any) {
         StopGame()
         timerS.invalidate()
+        variables.hiddenCell = true
+        collectionView.reloadData()
     }
     
     @IBOutlet weak var stopGameButtonOutlet: UIButton!
@@ -1114,13 +1123,39 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBOutlet weak var helpButtonOutlet: UIButton!
     @IBAction func helpButton(_ sender: Any) {
-       
+                
         //Таптик отклик
         let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
         impactFeedbackgenerator.prepare()
         impactFeedbackgenerator.impactOccurred()
         
         help_all()
+        
+        if end_game_all() == true {
+            if variables.levelGame == 0 {
+                statistics.statisticEasyGamesCompleted += 1
+                statistics.statisticEasyBestWinStreak += 1
+                best_average_time_all(level: 0)
+            } else if variables.levelGame == 1 {
+                statistics.statisticAverageGamesCompleted += 1
+                statistics.statisticAverageBestWinStreak += 1
+                best_average_time_all(level: 1)
+            } else if variables.levelGame == 2 {
+                statistics.statisticHardGamesCompleted += 1
+                statistics.statisticHardBestWinStreak += 1
+                best_average_time_all(level: 2)
+            } else if variables.levelGame == 3 {
+                statistics.statisticExpertGamesCompleted += 1
+                statistics.statisticExpertBestWinStreak += 1
+                best_average_time_all(level: 3)
+            }
+            
+            statistics_fill_all(level: variables.levelGame)
+            variables.savedGame = false
+
+            popUpEndGame()
+        }
+        
         
         saveData()
         collectionView.reloadData()
@@ -1214,58 +1249,70 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
             }
 
+// Скрытие ячеек при паузе
+            if variables.hiddenCell == true {
+                itemCell.nameLabel.text = ""
+                itemCell.miniNameLabel_1.text = ""
+                itemCell.miniNameLabel_2.text = ""
+                itemCell.miniNameLabel_3.text = ""
+                itemCell.miniNameLabel_4.text = ""
+                itemCell.miniNameLabel_5.text = ""
+                itemCell.miniNameLabel_6.text = ""
+                itemCell.miniNameLabel_7.text = ""
+                itemCell.miniNameLabel_8.text = ""
+                itemCell.miniNameLabel_9.text = ""
+            }
             
             
-            
-                           //Кастомные границы ячейки
-                              // 0 - нет границ 1 - нижная 2 - правая 3 - нижная и правая 4 - верхная и левая 5 - верхная 6 - левая 7 - верхная и правая 8 - левая и нижная
-                                      let miniBorderColor: UIColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-                                      if mainArray.borderArray[indexPath.row] == 0 {
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
-                                      } else if mainArray.borderArray[indexPath.row] == 1 {
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
-                                      } else if mainArray.borderArray[indexPath.row] == 2 {
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
-                                      } else if mainArray.borderArray[indexPath.row] == 3 {
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
-                                      } else if mainArray.borderArray[indexPath.row] == 4 {
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 1)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
-                                      } else if mainArray.borderArray[indexPath.row] == 5 {
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 1)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
-                                      } else if mainArray.borderArray[indexPath.row] == 6 {
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
-                                      } else if mainArray.borderArray[indexPath.row] == 7 {
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 1)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
-                                      } else if mainArray.borderArray[indexPath.row] == 8 {
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
-                                          itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
-                                      }
+//Кастомные границы ячейки
+// 0 - нет границ 1 - нижная 2 - правая 3 - нижная и правая 4 - верхная и левая 5 - верхная 6 - левая 7 - верхная и правая 8 - левая и нижная
+              let miniBorderColor: UIColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+              if mainArray.borderArray[indexPath.row] == 0 {
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+              } else if mainArray.borderArray[indexPath.row] == 1 {
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+              } else if mainArray.borderArray[indexPath.row] == 2 {
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+              } else if mainArray.borderArray[indexPath.row] == 3 {
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+              } else if mainArray.borderArray[indexPath.row] == 4 {
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 1)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+              } else if mainArray.borderArray[indexPath.row] == 5 {
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 1)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+              } else if mainArray.borderArray[indexPath.row] == 6 {
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+              } else if mainArray.borderArray[indexPath.row] == 7 {
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: UIColor.black, thickness: 1)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+              } else if mainArray.borderArray[indexPath.row] == 8 {
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.black, thickness: 1)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
+                  itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.right, color: miniBorderColor, thickness: 0.3)
+              }
             
             
            
@@ -1292,15 +1339,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 itemCell.nameLabel.textColor = variables.color6
             }
     
-      //      let widthView = Float(self.collectionView!.frame.width)
             let widthView = Float(self.collectionView!.frame.width)
             let heightView = Float(self.collectionView!.frame.height)
             
-         //   print("width ", widthView)
-         //   print("height ", heightView)
-            
             let screenWidth = UIScreen.main.bounds.width
-         //   print(screenWidth)
 
             let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
             layout?.minimumLineSpacing = 0
@@ -1363,11 +1405,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     
     
-    func change_color () {
-        collectionView.reloadData()
-        collectionView.cellForItem(at: IndexPath.init(row: 1, section: 0))?.backgroundColor = UIColor.init(red: 79, green: 158, blue: 236, alpha: 1.0)
-        saveData()
-    }
+//    func change_color () {
+//        collectionView.reloadData()
+//        collectionView.cellForItem(at: IndexPath.init(row: 1, section: 0))?.backgroundColor = UIColor.init(red: 79, green: 158, blue: 236, alpha: 1.0)
+//        saveData()
+//    }
     
     
     

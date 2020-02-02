@@ -12,6 +12,8 @@ struct variables {
     static var levelGame: Int = 0 // Сложность игры
     static var timeArray = [Int]() // Массив с временами игр
     
+    static var hiddenCell: Bool = false
+    
     //Заполнение цветом ячеек
     static var color1: CGColor = #colorLiteral(red: 0.9366177917, green: 0.9310500026, blue: 0.9408977628, alpha: 1) //1 - Обычный стартовый фон всего поля
     static var color2: CGColor = #colorLiteral(red: 0.7607843137, green: 0.8666666667, blue: 0.9725490196, alpha: 1) //2 - Фон выбранной ячейки

@@ -19,6 +19,14 @@ class GameViewController: UIViewController {
         self.navigationItem.backBarButtonItem?.title = ""
     }
     
+    @IBAction func performUnwindSegueOperation (_ sender: UIStoryboardSegue) {
+        guard sender.source is GameViewController else { return }
+    }
+    
+    
+    
+    
+    
     @IBAction func easyGameButton(_ sender: Any) {
         
         //Таптик отклик

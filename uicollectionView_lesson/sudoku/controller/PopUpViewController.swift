@@ -47,7 +47,7 @@ class PopUpViewController: UIViewController {
         variables.countSec = 0
         saveData()
 
-        openMainView()
+   //     openMainView()
         moveOut()
     }
     
