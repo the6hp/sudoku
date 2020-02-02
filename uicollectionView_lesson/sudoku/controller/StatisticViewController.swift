@@ -1,4 +1,7 @@
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 class StatisticViewController: UIViewController {
 
@@ -7,6 +10,10 @@ class StatisticViewController: UIViewController {
         sizeElementStatistics()
         changeBorder()
         startStatistics()
+        
+        MSAppCenter.start("e5cf9bb1-f536-43e6-b099-0c2dfea36306", withServices:[
+          MSCrashes.self
+        ])
     }
     
     @IBOutlet weak var gamesPlayedLabel: UILabel!

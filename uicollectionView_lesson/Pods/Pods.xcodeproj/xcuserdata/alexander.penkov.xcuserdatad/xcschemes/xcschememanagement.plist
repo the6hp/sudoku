@@ -18,7 +18,7 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>Pods-uicollectionView_lesson.xcscheme</key>
+		<key>Pods-sudoku.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

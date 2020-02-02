@@ -1,6 +1,8 @@
 import UIKit
 import AVFoundation
-
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 class ViewController: UIViewController, AVAudioPlayerDelegate {
 
@@ -59,6 +61,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             stopGameButtonOutlet.isHidden = true
         }
         
+        MSAppCenter.start("e5cf9bb1-f536-43e6-b099-0c2dfea36306", withServices:[
+          MSCrashes.self
+        ])
         
         saveData()
     }
@@ -1078,6 +1083,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         
             collectionView.reloadData()
             saveData()
+        MSAnalytics.trackEvent("Кнопки: Отмена")
+
     }
     
     //------------------------------------------------------//
@@ -1100,6 +1107,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
                 saveData()
             }
         }
+        
+        MSAnalytics.trackEvent("Кнопки: Удалить")
+
     }
     
     //------------------------------------------------------//
@@ -1115,6 +1125,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             (sender as AnyObject).setBackgroundImage(UIImage(named: "pencil"), for: UIControl.State.normal)
             variables.changeButtonNote = 0
         }
+        
+        MSAnalytics.trackEvent("Кнопки: Заметка")
+
     }
     
     //------------------------------------------------------//
@@ -1156,6 +1169,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             popUpEndGame()
         }
         
+        MSAnalytics.trackEvent("Кнопки: Подсказка")
+
         
         saveData()
         collectionView.reloadData()
@@ -1461,6 +1476,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         popUpVC.view.frame = self.view.frame  // Размеры View нового контроллера мы устанавливаем равными размера View текущего контроллера.
         self.view.addSubview(popUpVC.view) //Непосредственно выводим на экран то,  как отображается PopUpViewController. Т.е. добавляем View PopUpViewController в стек той кучи View, которые уже есть.
         popUpVC.didMove(toParent: self) //Вызываем метод делегата, чтобы сообщить всем делегатам, о том, что контроллер мы отобразили.
+        MSAnalytics.trackEvent("Игра завершена")
     }
     
     //------------------------------------------------------//

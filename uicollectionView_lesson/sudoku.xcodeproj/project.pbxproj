@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -54,9 +54,11 @@
 		23FEDB0A23C609B800EC60B6 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FEDB0923C609B800EC60B6 /* MainCollectionViewCell.swift */; };
 		23FEDB0E23C60B9400EC60B6 /* cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FEDB0D23C60B9400EC60B6 /* cell.swift */; };
 		23FEDB1323C61C3F00EC60B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23FEDB1223C61C3F00EC60B6 /* Assets.xcassets */; };
+		5250128BE9A8141A8CD91580 /* Pods_sudoku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71C11CB27869E3527BBAABF6 /* Pods_sudoku.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D61581B359D82A3364BEC2A /* Pods-sudoku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sudoku.release.xcconfig"; path = "Target Support Files/Pods-sudoku/Pods-sudoku.release.xcconfig"; sourceTree = "<group>"; };
 		2317516723D0F1010017DC67 /* StopGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopGameViewController.swift; sourceTree = "<group>"; };
 		2317516923D30E0D0017DC67 /* error_number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = error_number.swift; sourceTree = "<group>"; };
 		2317516B23D489180017DC67 /* resetting_the_selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetting_the_selection.swift; sourceTree = "<group>"; };
@@ -106,6 +108,8 @@
 		23FEDB0923C609B800EC60B6 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		23FEDB0D23C60B9400EC60B6 /* cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cell.swift; sourceTree = "<group>"; };
 		23FEDB1223C61C3F00EC60B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		71C11CB27869E3527BBAABF6 /* Pods_sudoku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sudoku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80E65F6652A82D538B82BE3A /* Pods-sudoku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sudoku.debug.xcconfig"; path = "Target Support Files/Pods-sudoku/Pods-sudoku.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,12 +117,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5250128BE9A8141A8CD91580 /* Pods_sudoku.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12058E8312569575BD578223 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				71C11CB27869E3527BBAABF6 /* Pods_sudoku.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2317517B23DE11350017DC67 /* audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +181,8 @@
 				23FEDB1223C61C3F00EC60B6 /* Assets.xcassets */,
 				23FEDAF423C6082D00EC60B6 /* sudoku */,
 				23FEDAF323C6082D00EC60B6 /* Products */,
+				C71D78AC513C2BC67BD74620 /* Pods */,
+				12058E8312569575BD578223 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -230,6 +245,15 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		C71D78AC513C2BC67BD74620 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80E65F6652A82D538B82BE3A /* Pods-sudoku.debug.xcconfig */,
+				1D61581B359D82A3364BEC2A /* Pods-sudoku.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -237,9 +261,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 23FEDB0623C6082F00EC60B6 /* Build configuration list for PBXNativeTarget "sudoku" */;
 			buildPhases = (
+				D7B3D89F9FFBC9ABE0985FAC /* [CP] Check Pods Manifest.lock */,
 				23FEDAEE23C6082D00EC60B6 /* Sources */,
 				23FEDAEF23C6082D00EC60B6 /* Frameworks */,
 				23FEDAF023C6082D00EC60B6 /* Resources */,
+				10E439EFFD7698EF867CA677 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -297,6 +323,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		10E439EFFD7698EF867CA677 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sudoku/Pods-sudoku-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sudoku/Pods-sudoku-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sudoku/Pods-sudoku-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7B3D89F9FFBC9ABE0985FAC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sudoku-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		23FEDAEE23C6082D00EC60B6 /* Sources */ = {
@@ -486,6 +554,7 @@
 		};
 		23FEDB0723C6082F00EC60B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80E65F6652A82D538B82BE3A /* Pods-sudoku.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -506,6 +575,7 @@
 		};
 		23FEDB0823C6082F00EC60B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D61581B359D82A3364BEC2A /* Pods-sudoku.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,4 +1,8 @@
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+
 
 class MainViewController: UIViewController {
 
@@ -22,6 +26,10 @@ class MainViewController: UIViewController {
         
         //Красим заголовки навбара в черный
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        MSAppCenter.start("e5cf9bb1-f536-43e6-b099-0c2dfea36306", withServices:[
+          MSCrashes.self
+        ])
 
     }
     
@@ -89,7 +97,7 @@ class MainViewController: UIViewController {
         impactFeedbackgenerator.prepare()
         impactFeedbackgenerator.impactOccurred()
         
-     //   fill_array_all()
+        MSAnalytics.trackEvent("Главная: Продолжить")
     }
     
     @IBAction func gameButton(_ sender: Any) {
@@ -98,6 +106,7 @@ class MainViewController: UIViewController {
         impactFeedbackgenerator.prepare()
         impactFeedbackgenerator.impactOccurred()
         
+        MSAnalytics.trackEvent("Главная: Игра")
     }
     
     
@@ -106,6 +115,9 @@ class MainViewController: UIViewController {
         let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
         impactFeedbackgenerator.prepare()
         impactFeedbackgenerator.impactOccurred()
+        
+        MSAnalytics.trackEvent("Главная: Сиатистика")
+
     }
     
     @IBAction func settingsButton(_ sender: Any) {
@@ -113,6 +125,9 @@ class MainViewController: UIViewController {
         let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
         impactFeedbackgenerator.prepare()
         impactFeedbackgenerator.impactOccurred()
+        
+        MSAnalytics.trackEvent("Главная: Настройки")
+
     }
     
     

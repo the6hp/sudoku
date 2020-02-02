@@ -1,6 +1,9 @@
 //Экран выбора сложности игры
 
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 class GameViewController: UIViewController {
 
@@ -17,6 +20,11 @@ class GameViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         //Убираем текст кнопки "Назад"
         self.navigationItem.backBarButtonItem?.title = ""
+        
+        MSAppCenter.start("e5cf9bb1-f536-43e6-b099-0c2dfea36306", withServices:[
+          MSCrashes.self
+        ])
+        
     }
     
     @IBAction func performUnwindSegueOperation (_ sender: UIStoryboardSegue) {
@@ -47,6 +55,8 @@ class GameViewController: UIViewController {
         variables.countSec = 0
         variables.countMin = 0
         saveData()
+        
+        MSAnalytics.trackEvent("Выбор сложности: Лёгкий")
     }
     
     @IBAction func averageGameButton(_ sender: Any) {
@@ -69,6 +79,9 @@ class GameViewController: UIViewController {
         variables.countSec = 0
         variables.countMin = 0
         saveData()
+        
+        MSAnalytics.trackEvent("Выбор сложности: Средний")
+
     }
     
     @IBAction func hardGameButton(_ sender: Any) {
@@ -91,6 +104,9 @@ class GameViewController: UIViewController {
         variables.countSec = 0
         variables.countMin = 0
         saveData()
+        
+        MSAnalytics.trackEvent("Выбор сложности: Сложный")
+
     }
     
     @IBAction func expertGameButton(_ sender: Any) {
@@ -103,8 +119,7 @@ class GameViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         mainArray.testArray = mainArray.defaultArray
         random_level()
-     //   mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 3)
-        mainArray.allNumbers_text = ["1", "2", "", "4", "5", "6", "7", "8", "9", "4", "5", "6", "7", "8", "9", "1", "2", "3", "7", "8", "9", "1", "2", "3", "4", "5", "6", "2", "3", "4", "5", "6", "7", "8", "9", "1", "5", "6", "7", "8", "9", "1", "2", "3", "4", "8", "9", "1", "2", "3", "4", "5", "6", "7", "3", "4", "5", "6", "7", "8", "9", "1", "2", "6", "7", "8", "9", "1", "2", "3", "4", "5", "9", "1", "2", "3", "4", "5", "6", "7", "8"]
+        mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 3)
         fill_array_all()
         variables.savedGame = true
         statistics.statisticsExpertGamesPlayed += 1
@@ -114,6 +129,9 @@ class GameViewController: UIViewController {
         variables.countSec = 0
         variables.countMin = 0
         saveData()
+        
+        MSAnalytics.trackEvent("Выбор сложности: Эксперт")
+
     }
     
     func random_level () {

@@ -1,6 +1,9 @@
 //Экран настроек
 
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 class SettingsViewController: UIViewController {
 
@@ -113,6 +116,10 @@ class SettingsViewController: UIViewController {
         tableView.dataSource = self as? UITableViewDataSource
         tableView.delegate = self as? UITableViewDelegate
         self.tableView.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 0.4102900257)
+        
+        MSAppCenter.start("e5cf9bb1-f536-43e6-b099-0c2dfea36306", withServices:[
+          MSCrashes.self
+        ])
 
     }
 

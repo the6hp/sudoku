@@ -1,12 +1,7 @@
-//
-//  PopUpViewController.swift
-//  uicollectionView_lesson
-//
-//  Created by Alexander Penkov on 10.01.2020.
-//  Copyright © 2020 Alexander Penkov. All rights reserved.
-//
-
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 class PopUpViewController: UIViewController {
 
@@ -31,6 +26,10 @@ class PopUpViewController: UIViewController {
         variables.countMin = 0
         variables.countSec = 0
         saveData()
+        
+        MSAppCenter.start("e5cf9bb1-f536-43e6-b099-0c2dfea36306", withServices:[
+          MSCrashes.self
+        ])
         
     }
     
@@ -118,6 +117,9 @@ class PopUpViewController: UIViewController {
         
         levelLabelEndGame.text = "Уровень: \(levelGameLabel)"
         timeLabelEndGame.text = "Время: \(timeGameLabel)"
+        
+        MSAnalytics.trackEvent("Время игры", withProperties: ["Время текущей игры" : timeGameLabel])
+
     }
     
     

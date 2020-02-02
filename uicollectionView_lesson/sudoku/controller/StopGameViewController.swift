@@ -1,4 +1,7 @@
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 class StopGameViewController: UIViewController {
 
@@ -8,6 +11,10 @@ class StopGameViewController: UIViewController {
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
         moveInStop()
+        
+        MSAppCenter.start("e5cf9bb1-f536-43e6-b099-0c2dfea36306", withServices:[
+          MSCrashes.self
+        ])
     }
     
     @IBAction func playGameBitton(_ sender: Any) {
