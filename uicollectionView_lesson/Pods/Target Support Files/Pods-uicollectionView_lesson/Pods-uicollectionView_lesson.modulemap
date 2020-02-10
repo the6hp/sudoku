@@ -1,6 +1,0 @@
-framework module Pods_uicollectionView_lesson {
-  umbrella header "Pods-uicollectionView_lesson-umbrella.h"
-
-  export *
-  module * { export * }
-}

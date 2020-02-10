@@ -139,6 +139,7 @@ extension SoftUIView {
     public static let defalutMainColorColor: CGColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
     public static let defalutDarkShadowColor: CGColor = #colorLiteral(red: 0.8196078431, green: 0.8039215686, blue: 0.7803921569, alpha: 1)
     public static let defalutLightShadowColor: CGColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
     public static let defalutShadowOffset: CGSize = .init(width: 6, height: 6)
     public static let defalutShadowOpacity: Float = 1
     public static let defalutShadowRadius: CGFloat = 5

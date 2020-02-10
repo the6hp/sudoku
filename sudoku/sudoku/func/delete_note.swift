@@ -2,7 +2,7 @@ import Foundation
 
 func delete_note_all (number: Int) {
     
-    var selectNum = mainArray.testArray[number][0]
+    let selectNum = mainArray.testArray[number][0]
     
     if settings.autoDeleteNote == true {
     
