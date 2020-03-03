@@ -115,7 +115,7 @@ class SettingsViewController: UIViewController {
         loadData()
         tableView.dataSource = self as? UITableViewDataSource
         tableView.delegate = self as? UITableViewDelegate
-        self.tableView.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 0.4102900257)
+        self.tableView.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
     //    self.tableView.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
 
         let MSAppCenter_Key = Bundle.init(for: AppDelegate.self).infoDictionary?["MSAppCenter_Key"] as! String

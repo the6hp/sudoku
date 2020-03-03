@@ -27,12 +27,25 @@ class PopUpViewController: UIViewController {
         variables.countSec = 0
         saveData()
         
+        customBorder()
+        
         let MSAppCenter_Key = Bundle.init(for: AppDelegate.self).infoDictionary?["MSAppCenter_Key"] as! String
         MSAppCenter.start(MSAppCenter_Key, withServices:[
           MSCrashes.self
         ])
         
     }
+    
+    var softUIViewMessage = SoftUIView(frame: .init(x: 75, y: 250, width: 225, height: 200))
+    
+    func customBorder() {
+        self.view.addSubview(softUIViewMessage)
+        self.view.sendSubviewToBack(softUIViewMessage)
+    }
+    
+    
+    
+    
     
     @IBAction func popUpClose(_ sender: Any) {
         
@@ -138,18 +151,24 @@ class PopUpViewController: UIViewController {
             self.levelLabelEndGame.frame = CGRect(x: 35, y: 70, width: 180, height: 30)
             self.timeLabelEndGame.frame = CGRect(x: 35, y: 100, width: 180, height: 30)
             self.closeButtonEndGamePopUp.frame = CGRect(x: 38, y: 150, width: 150, height: 30)
+            
+            self.softUIViewMessage = SoftUIView(frame: .init(x: 75, y: 250, width: 225, height: 200))
         case 320:
             self.MessageView.frame = CGRect(x: 50, y: 150, width: 220, height: 200)
             self.labelTitleEndGame.frame = CGRect(x: 50, y: 20, width: 125, height: 30)
             self.levelLabelEndGame.frame = CGRect(x: 35, y: 70, width: 180, height: 30)
             self.timeLabelEndGame.frame = CGRect(x: 35, y: 100, width: 180, height: 30)
             self.closeButtonEndGamePopUp.frame = CGRect(x: 38, y: 150, width: 150, height: 30)
+            
+            self.softUIViewMessage = SoftUIView(frame: .init(x: 50, y: 150, width: 220, height: 200))
         case 414:
             self.MessageView.frame = CGRect(x: 95, y: 230, width: 225, height: 200)
             self.labelTitleEndGame.frame = CGRect(x: 50, y: 20, width: 125, height: 30)
             self.levelLabelEndGame.frame = CGRect(x: 35, y: 70, width: 180, height: 30)
             self.timeLabelEndGame.frame = CGRect(x: 35, y: 100, width: 180, height: 30)
             self.closeButtonEndGamePopUp.frame = CGRect(x: 38, y: 150, width: 150, height: 30)
+            
+            self.softUIViewMessage = SoftUIView(frame: .init(x: 95, y: 230, width: 225, height: 200))
         default:
             break
         }

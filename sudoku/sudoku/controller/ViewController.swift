@@ -76,22 +76,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
     
     
-//    @IBAction private func panHandler(recognizer: UIPanGestureRecognizer) {
-//        switch recognizer.state {
-//        case .began:
-//            print("panHundler began")
-//        case .changed:
-//            print("panHundler changed")
-//        case .ended:
-//            print("panHundler ended")
-//        default:
-//            print("panHundler any other state")
-//        }
-//    }
-//
-    
-    
-    
     
     
     
@@ -1505,12 +1489,45 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     
     //------------------------------------------------------//
+    //Действие при тапе по ячейке новое
+    //------------------------------------------------------//
 
 
     @IBAction private func panHandler(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began:
             print("panHundler began")
+            
+            //   Таптик отклик
+            let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+            impactFeedbackgenerator.prepare()
+            impactFeedbackgenerator.impactOccurred()
+            
+                let path = collectionView.indexPathForItem(at: recognizer.location(in: collectionView))
+                print("path: ", path)
+
+                if path != nil {
+                    variables.selectCell = path //получаем адрес выделенной ячейки
+
+                //Красим выделенную ячейку
+                let a = variables.selectCell![1]
+                var i = 0
+                repeat {
+                    if i != a {
+                        mainArray.testArray[i][1] = "1"
+                    } else {
+                        mainArray.testArray[a][1] = "2"
+                    }
+                        i += 1
+                } while i <= 80
+
+                //Закрашиваем области
+                select_line_and_area_all(number: a) //выделяем сектор, линии по горизонтале и вертикале
+                same_number_all()
+                collectionView.reloadData()
+                saveData()
+            }
+            
         case .changed:
             print("panHundler changed")
             
@@ -1554,41 +1571,35 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     //didSelectItemAt didHighlightItemAt
     
     func collectionView (_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        //   Таптик отклик
+        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackgenerator.prepare()
+        impactFeedbackgenerator.impactOccurred()
         
-            //   Таптик отклик
-               let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
-               impactFeedbackgenerator.prepare()
-               impactFeedbackgenerator.impactOccurred()
-               
-                   variables.selectCell = indexPath //получаем адрес выделенной ячейки
 
-                   //Красим выделенную ячейку
-                   let a = variables.selectCell![1]
-                   var i = 0
-                   repeat {
-                       if i != a {
-                           mainArray.testArray[i][1] = "1"
-                       } else {
-                           mainArray.testArray[a][1] = "2"
-                       }
-                           i += 1
-                   } while i <= 80
+            variables.selectCell = indexPath //получаем адрес выделенной ячейки
 
-                   //Закрашиваем области
-                   select_line_and_area_all(number: a) //выделяем сектор, линии по горизонтале и вертикале
-                   same_number_all()
-                   collectionView.reloadData()
-                   saveData()
-        
+            //Красим выделенную ячейку
+            let a = variables.selectCell![1]
+            var i = 0
+            repeat {
+                if i != a {
+                    mainArray.testArray[i][1] = "1"
+                } else {
+                    mainArray.testArray[a][1] = "2"
+                }
+                    i += 1
+            } while i <= 80
+
+            //Закрашиваем области
+            select_line_and_area_all(number: a) //выделяем сектор, линии по горизонтале и вертикале
+            same_number_all()
+            collectionView.reloadData()
+            saveData()
     }
         
     //------------------------------------------------------//
 
-
-    
-    
-    
-    
 
     
     
