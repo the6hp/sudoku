@@ -6,12 +6,10 @@ import AppCenterCrashes
 
 class ViewController: UIViewController, AVAudioPlayerDelegate {
 
+    
     //Звук тапа по кнопке
     let tapSound = URL(fileURLWithPath: Bundle.main.path(forResource: "tap", ofType: "mp3")!)
     var audioPlayer = AVAudioPlayer()
-    
-
-    
     
     func timerObserver () {
         let nc = NotificationCenter.default
@@ -68,9 +66,34 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
           MSCrashes.self
         ])
         
+        
+        let pan = UIPanGestureRecognizer.init(target: self, action: #selector(panHandler(recognizer:)))
+        collectionView.addGestureRecognizer(pan)
+        
+        
         saveData()
     }
 
+    
+    
+//    @IBAction private func panHandler(recognizer: UIPanGestureRecognizer) {
+//        switch recognizer.state {
+//        case .began:
+//            print("panHundler began")
+//        case .changed:
+//            print("panHundler changed")
+//        case .ended:
+//            print("panHundler ended")
+//        default:
+//            print("panHundler any other state")
+//        }
+//    }
+//
+    
+    
+    
+    
+    
     
 
     @IBAction func stopGameButton(_ sender: Any) {
@@ -1300,7 +1323,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         
             
            note_count_add_or_remove()
-                      
+            
+            itemCell.nameLabel.font = UIFont.systemFont(ofSize: 25)
+            
             if mainArray.testArray[indexPath.row][3] == "0" {
                 itemCell.nameLabel.text = mainArray.testArray[indexPath.row][0]
                 itemCell.miniNameLabel_1.text = ""
@@ -1344,7 +1369,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             
 //Кастомные границы ячейки
 // 0 - нет границ 1 - нижная 2 - правая 3 - нижная и правая 4 - верхная и левая 5 - верхная 6 - левая 7 - верхная и правая 8 - левая и нижная
-              let miniBorderColor: UIColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+           //   let miniBorderColor: UIColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+               let miniBorderColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+
               if mainArray.borderArray[indexPath.row] == 0 {
                   itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
                   itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
@@ -1468,7 +1495,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             default:
                    break
             }
-            
             return itemCell
 
         }
@@ -1480,49 +1506,92 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     //------------------------------------------------------//
 
-    
-    
-//    func change_color () {
-//        collectionView.reloadData()
-//        collectionView.cellForItem(at: IndexPath.init(row: 1, section: 0))?.backgroundColor = UIColor.init(red: 79, green: 158, blue: 236, alpha: 1.0)
-//        saveData()
-//    }
-    
+
+    @IBAction private func panHandler(recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            print("panHundler began")
+        case .changed:
+            print("panHundler changed")
+            
+            let path = collectionView.indexPathForItem(at: recognizer.location(in: collectionView))
+            print("path: ", path)
+
+            if path != nil {
+                variables.selectCell = path //получаем адрес выделенной ячейки
+                //Красим выделенную ячейку
+                let a = variables.selectCell![1]
+                var i = 0
+                    repeat {
+                        if i != a {
+                            mainArray.testArray[i][1] = "1"
+                        } else {
+                            mainArray.testArray[a][1] = "2"
+                        }
+                            i += 1
+                    } while i <= 80
+                
+                //Закрашиваем области
+                select_line_and_area_all(number: a) //выделяем сектор, линии по горизонтале и вертикале
+                same_number_all()
+                collectionView.reloadData()
+                saveData()
+            }
+
+
+            
+        case .ended:
+            print("panHundler ended")
+        default:
+            print("panHundler any other state")
+        }
+    }
     
     
     //------------------------------------------------------//
     //Действие при тапе по ячейке
     //------------------------------------------------------//
+    //didSelectItemAt didHighlightItemAt
+    
+    func collectionView (_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        
+            //   Таптик отклик
+               let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+               impactFeedbackgenerator.prepare()
+               impactFeedbackgenerator.impactOccurred()
+               
+                   variables.selectCell = indexPath //получаем адрес выделенной ячейки
 
-    func collectionView (_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-     //   Таптик отклик
-        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
-        impactFeedbackgenerator.prepare()
-        impactFeedbackgenerator.impactOccurred()
+                   //Красим выделенную ячейку
+                   let a = variables.selectCell![1]
+                   var i = 0
+                   repeat {
+                       if i != a {
+                           mainArray.testArray[i][1] = "1"
+                       } else {
+                           mainArray.testArray[a][1] = "2"
+                       }
+                           i += 1
+                   } while i <= 80
 
-            variables.selectCell = indexPath //получаем адрес выделенной ячейки
-
-            //Красим выделенную ячейку
-            let a = variables.selectCell![1]
-            var i = 0
-            repeat {
-                if i != a {
-                    mainArray.testArray[i][1] = "1"
-                } else {
-                    mainArray.testArray[a][1] = "2"
-                }
-                    i += 1
-            } while i <= 80
-
-            //Закрашиваем области
-            select_line_and_area_all(number: a) //выделяем сектор, линии по горизонтале и вертикале
-            same_number_all()
-            collectionView.reloadData()
-            saveData()
+                   //Закрашиваем области
+                   select_line_and_area_all(number: a) //выделяем сектор, линии по горизонтале и вертикале
+                   same_number_all()
+                   collectionView.reloadData()
+                   saveData()
+        
     }
         
     //------------------------------------------------------//
 
+
+    
+    
+    
+    
+
+    
+    
     
     
     
@@ -1567,32 +1636,32 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         switch screenWidth {
-        case 375:
-            if screenHeight == 667 {
+        case 375: //6
+            if screenHeight == 667 { //6
                 self.errorLabel.frame = CGRect(x: 7, y: 70, width: 100, height: 20)
                 self.labelTimer.frame = CGRect(x: 285, y: 70, width: 120, height: 20)
                 self.stopGameButtonOutlet.frame = CGRect(x: 340, y: 73, width: 15, height: 15)
                 self.collectionView.frame = CGRect(x: 7, y: 95, width: 360, height: 360) // Игровое поле
                 
-                self.cancelButtonOutlet.frame = CGRect(x: 40, y: 470, width: 40, height: 40) // Кнопка "Отменить"
-                self.removeButtonOutlet.frame = CGRect(x: 120, y: 470, width: 40, height: 40) // Кнопка "Удалить"
-                self.noteButtonOutlet.frame = CGRect(x: 200, y: 470, width: 40, height: 40)
-                self.helpButtonOutlet.frame = CGRect(x: 280, y: 470, width: 40, height: 40)
+                self.cancelButtonOutlet.frame = CGRect(x: 47, y: 470, width: 35, height: 35) // Кнопка "Отменить"
+                self.removeButtonOutlet.frame = CGRect(x: 129, y: 470, width: 35, height: 35) // Кнопка "Удалить"
+                self.noteButtonOutlet.frame = CGRect(x: 211, y: 470, width: 35, height: 35)
+                self.helpButtonOutlet.frame = CGRect(x: 293, y: 470, width: 35, height: 35)
                 
-                self.cancelButtonOutletLabel.frame = CGRect(x: 31, y: 512, width: 100, height: 40)
-                self.removeButtonOutletLabel.frame = CGRect(x: 115, y: 512, width: 100, height: 40)
-                self.noteButtonOutletLabel.frame = CGRect(x: 190, y: 512, width: 100, height: 40)
-                self.helpButtonOutletLabel.frame = CGRect(x: 266, y: 512, width: 100, height: 40)
+                self.cancelButtonOutletLabel.frame = CGRect(x: 28, y: 512, width: 77, height: 40)
+                self.removeButtonOutletLabel.frame = CGRect(x: 108, y: 512, width: 77, height: 40)
+                self.noteButtonOutletLabel.frame = CGRect(x: 189, y: 512, width: 77, height: 40)
+                self.helpButtonOutletLabel.frame = CGRect(x: 273, y: 512, width: 77, height: 40)
                 
-                self.mainButton_1_Outlet.frame = CGRect(x: 20, y: 555, width: 40, height: 40)
-                self.mainButton_2_Outlet.frame = CGRect(x: 55, y: 555, width: 40, height: 40)
-                self.mainButton_3_Outlet.frame = CGRect(x: 90, y: 555, width: 40, height: 40)
-                self.mainButton_4_Outlet.frame = CGRect(x: 125, y: 555, width: 40, height: 40)
-                self.mainButton_5_Outlet.frame = CGRect(x: 160, y: 555, width: 40, height: 40)
-                self.mainButton_6_Outlet.frame = CGRect(x: 195, y: 555, width: 40, height: 40)
-                self.mainButton_7_Outlet.frame = CGRect(x: 230, y: 555, width: 40, height: 40)
-                self.mainButton_8_Outlet.frame = CGRect(x: 265, y: 555, width: 40, height: 40)
-                self.mainButton_9_Outlet.frame = CGRect(x: 300, y: 555, width: 40, height: 40)
+                self.mainButton_1_Outlet.frame = CGRect(x: 3, y: 555, width: 41, height: 60)
+                self.mainButton_2_Outlet.frame = CGRect(x: 44, y: 555, width: 41, height: 60)
+                self.mainButton_3_Outlet.frame = CGRect(x: 85, y: 555, width: 41, height: 60)
+                self.mainButton_4_Outlet.frame = CGRect(x: 126, y: 555, width: 41, height: 60)
+                self.mainButton_5_Outlet.frame = CGRect(x: 167, y: 555, width: 41, height: 60)
+                self.mainButton_6_Outlet.frame = CGRect(x: 208, y: 555, width: 41, height: 60)
+                self.mainButton_7_Outlet.frame = CGRect(x: 249, y: 555, width: 41, height: 60)
+                self.mainButton_8_Outlet.frame = CGRect(x: 290, y: 555, width: 41, height: 60)
+                self.mainButton_9_Outlet.frame = CGRect(x: 331, y: 555, width: 41, height: 60)
                 
             } else if screenHeight == 812 {
 
@@ -1634,10 +1703,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 
                 self.collectionView.frame = CGRect(x: 27, y: 100, width: 360, height: 360) // Игровое поле
                 
-                self.cancelButtonOutlet.frame = CGRect(x: 60, y: 485, width: 40, height: 40) // Кнопка "Отменить"
-                self.removeButtonOutlet.frame = CGRect(x: 140, y: 485, width: 40, height: 40) // Кнопка "Удалить"
-                self.noteButtonOutlet.frame = CGRect(x: 220, y: 485, width: 40, height: 40)
-                self.helpButtonOutlet.frame = CGRect(x: 300, y: 485, width: 40, height: 40)
+                self.cancelButtonOutlet.frame = CGRect(x: 60, y: 485, width: 30, height: 30) // Кнопка "Отменить"
+                self.removeButtonOutlet.frame = CGRect(x: 140, y: 485, width: 30, height: 30) // Кнопка "Удалить"
+                self.noteButtonOutlet.frame = CGRect(x: 220, y: 485, width: 30, height: 30)
+                self.helpButtonOutlet.frame = CGRect(x: 300, y: 485, width: 30, height: 30)
                 
                 self.cancelButtonOutletLabel.frame = CGRect(x: 51, y: 527, width: 100, height: 40)
                 self.removeButtonOutletLabel.frame = CGRect(x: 135, y: 527, width: 100, height: 40)
@@ -1691,3 +1760,5 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
 }
+
+
