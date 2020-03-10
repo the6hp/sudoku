@@ -33,7 +33,7 @@ class PopUpViewController: UIViewController {
         MSAppCenter.start(MSAppCenter_Key, withServices:[
           MSCrashes.self
         ])
-        
+                
     }
     
     var softUIViewMessage = SoftUIView(frame: .init(x: 75, y: 250, width: 225, height: 200))
@@ -91,7 +91,7 @@ class PopUpViewController: UIViewController {
     func openMainView () {
     
         
-        let newController = self.storyboard!.instantiateViewController(withIdentifier: "gameView")
+        let newController = self.storyboard!.instantiateViewController(withIdentifier: "mainView")
         //the identifier above comes from storyboard
         self.navigationController!.pushViewController(newController, animated : true)
  
@@ -103,22 +103,21 @@ class PopUpViewController: UIViewController {
     func textLabel () {
         
         if variables.countError > 2 {
-            labelTitleEndGame.text = "Проигрыш"
-        }
+            labelTitleEndGame.text = NSLocalizedString("pop_game_over", comment: "")        }
         
         var levelGameLabel: String = ""
         var timeGameLabel: String = ""
          
          if variables.levelGame == 0 {
-             levelGameLabel = "Легкий"
+             levelGameLabel = NSLocalizedString("easy", comment: "")
          } else if variables.levelGame == 1 {
-             levelGameLabel = "Средний"
+             levelGameLabel = NSLocalizedString("medium", comment: "")
          } else if variables.levelGame == 2 {
-             levelGameLabel = "Сложный"
+             levelGameLabel = NSLocalizedString("hard", comment: "")
          } else if variables.levelGame == 3 {
-             levelGameLabel = "Эксперт"
+             levelGameLabel = NSLocalizedString("expert", comment: "")
          } else if variables.levelGame == 4 {
-            levelGameLabel = "Своя игра"
+            levelGameLabel = NSLocalizedString("pop_custom_level", comment: "")
         }
          
          if variables.countSec < 10 && variables.countMin < 10 {
@@ -131,8 +130,8 @@ class PopUpViewController: UIViewController {
              timeGameLabel = "\(variables.countMin):\(variables.countSec)"
          }
         
-        levelLabelEndGame.text = "Уровень: \(levelGameLabel)"
-        timeLabelEndGame.text = "Время: \(timeGameLabel)"
+        levelLabelEndGame.text = "\(NSLocalizedString("pop_level", comment: "")) \(levelGameLabel)"
+        timeLabelEndGame.text = "\(NSLocalizedString("pop_time", comment: "")) \(timeGameLabel)"
         
         MSAnalytics.trackEvent("Время игры", withProperties: ["Время текущей игры" : timeGameLabel])
 

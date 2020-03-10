@@ -44,6 +44,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
         view.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
         
+        self.navigationItem.title?  = NSLocalizedString("game", comment: "")
+
         
         //Блокируется ли экран при бездействии
         if settings.autolockScreen == true {
@@ -70,6 +72,10 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         let pan = UIPanGestureRecognizer.init(target: self, action: #selector(panHandler(recognizer:)))
         collectionView.addGestureRecognizer(pan)
         
+        cancelButtonOutletLabel.text = NSLocalizedString("undo", comment: "")
+        removeButtonOutletLabel.text = NSLocalizedString("erase", comment: "")
+        noteButtonOutletLabel.text = NSLocalizedString("notes", comment: "")
+        helpButtonOutletLabel.text = NSLocalizedString("hint", comment: "")
         
         saveData()
     }
@@ -1354,8 +1360,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 //Кастомные границы ячейки
 // 0 - нет границ 1 - нижная 2 - правая 3 - нижная и правая 4 - верхная и левая 5 - верхная 6 - левая 7 - верхная и правая 8 - левая и нижная
            //   let miniBorderColor: UIColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-               let miniBorderColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-
+            
+            var miniBorderColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            
               if mainArray.borderArray[indexPath.row] == 0 {
                   itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.top, color: miniBorderColor, thickness: 0.3)
                   itemCell.nameLabel.layer.addBorder(edge: UIRectEdge.bottom, color: miniBorderColor, thickness: 0.3)
@@ -1409,24 +1416,52 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             //Заполнение цветом ячеек
             
             if mainArray.testArray[indexPath.row][1] == "1" {
-                itemCell.layer.backgroundColor = variables.color1
+                if settings.nightMode == false {
+                    itemCell.layer.backgroundColor = variables.color1
+                } else {
+                    itemCell.layer.backgroundColor = variables.color1night
+                }
             } else if mainArray.testArray[indexPath.row][1] == "2" {
-                itemCell.layer.backgroundColor = variables.color2
+                if settings.nightMode == false {
+                    itemCell.layer.backgroundColor = variables.color2
+                } else {
+                    itemCell.layer.backgroundColor = variables.color2night
+                }
             } else if mainArray.testArray[indexPath.row][1] == "3" {
-                itemCell.layer.backgroundColor = variables.color3
+                if settings.nightMode == false {
+                    itemCell.layer.backgroundColor = variables.color3
+                } else {
+                    itemCell.layer.backgroundColor = variables.color3night
+                }
             } else if mainArray.testArray[indexPath.row][1] == "4" {
-                itemCell.layer.backgroundColor = variables.color4
+                if settings.nightMode == false {
+                    itemCell.layer.backgroundColor = variables.color4
+                } else {
+                    itemCell.layer.backgroundColor = variables.color4night
+                }
             } else if mainArray.testArray[indexPath.row][1] == "5" {
-                itemCell.layer.backgroundColor = variables.color7
+                if settings.nightMode == false {
+                    itemCell.layer.backgroundColor = variables.color7
+                } else {
+                    itemCell.layer.backgroundColor = variables.color7night
+                }
             }
 
             //Цвет текста
 
             if mainArray.testArray[indexPath.row][2] == "1" {
-                itemCell.nameLabel.textColor = variables.color5
+                if settings.nightMode == false {
+                    itemCell.nameLabel.textColor = variables.color5
+                } else {
+                    itemCell.nameLabel.textColor = variables.color5night
+                }
             } else if mainArray.testArray[indexPath.row][2] == "2" {
-                itemCell.nameLabel.textColor = variables.color6
-            }
+                    if settings.nightMode == false {
+                        itemCell.nameLabel.textColor = variables.color6
+                    } else {
+                        itemCell.nameLabel.textColor = variables.color6night
+                    }
+        }
 
             let screenWidth = UIScreen.main.bounds.width
 
@@ -1632,7 +1667,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         }
 
     func errorLabelCount () {
-        errorLabel.text = "Ошибки: \(variables.countError)/3"
+        errorLabel.text = "\(NSLocalizedString("error_label", comment: "")) \(variables.countError)/3"
         if settings.errorLimit == true {
             errorLabel.isHidden = false
         } else if settings.errorLimit == false {
@@ -1644,12 +1679,14 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     
     func sizeViewButton () {
+        errorLabel.text = NSLocalizedString("error_label", comment: "")
+        
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         switch screenWidth {
         case 375: //6
             if screenHeight == 667 { //6
-                self.errorLabel.frame = CGRect(x: 7, y: 70, width: 100, height: 20)
+                self.errorLabel.frame = CGRect(x: 7, y: 70, width: 120, height: 20)
                 self.labelTimer.frame = CGRect(x: 285, y: 70, width: 120, height: 20)
                 self.stopGameButtonOutlet.frame = CGRect(x: 340, y: 73, width: 15, height: 15)
                 self.collectionView.frame = CGRect(x: 7, y: 95, width: 360, height: 360) // Игровое поле
@@ -1676,10 +1713,19 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 
             } else if screenHeight == 812 {
 
-                self.errorLabel.frame = CGRect(x: 7, y: 90, width: 100, height: 20)
+                self.errorLabel.frame = CGRect(x: 7, y: 90, width: 120, height: 20)
                 self.labelTimer.frame = CGRect(x: 295, y: 90, width: 120, height: 20)
                 self.stopGameButtonOutlet.frame = CGRect(x: 350, y: 93, width: 15, height: 15)
                 
+                self.mainButton_1_Outlet.frame = CGRect(x: 3, y: 595, width: 41, height: 60)
+                self.mainButton_2_Outlet.frame = CGRect(x: 44, y: 595, width: 41, height: 60)
+                self.mainButton_3_Outlet.frame = CGRect(x: 85, y: 595, width: 41, height: 60)
+                self.mainButton_4_Outlet.frame = CGRect(x: 126, y: 595, width: 41, height: 60)
+                self.mainButton_5_Outlet.frame = CGRect(x: 167, y: 595, width: 41, height: 60)
+                self.mainButton_6_Outlet.frame = CGRect(x: 208, y: 595, width: 41, height: 60)
+                self.mainButton_7_Outlet.frame = CGRect(x: 249, y: 595, width: 41, height: 60)
+                self.mainButton_8_Outlet.frame = CGRect(x: 290, y: 595, width: 41, height: 60)
+                self.mainButton_9_Outlet.frame = CGRect(x: 331, y: 595, width: 41, height: 60)
             } else {
                 self.cancelButtonOutlet.frame = CGRect(x: 27, y: 508, width: 40, height: 40)
 
@@ -1708,7 +1754,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             self.mainButton_9_Outlet.frame = CGRect(x: 280, y: 490, width: 40, height: 40)
         case 414:
             if screenHeight == 736 {
-                self.errorLabel.frame = CGRect(x: 7, y: 70, width: 100, height: 20)
+                self.errorLabel.frame = CGRect(x: 7, y: 70, width: 120, height: 20)
                 self.labelTimer.frame = CGRect(x: 330, y: 70, width: 120, height: 20)
                 self.stopGameButtonOutlet.frame = CGRect(x: 390, y: 73, width: 15, height: 15)
                 

@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  sudoku
+
+  Created by Alexander Penkov on 08.03.2020.
+  Copyright © 2020 Alexander Penkov. All rights reserved.
+*/
+
+"CFBundleDisplayName" = "Sudoku";

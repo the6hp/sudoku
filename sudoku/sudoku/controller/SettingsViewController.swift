@@ -95,6 +95,14 @@ class SettingsViewController: UIViewController {
                 settings.autoDeleteNote = false
             }
             saveData()
+            
+        case 11:
+            if settings.nightMode == false {
+                settings.nightMode = true
+            } else if settings.nightMode == true {
+                settings.nightMode = false
+            }
+            saveData()
 
         default:
             break
@@ -118,6 +126,9 @@ class SettingsViewController: UIViewController {
         self.tableView.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
     //    self.tableView.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
 
+        self.navigationItem.title?  = NSLocalizedString("settings", comment: "")
+
+        
         let MSAppCenter_Key = Bundle.init(for: AppDelegate.self).infoDictionary?["MSAppCenter_Key"] as! String
         MSAppCenter.start(MSAppCenter_Key, withServices:[
           MSCrashes.self
@@ -132,7 +143,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     // Количество секторов
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     // Количество ячеек + разбитие на сектора
@@ -149,8 +160,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             return 1
         } else if section == 5 {
             return 1
-        } else if section == 6 {
-            return 1
+    //    } else if section == 6 {
+   //         return 1
         } else {
             return 0
         }
@@ -165,45 +176,49 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 
         switch indexPath {
         case [0, 0]:
-            cell.titleSettingsCell.text = "Звуковые эффекты"
+            cell.titleSettingsCell.text = NSLocalizedString("sound_effects", comment: "")
             cell.switchSettingsOutlet.isOn = settings.sound
             cell.switchSettingsOutlet.tag = 1
         case [0, 1]:
-            cell.titleSettingsCell.text = "Автоблокировка экрана"
+            cell.titleSettingsCell.text = NSLocalizedString("auto_lock", comment: "")
             cell.switchSettingsOutlet.isOn = settings.autolockScreen
             cell.switchSettingsOutlet.tag = 2
         case [0, 2]:
-            cell.titleSettingsCell.text = "Таймер"
+            cell.titleSettingsCell.text = NSLocalizedString("timer", comment: "")
             cell.switchSettingsOutlet.isOn = settings.timer
             cell.switchSettingsOutlet.tag = 3
         case [0, 3]:
-            cell.titleSettingsCell.text = "Лимит ошибок"
+            cell.titleSettingsCell.text = NSLocalizedString("mistakes_limit", comment: "")
             cell.switchSettingsOutlet.isOn = settings.errorLimit
             cell.switchSettingsOutlet.tag = 4
         case [1, 0]:
-            cell.titleSettingsCell.text = "Автопроверка ошибок"
+            cell.titleSettingsCell.text = NSLocalizedString("auto_check_for_mistakes", comment: "")
             cell.switchSettingsOutlet.isOn = settings.autocheckError
             cell.switchSettingsOutlet.tag = 5
         case [1, 1]:
-            cell.titleSettingsCell.text = "Скрывать использованные цифры"
+            cell.titleSettingsCell.text = NSLocalizedString("hide_used_numbers", comment: "")
             cell.switchSettingsOutlet.isOn = settings.hideUsedNumbers
             cell.switchSettingsOutlet.tag = 6
         case [2, 0]:
-            cell.titleSettingsCell.text = "Выделять повторы"
+            cell.titleSettingsCell.text = NSLocalizedString("highlight_duplicates", comment: "")
             cell.switchSettingsOutlet.isOn = settings.selectRepeating
             cell.switchSettingsOutlet.tag = 7
         case [3, 0]:
-            cell.titleSettingsCell.text = "Выделять области"
+            cell.titleSettingsCell.text = NSLocalizedString("highlight_areas", comment: "")
             cell.switchSettingsOutlet.isOn = settings.selectedArea
             cell.switchSettingsOutlet.tag = 8
         case [4, 0]:
-            cell.titleSettingsCell.text = "Выделять одинаковые числа"
+            cell.titleSettingsCell.text = NSLocalizedString("highlight_identical_numbers", comment: "")
             cell.switchSettingsOutlet.isOn = settings.selectedSameNumber
             cell.switchSettingsOutlet.tag = 9
         case [5, 0]:
-            cell.titleSettingsCell.text = "Автоудаление заметок"
+            cell.titleSettingsCell.text = NSLocalizedString("auto_remove_notes", comment: "")
             cell.switchSettingsOutlet.isOn = settings.autoDeleteNote
             cell.switchSettingsOutlet.tag = 10
+        case [6, 0]:
+            cell.titleSettingsCell.text = "Тёмная тема"
+            cell.switchSettingsOutlet.isOn = settings.nightMode
+            cell.switchSettingsOutlet.tag = 11
         default:
             break
         }
@@ -216,17 +231,17 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch section {
         case 0:
-            return "Ограничение на 3 ошибки за игру. Требуется автопроверка ошибок."
+            return NSLocalizedString("description_mistakes_limit", comment: "")
         case 1:
-            return "Скрывать цифры, если на поле их уже 9"
+            return NSLocalizedString("description_hide_used_numbers", comment: "")
         case 2:
-            return "Выделение повторяющихся значений в блоке, строке и столбце"
+            return NSLocalizedString("description_highlight_duplicates", comment: "")
         case 3:
-            return "Выделение блока, строки и столбца выделенного числа"
+            return NSLocalizedString("description_highlight_areas", comment: "")
         case 4:
-            return "При выборе числа выделять на поле все одинаковые значения"
+            return NSLocalizedString("description_highlight_identical_numbers", comment: "")
         case 5:
-            return "Удаление из заметок вводимых чисел"
+            return NSLocalizedString("description_auto_remove_notes", comment: "")
         default:
             return ""
         }

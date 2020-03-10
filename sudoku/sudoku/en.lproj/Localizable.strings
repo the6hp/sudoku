@@ -1,0 +1,67 @@
+/* 
+  Localizable.strings
+  sudoku
+
+  Created by Alexander Penkov on 08.03.2020.
+  Copyright © 2020 Alexander Penkov. All rights reserved.
+*/
+
+//Главная
+"continue" = "Continue";
+"settings" =  "Settings";
+"statistics" = "Statistics";
+"game" = "Game";
+"custom game" = "Custom game";
+
+//Настройки
+"sound_effects" = "Sound Effects";
+"auto_lock" = "Auto-Lock";
+"timer" = "Timer";
+"mistakes_limit" = "Mistakes  Limit";
+"auto_check_for_mistakes" = "Auto-Check for Mistakes";
+"hide_used_numbers" = "Hide Used Numbers";
+"highlight_duplicates" = "Highlight Duplicates";
+"highlight_areas" = "Highlight Areas";
+"highlight_identical_numbers" = "Highlight Identical Numbers";
+"auto_remove_notes" = "Auto Remove Notes";
+
+"description_mistakes_limit" = "Limit of 3 errors per game. Automatic error checking is required.";
+"description_hide_used_numbers" = "Hide numbers if there are already 9 of them in the field";
+"description_highlight_duplicates" = "Highlighting duplicate values in a block, row , and column";
+"description_highlight_areas" = "Selecting a block , row , and column of the selected number";
+"description_highlight_identical_numbers" = "When selecting a number, select all the same values in the field";
+"description_auto_remove_notes" = "Deleting entered numbers from notes";
+
+//Статистика
+"games_played" = "Games started:";
+"games_completed" = "Games completed:";
+"win_rate" = "Win rate:";
+"best_win_streak" = "Best win streak:";
+"best_time" = "Best time:";
+"average_time" = "Average time:";
+"reset_statistics" =  "Reset Statistics";
+
+//Выбор уровня сложности
+"create_your_game" = "Create your game:";
+"number_of_free_cells" = "Number of free cells";
+"level_of_difficulty" = "* Level of difficulty:";
+"play" = "Play";
+"easy" = "Easy";
+"medium" = "Medium";
+"hard" = "Hard";
+"expert" = "Expert";
+"level" = "Level";
+
+//Игровое поле
+"undo" =  "Undo";
+"erase" = "Erase";
+"notes" = "Notes";
+"hint" = "Hint";
+
+"error_label" = "Mistakes:";
+
+//Поп-ап выигрыша/проигрыша
+"pop_level" = "Level:";
+"pop_custom_level" = "Custom game";
+"pop_game_over" = "Game Over";
+"pop_time" = "Time:";

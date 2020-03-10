@@ -5,6 +5,10 @@ import AppCenterCrashes
 
 
 class MainViewController: UIViewController {
+    
+    
+    
+    
 
     @IBOutlet weak var resumeTimeLevel: UILabel!
     
@@ -54,15 +58,15 @@ class MainViewController: UIViewController {
         var timeGameLabel: String = ""
         
         if variables.levelGame == 0 {
-            levelGameLabel = "Легкий"
+            levelGameLabel = NSLocalizedString("easy", comment: "")
         } else if variables.levelGame == 1 {
-            levelGameLabel = "Средний"
+            levelGameLabel = NSLocalizedString("medium", comment: "")
         } else if variables.levelGame == 2 {
-            levelGameLabel = "Сложный"
+            levelGameLabel = NSLocalizedString("hard", comment: "")
         } else if variables.levelGame == 3 {
-            levelGameLabel = "Эксперт"
+            levelGameLabel = NSLocalizedString("expert", comment: "")
         } else if variables.levelGame == 4 {
-            levelGameLabel = "Своя игра"
+            levelGameLabel = NSLocalizedString("custom game", comment: "")
         }
         
         if variables.countSec < 10 && variables.countMin < 10 {
@@ -78,16 +82,16 @@ class MainViewController: UIViewController {
         
         resumeTimeLevel.text = "\(levelGameLabel) \(timeGameLabel)"
         
-        labelResumeGame.text = "Продолжить"
+        labelResumeGame.text =  NSLocalizedString("continue", comment: "")
         labelResumeGame.font = labelSettings.font.withSize(30)
         
-        labelSettings.text = "Настройки"
+        labelSettings.text = NSLocalizedString("settings", comment: "")
         labelSettings.font = labelSettings.font.withSize(30)
         
-        labelStatistics.text = "Статистика"
+        labelStatistics.text = NSLocalizedString("statistics", comment: "")
         labelStatistics.font = labelSettings.font.withSize(30)
 
-        labelGame.text = "Игра"
+        labelGame.text = NSLocalizedString("game", comment: "")
         labelGame.font = labelSettings.font.withSize(30)
         
 
@@ -180,6 +184,7 @@ class MainViewController: UIViewController {
     
     
     func sizeElement () {
+        
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         switch screenWidth {

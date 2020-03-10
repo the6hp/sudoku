@@ -38,6 +38,8 @@ class GameViewController: UIViewController {
           MSCrashes.self
         ])
         
+        self.navigationItem.title?  = NSLocalizedString("level", comment: "")
+        
         loadData()
         buttonDesign()
     }
@@ -251,14 +253,15 @@ class GameViewController: UIViewController {
     
     func buttonDesign () {
         
-        labelTitleLevel.text = "Уровень сложности:"
+        labelTitleLevel.text = NSLocalizedString("level_of_difficulty", comment: "")
         labelTitleLevel.font = labelTitleLevel.font.withSize(25)
         labelTitleLevel.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
 
-        labelTitleCustomGame.text = "Создать свою игру:"
+        labelTitleCustomGame.text = NSLocalizedString("create_your_game", comment: "")
         labelTitleCustomGame.font = labelTitleCustomGame.font.withSize(25)
         labelTitleCustomGame.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
+        descriptionCustomGame.text = NSLocalizedString("number_of_free_cells", comment: "")
         descriptionCustomGame.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         descriptionCustomGame.font = descriptionCustomGame.font.withSize(12)
 
@@ -269,19 +272,19 @@ class GameViewController: UIViewController {
         labelCountCustomGame.text = "\(variables.customGameNumber)"
         labelCountCustomGame.font = labelEasyGame.font.withSize(30)
 
-        labelEasyGame.text = "Лёгкий"
+        labelEasyGame.text = NSLocalizedString("easy", comment: "")
         labelEasyGame.font = labelEasyGame.font.withSize(30)
         
-        labelAverageGame.text = "Средний"
+        labelAverageGame.text = NSLocalizedString("medium", comment: "")
         labelAverageGame.font = labelAverageGame.font.withSize(30)
         
-        labelHardGame.text = "Сложный"
+        labelHardGame.text = NSLocalizedString("hard", comment: "")
         labelHardGame.font = labelHardGame.font.withSize(30)
 
-        labelExpertGame.text = "Эксперт"
+        labelExpertGame.text = NSLocalizedString("expert", comment: "")
         labelExpertGame.font = labelExpertGame.font.withSize(30)
         
-        labelCustomGame.text = "Играть"
+        labelCustomGame.text = NSLocalizedString("play", comment: "")
         labelCustomGame.font = labelCustomGame.font.withSize(30)
         
         plusView.addTarget(self, action: #selector(plusCount), for: .touchUpInside)

@@ -11,6 +11,9 @@ class StatisticViewController: UIViewController {
         changeBorder()
         startStatistics()
         
+        self.navigationItem.title?  = NSLocalizedString("statistics", comment: "")
+
+        
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
         view.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
         
@@ -39,6 +42,13 @@ class StatisticViewController: UIViewController {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
         
+        gamesPlayedLabel.text = NSLocalizedString("games_played", comment: "")
+        gamesCompletedLabel.text = NSLocalizedString("games_completed", comment: "")
+        winRateLabel.text = NSLocalizedString("win_rate", comment: "")
+        betWinStreakLabel.text = NSLocalizedString("best_win_streak", comment: "")
+        bestTimeLabel.text = NSLocalizedString("best_time", comment: "")
+        averageTimeLabel.text = NSLocalizedString("average_time", comment: "")
+        resetButtonOutlet.setTitle(NSLocalizedString("reset_statistics", comment: ""), for: .normal)
         
         gamesPlayedLabelText.text = String(statistics.statisticsEasyGamesPlayed)
         gamesCompletedLabelText.text = String(statistics.statisticEasyGamesCompleted)
@@ -46,6 +56,7 @@ class StatisticViewController: UIViewController {
         bestWinStreakLabelText.text = String(statistics.statisticEasyBestWinStreak)
         bestTimeLabelText.text = time_int_to_string_bestTime(level: 0)
         averageTimeLabelText.text = time_int_to_string_averageTime(level: 0)
+        
     }
 
     

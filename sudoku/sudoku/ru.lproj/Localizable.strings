@@ -1,0 +1,71 @@
+/* 
+  Localizable.strings
+  sudoku
+
+  Created by Alexander Penkov on 08.03.2020.
+  Copyright © 2020 Alexander Penkov. All rights reserved.
+*/
+
+//Главная
+"continue" = "Продолжить";
+"settings" =  "Настройки";
+"statistics" = "Статистика";
+"game" = "Игра";
+"custom game" = "Своя игра";
+
+//Настройки
+"sound_effects" = "Звуковые эффекты";
+"auto_lock" = "Автоблокировка экрана";
+"timer" = "Таймер";
+"mistakes_limit" = "Лимит ошибок";
+"auto_check_for_mistakes" = "Автопроверка ошибок";
+"hide_used_numbers" = "Скрывать использованные цифры";
+"highlight_duplicates" = "Выделять повторы";
+"highlight_areas" = "Выделять области";
+"highlight_identical_numbers" = "Выделять одинаковые числа";
+"auto_remove_notes" = "Автоудаление заметок";
+
+"description_mistakes_limit" = "Ограничение на 3 ошибки за игру. Требуется автопроверка ошибок.";
+"description_hide_used_numbers" = "Скрывать цифры, если на поле их уже 9";
+"description_highlight_duplicates" = "Выделение повторяющихся значений в блоке, строке и столбце";
+"description_highlight_areas" = "Выделение блока, строки и столбца выделенного числа";
+"description_highlight_identical_numbers" = "При выборе числа выделять на поле все одинаковые значения";
+"description_auto_remove_notes" = "Удаление из заметок вводимых чисел";
+
+
+
+
+//Статистика
+"games_played" = "Игр сыграно:";
+"games_completed" = "Игр завершено:";
+"win_rate" = "Коэффициент побед:";
+"best_win_streak" = "Лучшая  серия побед:";
+"best_time" = "Лучшее время:";
+"average_time" = "Среднее время:";
+"reset_statistics" =  "Сбросить статистику";
+
+//Выбор уровня сложности
+"create_your_game" = "Создать свою игру:";
+"number_of_free_cells" = "* Количество свободных клеток";
+"level_of_difficulty" = "Уровень сложности:";
+"play" = "Играть";
+"easy" = "Лёгкий";
+"medium" = "Средний";
+"hard" = "Сложный";
+"expert" = "Эксперт";
+"level" = "Уровень";
+
+//Игровое поле
+"undo" =  "Отменить";
+"erase" = "Удалить";
+"notes" = "Заметки";
+"hint" = "Подсказка";
+
+"error_label" = "Ошибки:";
+
+
+//Поп-ап выигрыша/проигрыша
+"pop_level" = "Уровень:";
+"pop_custom_level" = "Своя игра";
+"pop_game_over" = "Проигрыш";
+"pop_time" = "Время:";
