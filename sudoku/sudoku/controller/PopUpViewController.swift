@@ -59,8 +59,8 @@ class PopUpViewController: UIViewController {
         variables.countMin = 0
         variables.countSec = 0
         saveData()
-
-   //     openMainView()
+                
+        openMainView()
         moveOut()
     }
     
@@ -89,12 +89,11 @@ class PopUpViewController: UIViewController {
     
     //Переход на главный экран после окончания игры
     func openMainView () {
-    
-        
+
         let newController = self.storyboard!.instantiateViewController(withIdentifier: "mainView")
+
         //the identifier above comes from storyboard
         self.navigationController!.pushViewController(newController, animated : true)
- 
     }
     
     

@@ -1711,7 +1711,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 self.mainButton_8_Outlet.frame = CGRect(x: 290, y: 555, width: 41, height: 60)
                 self.mainButton_9_Outlet.frame = CGRect(x: 331, y: 555, width: 41, height: 60)
                 
-            } else if screenHeight == 812 {
+            } else if screenHeight == 812 { //X
 
                 self.errorLabel.frame = CGRect(x: 7, y: 90, width: 120, height: 20)
                 self.labelTimer.frame = CGRect(x: 295, y: 90, width: 120, height: 20)
@@ -1730,18 +1730,18 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 self.cancelButtonOutlet.frame = CGRect(x: 27, y: 508, width: 40, height: 40)
 
             }
-        case 320:
+        case 320: //SE
             self.collectionView.frame = CGRect(x: 10, y: 95, width: 297, height: 297) // Игровое поле
             
-            self.cancelButtonOutlet.frame = CGRect(x: 20, y: 410, width: 40, height: 40) // Кнопка "Отменить"
-            self.removeButtonOutlet.frame = CGRect(x: 100, y: 410, width: 40, height: 40) // Кнопка "Удалить"
+            self.cancelButtonOutlet.frame = CGRect(x: 25, y: 410, width: 40, height: 40) // Кнопка "Отменить"
+            self.removeButtonOutlet.frame = CGRect(x: 102, y: 410, width: 40, height: 40) // Кнопка "Удалить"
             self.noteButtonOutlet.frame = CGRect(x: 180, y: 410, width: 40, height: 40)
             self.helpButtonOutlet.frame = CGRect(x: 260, y: 410, width: 40, height: 40)
             
-            self.cancelButtonOutletLabel.frame = CGRect(x: 5, y: 445, width: 100, height: 40)
-            self.removeButtonOutletLabel.frame = CGRect(x: 90, y: 445, width: 100, height: 40)
-            self.noteButtonOutletLabel.frame = CGRect(x: 170, y: 445, width: 100, height: 40)
-            self.helpButtonOutletLabel.frame = CGRect(x: 242, y: 445, width: 100, height: 40)
+            self.cancelButtonOutletLabel.frame = CGRect(x: 0, y: 445, width: 100, height: 40)
+            self.removeButtonOutletLabel.frame = CGRect(x: 78, y: 445, width: 100, height: 40)
+            self.noteButtonOutletLabel.frame = CGRect(x: 155, y: 445, width: 100, height: 40)
+            self.helpButtonOutletLabel.frame = CGRect(x: 230, y: 445, width: 100, height: 40)
             
             self.mainButton_1_Outlet.frame = CGRect(x: 0, y: 490, width: 40, height: 40)
             self.mainButton_2_Outlet.frame = CGRect(x: 35, y: 490, width: 40, height: 40)
@@ -1753,56 +1753,56 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             self.mainButton_8_Outlet.frame = CGRect(x: 245, y: 490, width: 40, height: 40)
             self.mainButton_9_Outlet.frame = CGRect(x: 280, y: 490, width: 40, height: 40)
         case 414:
-            if screenHeight == 736 {
+            if screenHeight == 736 { //7 plus
                 self.errorLabel.frame = CGRect(x: 7, y: 70, width: 120, height: 20)
                 self.labelTimer.frame = CGRect(x: 330, y: 70, width: 120, height: 20)
                 self.stopGameButtonOutlet.frame = CGRect(x: 390, y: 73, width: 15, height: 15)
                 
                 self.collectionView.frame = CGRect(x: 27, y: 100, width: 360, height: 360) // Игровое поле
                 
-                self.cancelButtonOutlet.frame = CGRect(x: 60, y: 485, width: 30, height: 30) // Кнопка "Отменить"
-                self.removeButtonOutlet.frame = CGRect(x: 140, y: 485, width: 30, height: 30) // Кнопка "Удалить"
-                self.noteButtonOutlet.frame = CGRect(x: 220, y: 485, width: 30, height: 30)
-                self.helpButtonOutlet.frame = CGRect(x: 300, y: 485, width: 30, height: 30)
+                self.cancelButtonOutlet.frame = CGRect(x: 70, y: 485, width: 35, height: 35) // Кнопка "Отменить"
+                self.removeButtonOutlet.frame = CGRect(x: 153, y: 485, width: 38, height: 38) // Кнопка "Удалить"
+                self.noteButtonOutlet.frame = CGRect(x: 235, y: 485, width: 35, height: 35)
+                self.helpButtonOutlet.frame = CGRect(x: 315, y: 485, width: 35, height: 35)
                 
-                self.cancelButtonOutletLabel.frame = CGRect(x: 51, y: 527, width: 100, height: 40)
-                self.removeButtonOutletLabel.frame = CGRect(x: 135, y: 527, width: 100, height: 40)
-                self.noteButtonOutletLabel.frame = CGRect(x: 210, y: 527, width: 100, height: 40)
+                self.cancelButtonOutletLabel.frame = CGRect(x: 40, y: 527, width: 100, height: 40)
+                self.removeButtonOutletLabel.frame = CGRect(x: 125, y: 527, width: 100, height: 40)
+                self.noteButtonOutletLabel.frame = CGRect(x: 205, y: 527, width: 100, height: 40)
                 self.helpButtonOutletLabel.frame = CGRect(x: 286, y: 527, width: 100, height: 40)
                 
-                self.mainButton_1_Outlet.frame = CGRect(x: 40, y: 575, width: 40, height: 40)
-                self.mainButton_2_Outlet.frame = CGRect(x: 75, y: 575, width: 40, height: 40)
-                self.mainButton_3_Outlet.frame = CGRect(x: 110, y: 575, width: 40, height: 40)
-                self.mainButton_4_Outlet.frame = CGRect(x: 145, y: 575, width: 40, height: 40)
-                self.mainButton_5_Outlet.frame = CGRect(x: 180, y: 575, width: 40, height: 40)
-                self.mainButton_6_Outlet.frame = CGRect(x: 215, y: 575, width: 40, height: 40)
-                self.mainButton_7_Outlet.frame = CGRect(x: 250, y: 575, width: 40, height: 40)
-                self.mainButton_8_Outlet.frame = CGRect(x: 285, y: 575, width: 40, height: 40)
-                self.mainButton_9_Outlet.frame = CGRect(x: 320, y: 575, width: 40, height: 40)
+                self.mainButton_1_Outlet.frame = CGRect(x: 25, y: 578, width: 40, height: 40)
+                self.mainButton_2_Outlet.frame = CGRect(x: 65, y: 578, width: 40, height: 40)
+                self.mainButton_3_Outlet.frame = CGRect(x: 105, y: 578, width: 40, height: 40)
+                self.mainButton_4_Outlet.frame = CGRect(x: 145, y: 578, width: 40, height: 40)
+                self.mainButton_5_Outlet.frame = CGRect(x: 185, y: 578, width: 40, height: 40)
+                self.mainButton_6_Outlet.frame = CGRect(x: 225, y: 578, width: 40, height: 40)
+                self.mainButton_7_Outlet.frame = CGRect(x: 265, y: 578, width: 40, height: 40)
+                self.mainButton_8_Outlet.frame = CGRect(x: 305, y: 578, width: 40, height: 40)
+                self.mainButton_9_Outlet.frame = CGRect(x: 345, y: 578, width: 40, height: 40)
                 
-            } else if screenHeight == 896 {
+            } else if screenHeight == 896 { //XS Max
 
                 self.collectionView.frame = CGRect(x: 27, y: 125, width: 360, height: 360)
 
-                self.cancelButtonOutlet.frame = CGRect(x: 60, y: 505, width: 40, height: 40) // Кнопка "Отменить"
-                self.removeButtonOutlet.frame = CGRect(x: 140, y: 505, width: 40, height: 40) // Кнопка "Удалить"
-                self.noteButtonOutlet.frame = CGRect(x: 220, y: 505, width: 40, height: 40)
-                self.helpButtonOutlet.frame = CGRect(x: 300, y: 505, width: 40, height: 40)
+                self.cancelButtonOutlet.frame = CGRect(x: 67, y: 505, width: 40, height: 40) // Кнопка "Отменить"
+                self.removeButtonOutlet.frame = CGRect(x: 150, y: 505, width: 40, height: 40) // Кнопка "Удалить"
+                self.noteButtonOutlet.frame = CGRect(x: 235, y: 505, width: 40, height: 40)
+                self.helpButtonOutlet.frame = CGRect(x: 315, y: 505, width: 40, height: 40)
                 
-                self.cancelButtonOutletLabel.frame = CGRect(x: 51, y: 547, width: 100, height: 40)
-                self.removeButtonOutletLabel.frame = CGRect(x: 135, y: 547, width: 100, height: 40)
-                self.noteButtonOutletLabel.frame = CGRect(x: 210, y: 547, width: 100, height: 40)
-                self.helpButtonOutletLabel.frame = CGRect(x: 286, y: 547, width: 100, height: 40)
+                self.cancelButtonOutletLabel.frame = CGRect(x: 42, y: 547, width: 100, height: 40)
+                self.removeButtonOutletLabel.frame = CGRect(x: 122, y: 547, width: 100, height: 40)
+                self.noteButtonOutletLabel.frame = CGRect(x: 200, y: 547, width: 100, height: 40)
+                self.helpButtonOutletLabel.frame = CGRect(x: 285, y: 547, width: 100, height: 40)
                 
-                self.mainButton_1_Outlet.frame = CGRect(x: 40, y: 595, width: 40, height: 40)
-                self.mainButton_2_Outlet.frame = CGRect(x: 75, y: 595, width: 40, height: 40)
-                self.mainButton_3_Outlet.frame = CGRect(x: 110, y: 595, width: 40, height: 40)
-                self.mainButton_4_Outlet.frame = CGRect(x: 145, y: 595, width: 40, height: 40)
-                self.mainButton_5_Outlet.frame = CGRect(x: 180, y: 595, width: 40, height: 40)
-                self.mainButton_6_Outlet.frame = CGRect(x: 215, y: 595, width: 40, height: 40)
-                self.mainButton_7_Outlet.frame = CGRect(x: 250, y: 595, width: 40, height: 40)
-                self.mainButton_8_Outlet.frame = CGRect(x: 285, y: 595, width: 40, height: 40)
-                self.mainButton_9_Outlet.frame = CGRect(x: 320, y: 595, width: 40, height: 40)
+                self.mainButton_1_Outlet.frame = CGRect(x: 25, y: 600, width: 40, height: 40)
+                self.mainButton_2_Outlet.frame = CGRect(x: 65, y: 600, width: 40, height: 40)
+                self.mainButton_3_Outlet.frame = CGRect(x: 105, y: 600, width: 40, height: 40)
+                self.mainButton_4_Outlet.frame = CGRect(x: 145, y: 600, width: 40, height: 40)
+                self.mainButton_5_Outlet.frame = CGRect(x: 185, y: 600, width: 40, height: 40)
+                self.mainButton_6_Outlet.frame = CGRect(x: 225, y: 600, width: 40, height: 40)
+                self.mainButton_7_Outlet.frame = CGRect(x: 265, y: 600, width: 40, height: 40)
+                self.mainButton_8_Outlet.frame = CGRect(x: 305, y: 600, width: 40, height: 40)
+                self.mainButton_9_Outlet.frame = CGRect(x: 345, y: 600, width: 40, height: 40)
                 
             } else {
                 self.collectionView.frame = CGRect(x: 27, y: 125, width: 360, height: 360)
