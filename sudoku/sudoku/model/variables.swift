@@ -85,3 +85,8 @@ struct settings {
     static var autoDeleteNote : Bool = true
     static var nightMode : Bool = false
 }
+
+
+struct store {
+    static  var countGame: Int = 0
+}

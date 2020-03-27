@@ -2,6 +2,7 @@ import UIKit
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
+import StoreKit
 
 class PopUpViewController: UIViewController {
 
@@ -12,6 +13,10 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var levelLabelEndGame: UILabel!
     @IBOutlet weak var timeLabelEndGame: UILabel!
     
+    enum AppStoreReviewManager {
+      static func requestReviewIfAppropriate() {
+      }
+    }
     
     override func viewDidLoad() {
         
@@ -26,7 +31,7 @@ class PopUpViewController: UIViewController {
         variables.countMin = 0
         variables.countSec = 0
         saveData()
-        
+        loadData()
         customBorder()
         
         let MSAppCenter_Key = Bundle.init(for: AppDelegate.self).infoDictionary?["MSAppCenter_Key"] as! String
@@ -45,10 +50,16 @@ class PopUpViewController: UIViewController {
     
     
     
-    
-    
     @IBAction func popUpClose(_ sender: Any) {
         
+        if store.countGame  == 2 {
+            SKStoreReviewController.requestReview()
+            MSAnalytics.trackEvent("Показано окно оценки приложения")
+            store.countGame += 1
+        } else {
+            store.countGame += 1
+        }
+                
         //Таптик отклик
         let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
         impactFeedbackgenerator.prepare()

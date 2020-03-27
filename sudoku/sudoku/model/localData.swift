@@ -11,10 +11,7 @@ func saveData() {
     UserDefaults.standard.set(variables.levelGame, forKey: "levelGame")
     UserDefaults.standard.set(variables.timeArray, forKey: "timeArray")
     UserDefaults.standard.set(variables.customGameNumber, forKey: "customGameNumber")
-
-    
-
-    //Настройки
+    UserDefaults.standard.set(store.countGame, forKey: "countGame")
     UserDefaults.standard.set(settings.sound, forKey: "setting_sound")
     UserDefaults.standard.set(settings.autolockScreen, forKey: "setting_autolockScreen")
     UserDefaults.standard.set(settings.timer, forKey: "setting_timer")
@@ -79,23 +76,31 @@ func loadData() {
     variables.countSec = UserDefaults.standard.integer(forKey: "countSec")
     variables.countMin = UserDefaults.standard.integer(forKey: "countMin")
     variables.levelGame = UserDefaults.standard.integer(forKey: "levelGame")
-    variables.customGameNumber = UserDefaults.standard.integer(forKey: "customGameNumber")
+    
+    
+    
+    let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+    if launchedBefore  {
+        
+        settings.sound = UserDefaults.standard.bool(forKey: "setting_sound")
+        settings.autolockScreen = UserDefaults.standard.bool(forKey: "setting_autolockScreen")
+        settings.timer = UserDefaults.standard.bool(forKey: "setting_timer")
+        settings.errorLimit = UserDefaults.standard.bool(forKey: "setting_errorLimit")
+        settings.autocheckError = UserDefaults.standard.bool(forKey: "setting_autocheckError")
+        settings.hideUsedNumbers = UserDefaults.standard.bool(forKey: "setting_hideUsedNumbers")
+        settings.selectRepeating = UserDefaults.standard.bool(forKey: "setting_selectRepeating")
+        settings.selectedArea = UserDefaults.standard.bool(forKey: "setting_selectedArea")
+        settings.selectedSameNumber = UserDefaults.standard.bool(forKey: "setting_selectedSameNumber")
+        settings.autoDeleteNote = UserDefaults.standard.bool(forKey: "setting_autoDeleteNote")
+        variables.customGameNumber = UserDefaults.standard.integer(forKey: "customGameNumber")
+        store.countGame = UserDefaults.standard.integer(forKey: "countGame")
 
         
-    // Настройки
-    settings.sound = UserDefaults.standard.bool(forKey: "setting_sound")
-    settings.autolockScreen = UserDefaults.standard.bool(forKey: "setting_autolockScreen")
-    settings.timer = UserDefaults.standard.bool(forKey: "setting_timer")
-    settings.errorLimit = UserDefaults.standard.bool(forKey: "setting_errorLimit")
-    settings.autocheckError = UserDefaults.standard.bool(forKey: "setting_autocheckError")
-    settings.hideUsedNumbers = UserDefaults.standard.bool(forKey: "setting_hideUsedNumbers")
-    settings.selectRepeating = UserDefaults.standard.bool(forKey: "setting_selectRepeating")
-    settings.selectedArea = UserDefaults.standard.bool(forKey: "setting_selectedArea")
-    settings.selectedSameNumber = UserDefaults.standard.bool(forKey: "setting_selectedSameNumber")
-    settings.autoDeleteNote = UserDefaults.standard.bool(forKey: "setting_autoDeleteNote")
-    // ----------------
+    } else {
+        UserDefaults.standard.set(true, forKey: "launchedBefore")
+    }
     
-    // Статистика
+    
     statistics.statisticsEasyGamesPlayed = UserDefaults.standard.integer(forKey: "statisticsEasyGamesPlayed")
     statistics.statisticEasyGamesCompleted = UserDefaults.standard.integer(forKey: "statisticEasyGamesCompleted")
     statistics.statisticEasyWinRate = UserDefaults.standard.integer(forKey: "statisticEasyWinRate")
@@ -127,7 +132,8 @@ func loadData() {
 
     
     
-    
+    UserDefaults.standard.synchronize()
+
     
     // ----------------
 

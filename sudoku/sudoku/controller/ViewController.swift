@@ -8,7 +8,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 
     
     //Звук тапа по кнопке
-    let tapSound = URL(fileURLWithPath: Bundle.main.path(forResource: "tap", ofType: "mp3")!)
+    let tapSound = URL(fileURLWithPath: Bundle.main.path(forResource: "tap", ofType: "m4a")!)
     var audioPlayer = AVAudioPlayer()
     
     func timerObserver () {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2315E58E242E42DF00E4C189 /* tap.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2315E58D242E42DF00E4C189 /* tap.m4a */; };
 		2317516823D0F1010017DC67 /* StopGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317516723D0F1010017DC67 /* StopGameViewController.swift */; };
 		2317516A23D30E0E0017DC67 /* error_number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317516923D30E0D0017DC67 /* error_number.swift */; };
 		2317516C23D489180017DC67 /* resetting_the_selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317516B23D489180017DC67 /* resetting_the_selection.swift */; };
@@ -14,8 +15,6 @@
 		2317517223DC54FA0017DC67 /* new_remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317517123DC54FA0017DC67 /* new_remove.swift */; };
 		2317517623DC95FA0017DC67 /* checking_the_solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317517523DC95FA0017DC67 /* checking_the_solution.swift */; };
 		2317517823DD0C990017DC67 /* hide_used_numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317517723DD0C990017DC67 /* hide_used_numbers.swift */; };
-		2317517E23DE11C40017DC67 /* tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2317517D23DE11C40017DC67 /* tap.mp3 */; };
-		2317518023DE121F0017DC67 /* tap2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2317517F23DE121F0017DC67 /* tap2.wav */; };
 		23189CD723C7E2D600D5E312 /* check_array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CD623C7E2D600D5E312 /* check_array.swift */; };
 		23189CD923C7E87500D5E312 /* check_array_on_null.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CD823C7E87500D5E312 /* check_array_on_null.swift */; };
 		23189CDB23C7EB0F00D5E312 /* end_game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23189CDA23C7EB0F00D5E312 /* end_game.swift */; };
@@ -62,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		1D61581B359D82A3364BEC2A /* Pods-sudoku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sudoku.release.xcconfig"; path = "Target Support Files/Pods-sudoku/Pods-sudoku.release.xcconfig"; sourceTree = "<group>"; };
+		2315E58D242E42DF00E4C189 /* tap.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = tap.m4a; sourceTree = "<group>"; };
 		2317516723D0F1010017DC67 /* StopGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopGameViewController.swift; sourceTree = "<group>"; };
 		2317516923D30E0D0017DC67 /* error_number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = error_number.swift; sourceTree = "<group>"; };
 		2317516B23D489180017DC67 /* resetting_the_selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetting_the_selection.swift; sourceTree = "<group>"; };
@@ -69,8 +69,6 @@
 		2317517123DC54FA0017DC67 /* new_remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = new_remove.swift; sourceTree = "<group>"; };
 		2317517523DC95FA0017DC67 /* checking_the_solution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checking_the_solution.swift; sourceTree = "<group>"; };
 		2317517723DD0C990017DC67 /* hide_used_numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hide_used_numbers.swift; sourceTree = "<group>"; };
-		2317517D23DE11C40017DC67 /* tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tap.mp3; path = ../../../../Downloads/tap.mp3; sourceTree = "<group>"; };
-		2317517F23DE121F0017DC67 /* tap2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap2.wav; path = ../../../../Downloads/tap2.wav; sourceTree = "<group>"; };
 		23189CD623C7E2D600D5E312 /* check_array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = check_array.swift; sourceTree = "<group>"; };
 		23189CD823C7E87500D5E312 /* check_array_on_null.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = check_array_on_null.swift; sourceTree = "<group>"; };
 		23189CDA23C7EB0F00D5E312 /* end_game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = end_game.swift; sourceTree = "<group>"; };
@@ -149,8 +147,7 @@
 		2317517B23DE11350017DC67 /* audio */ = {
 			isa = PBXGroup;
 			children = (
-				2317517D23DE11C40017DC67 /* tap.mp3 */,
-				2317517F23DE121F0017DC67 /* tap2.wav */,
+				2315E58D242E42DF00E4C189 /* tap.m4a */,
 			);
 			path = audio;
 			sourceTree = "<group>";
@@ -339,9 +336,8 @@
 			files = (
 				23F27BA0241565390033B4AC /* Localizable.strings in Resources */,
 				23F27BA5241581D40033B4AC /* InfoPlist.strings in Resources */,
-				2317518023DE121F0017DC67 /* tap2.wav in Resources */,
 				23FEDB1323C61C3F00EC60B6 /* Assets.xcassets in Resources */,
-				2317517E23DE11C40017DC67 /* tap.mp3 in Resources */,
+				2315E58E242E42DF00E4C189 /* tap.m4a in Resources */,
 				23F27B98241512560033B4AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -607,7 +603,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = MVZ2D7626T;
 				INFOPLIST_FILE = sudoku/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -615,7 +611,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = games.sudoku;
 				PRODUCT_NAME = sudoku;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -631,7 +627,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = MVZ2D7626T;
 				INFOPLIST_FILE = sudoku/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -639,7 +635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = games.sudoku;
 				PRODUCT_NAME = sudoku;
 				PROVISIONING_PROFILE_SPECIFIER = "";

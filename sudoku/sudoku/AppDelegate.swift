@@ -9,7 +9,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         loadData()
+        saveData()
         var window: UIWindow?
         let navigationAppearance = UINavigationBar.appearance()
         navigationAppearance.barTintColor = UIColor.init(cgColor: #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 1))
@@ -19,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           MSAnalytics.self,
           MSCrashes.self
         ])
-        
         return true
     }
 

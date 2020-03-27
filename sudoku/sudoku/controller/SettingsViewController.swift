@@ -45,6 +45,7 @@ class SettingsViewController: UIViewController {
             } else if settings.errorLimit == true {
                 settings.errorLimit = false
             }
+            tableView.reloadData()
             saveData()
 
         case 5:
@@ -52,7 +53,9 @@ class SettingsViewController: UIViewController {
                 settings.autocheckError = true
             } else if settings.autocheckError == true {
                 settings.autocheckError = false
+                settings.errorLimit = false
             }
+            tableView.reloadData()
             saveData()
 
         case 6:
@@ -191,6 +194,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.titleSettingsCell.text = NSLocalizedString("mistakes_limit", comment: "")
             cell.switchSettingsOutlet.isOn = settings.errorLimit
             cell.switchSettingsOutlet.tag = 4
+            
+            if settings.errorLimit == false && settings.autocheckError == false {
+                cell.switchSettingsOutlet.isEnabled = false
+            } else {
+                cell.switchSettingsOutlet.isEnabled = true
+            }
+            
         case [1, 0]:
             cell.titleSettingsCell.text = NSLocalizedString("auto_check_for_mistakes", comment: "")
             cell.switchSettingsOutlet.isOn = settings.autocheckError
