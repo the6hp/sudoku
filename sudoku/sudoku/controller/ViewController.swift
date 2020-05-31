@@ -41,11 +41,16 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         //Добавление правой кнопки в навбаре
         //self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Настройки", style: .plain, target: self, action: #selector(testButton))
         
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
-        view.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        //Убираем текст кнопки "Назад"
+        self.navigationItem.backBarButtonItem?.title = ""
         
         self.navigationItem.title?  = NSLocalizedString("game", comment: "")
 
+        // Показываем текущую сложность
+        levelDifficulty()
         
         //Блокируется ли экран при бездействии
         if settings.autolockScreen == true {
@@ -80,12 +85,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         saveData()
     }
 
-    
-    
-    
-    
-    
-
     @IBAction func stopGameButton(_ sender: Any) {
         StopGame()
         timerS.invalidate()
@@ -94,14 +93,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBOutlet weak var stopGameButtonOutlet: UIButton!
-    
     @IBOutlet weak var cancelButtonOutletLabel: UILabel!
     @IBOutlet weak var removeButtonOutletLabel: UILabel!
     @IBOutlet weak var noteButtonOutletLabel: UILabel!
     @IBOutlet weak var helpButtonOutletLabel: UILabel!
-    
     @IBOutlet weak var errorLabel: UILabel!
-    
     @IBOutlet weak var mainButton_1_Outlet: UIButton!
     @IBOutlet weak var mainButton_2_Outlet: UIButton!
     @IBOutlet weak var mainButton_3_Outlet: UIButton!
@@ -111,9 +107,31 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var mainButton_7_Outlet: UIButton!
     @IBOutlet weak var mainButton_8_Outlet: UIButton!
     @IBOutlet weak var mainButton_9_Outlet: UIButton!
+    @IBOutlet weak var levelDifficultyLabel: UILabel!
+    
+    
     
     //------------------------------------------------------//
-    //Кнопка с цифрой "1"
+    // Показ уровня сложности
+    //------------------------------------------------------//
+    
+    func levelDifficulty () {
+        if variables.levelGame == 0 {
+        levelDifficultyLabel.text = NSLocalizedString("easy", comment: "")
+        } else if variables.levelGame == 1 {
+        levelDifficultyLabel.text = NSLocalizedString("medium", comment: "")
+        } else if variables.levelGame == 2 {
+        levelDifficultyLabel.text = NSLocalizedString("hard", comment: "")
+        } else if variables.levelGame == 3 {
+        levelDifficultyLabel.text = NSLocalizedString("expert", comment: "")
+        } else {
+            levelDifficultyLabel.text = ""
+        }
+    }
+    
+
+    //------------------------------------------------------//
+    // Кнопка с цифрой "1"
     //------------------------------------------------------//
 
     
@@ -1539,7 +1557,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             impactFeedbackgenerator.impactOccurred()
             
                 let path = collectionView.indexPathForItem(at: recognizer.location(in: collectionView))
-                print("path: ", path)
 
                 if path != nil {
                     variables.selectCell = path //получаем адрес выделенной ячейки
@@ -1564,7 +1581,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             }
             
         case .changed:
-            print("panHundler changed")
             
             let path = collectionView.indexPathForItem(at: recognizer.location(in: collectionView))
             print("path: ", path)
@@ -1589,9 +1605,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 collectionView.reloadData()
                 saveData()
             }
-
-
-            
+  
         case .ended:
             print("panHundler ended")
         default:
@@ -1683,6 +1697,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
+        
         switch screenWidth {
         case 375: //6
             if screenHeight == 667 { //6
@@ -1713,7 +1728,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 
             } else if screenHeight == 812 { //X
 
-                self.errorLabel.frame = CGRect(x: 7, y: 90, width: 120, height: 20)
+                self.errorLabel.frame = CGRect(x: 120, y: 90, width: 135, height: 20)
                 self.labelTimer.frame = CGRect(x: 295, y: 90, width: 120, height: 20)
                 self.stopGameButtonOutlet.frame = CGRect(x: 350, y: 93, width: 15, height: 15)
                 

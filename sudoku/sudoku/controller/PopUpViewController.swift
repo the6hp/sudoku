@@ -19,6 +19,8 @@ class PopUpViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+                
+        closeButtonEndGamePopUp.setTitle(NSLocalizedString("closeButtonTitle", comment: ""), for: .normal)
         
         super.viewDidLoad()
         sizeElementEndGamePopUp ()
@@ -105,6 +107,7 @@ class PopUpViewController: UIViewController {
 
         //the identifier above comes from storyboard
         self.navigationController!.pushViewController(newController, animated : true)
+        
     }
     
     
@@ -113,7 +116,10 @@ class PopUpViewController: UIViewController {
     func textLabel () {
         
         if variables.countError > 2 {
-            labelTitleEndGame.text = NSLocalizedString("pop_game_over", comment: "")        }
+            labelTitleEndGame.text = NSLocalizedString("pop_game_over", comment: "")
+        } else {
+            labelTitleEndGame.text = NSLocalizedString("pop_game_end", comment: "")
+        }
         
         var levelGameLabel: String = ""
         var timeGameLabel: String = ""
@@ -144,9 +150,26 @@ class PopUpViewController: UIViewController {
         timeLabelEndGame.text = "\(NSLocalizedString("pop_time", comment: "")) \(timeGameLabel)"
         
         MSAnalytics.trackEvent("Время игры", withProperties: ["Время текущей игры" : timeGameLabel])
-
+        
+        
+        //Сохраняем время для использования на экране выбора игры
+        if variables.countError < 2 {
+            if variables.selectedDifficulty == 0 {
+                listArray.listEasyGame[variables.selectedLevel][0][1] = variables.countMin
+                listArray.listEasyGame[variables.selectedLevel][0][2] = variables.countSec
+            } else if variables.selectedDifficulty == 1 {
+                listArray.listAverageGame[variables.selectedLevel][0][1] = variables.countMin
+                listArray.listAverageGame[variables.selectedLevel][0][2] = variables.countSec
+            } else if variables.selectedDifficulty == 2 {
+                listArray.listHardGame[variables.selectedLevel][0][1] = variables.countMin
+                listArray.listHardGame[variables.selectedLevel][0][2] = variables.countSec
+            } else if variables.selectedDifficulty == 3 {
+                listArray.listExpertGame[variables.selectedLevel][0][1] = variables.countMin
+                listArray.listExpertGame[variables.selectedLevel][0][2] = variables.countSec
+            }
+        }
+        
     }
-    
     
     
     

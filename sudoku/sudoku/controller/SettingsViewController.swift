@@ -9,6 +9,7 @@ class SettingsViewController: UIViewController {
 
     let idSettingCell = "settingCell"
     
+    
     @IBAction func switchSettings(_ sender: UISwitch!) {
         switch sender.tag {
         case 1:
@@ -126,12 +127,12 @@ class SettingsViewController: UIViewController {
         loadData()
         tableView.dataSource = self as? UITableViewDataSource
         tableView.delegate = self as? UITableViewDelegate
-        self.tableView.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
+        self.tableView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     //    self.tableView.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
 
         self.navigationItem.title?  = NSLocalizedString("settings", comment: "")
 
-        
+                
         let MSAppCenter_Key = Bundle.init(for: AppDelegate.self).infoDictionary?["MSAppCenter_Key"] as! String
         MSAppCenter.start(MSAppCenter_Key, withServices:[
           MSCrashes.self

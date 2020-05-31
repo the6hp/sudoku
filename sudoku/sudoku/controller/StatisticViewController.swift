@@ -8,14 +8,16 @@ class StatisticViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         sizeElementStatistics()
-        changeBorder()
+  //      changeBorder()
         startStatistics()
         
         self.navigationItem.title?  = NSLocalizedString("statistics", comment: "")
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 22.0)]
 
         
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
-        view.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         let MSAppCenter_Key = Bundle.init(for: AppDelegate.self).infoDictionary?["MSAppCenter_Key"] as! String
         MSAppCenter.start(MSAppCenter_Key, withServices:[
@@ -30,6 +32,8 @@ class StatisticViewController: UIViewController {
     @IBOutlet weak var bestTimeLabel: UILabel!
     @IBOutlet weak var averageTimeLabel: UILabel!
     
+    @IBOutlet weak var gamesTitleLabel: UILabel!
+    @IBOutlet weak var timeTitleLabel: UILabel!
     
     @IBOutlet weak var gamesPlayedLabelText: UILabel!
     @IBOutlet weak var gamesCompletedLabelText: UILabel!
@@ -38,9 +42,26 @@ class StatisticViewController: UIViewController {
     @IBOutlet weak var bestTimeLabelText: UILabel!
     @IBOutlet weak var averageTimeLabelText: UILabel!
     
+    @IBOutlet weak var gamesPlayedIcon: UIImageView!
+    @IBOutlet weak var gamesCompletedIcon: UIImageView!
+    @IBOutlet weak var winRateIcon: UIImageView!
+    @IBOutlet weak var winStreakIcon: UIImageView!
+    @IBOutlet weak var bestTimeIcon: UIImageView!
+    @IBOutlet weak var averageTimeIcon: UIImageView!
+    
+    
+    
     func startStatistics () {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        
+        segmentedControl.setTitle(NSLocalizedString("segment_easy_level", comment: ""), forSegmentAt: 0)
+        segmentedControl.setTitle(NSLocalizedString("segment_medium_level", comment: ""), forSegmentAt: 1)
+        segmentedControl.setTitle(NSLocalizedString("segment_hard_level", comment: ""), forSegmentAt: 2)
+        segmentedControl.setTitle(NSLocalizedString("segment_expert_level", comment: ""), forSegmentAt: 3)
+
+        gamesTitleLabel.text = NSLocalizedString("gamesTitleLabel", comment: "")
+        timeTitleLabel.text = NSLocalizedString("timeTitleLabel", comment: "")
         
         gamesPlayedLabel.text = NSLocalizedString("games_played", comment: "")
         gamesCompletedLabel.text = NSLocalizedString("games_completed", comment: "")
@@ -49,6 +70,7 @@ class StatisticViewController: UIViewController {
         bestTimeLabel.text = NSLocalizedString("best_time", comment: "")
         averageTimeLabel.text = NSLocalizedString("average_time", comment: "")
         resetButtonOutlet.setTitle(NSLocalizedString("reset_statistics", comment: ""), for: .normal)
+        
         
         gamesPlayedLabelText.text = String(statistics.statisticsEasyGamesPlayed)
         gamesCompletedLabelText.text = String(statistics.statisticEasyGamesCompleted)
@@ -160,6 +182,8 @@ class StatisticViewController: UIViewController {
             if screenHeight == 667 {
                 self.segmentedControl.frame = CGRect(x: 20, y: 80, width: 335, height: 32)
                 
+
+                
                 self.gamesPlayedLabel.frame = CGRect(x: 5, y: 150, width: 365, height: 35)
                 self.gamesCompletedLabel.frame = CGRect(x: 5, y: 185, width: 365, height: 35)
                 self.winRateLabel.frame = CGRect(x: 5, y: 220, width: 365, height: 35)
@@ -180,21 +204,33 @@ class StatisticViewController: UIViewController {
                 
                 self.segmentedControl.frame = CGRect(x: 20, y: 100, width: 335, height: 32)
                 
-                self.gamesPlayedLabel.frame = CGRect(x: 5, y: 160, width: 365, height: 35)
-                self.gamesCompletedLabel.frame = CGRect(x: 5, y: 195, width: 365, height: 35)
-                self.winRateLabel.frame = CGRect(x: 5, y: 230, width: 365, height: 35)
-                self.betWinStreakLabel.frame = CGRect(x: 5, y: 265, width: 365, height: 35)
-                self.bestTimeLabel.frame = CGRect(x: 5, y: 300, width: 365, height: 35)
-                self.averageTimeLabel.frame = CGRect(x: 5, y: 335, width: 365, height: 35)
+                self.gamesTitleLabel.frame = CGRect(x: 0, y: 150, width: 375, height: 35)
+                self.timeTitleLabel.frame = CGRect(x: 0, y: 385, width: 375, height: 35)
                 
-                self.gamesPlayedLabelText.frame = CGRect(x: 285, y: 160, width: 80, height: 30)
-                self.gamesCompletedLabelText.frame = CGRect(x: 285, y: 195, width: 80, height: 30)
-                self.winRateLabelText.frame = CGRect(x: 285, y: 230, width: 80, height: 30)
-                self.bestWinStreakLabelText.frame = CGRect(x: 285, y: 265, width: 80, height: 30)
-                self.bestTimeLabelText.frame = CGRect(x: 285, y: 300, width: 80, height: 30)
-                self.averageTimeLabelText.frame = CGRect(x: 285, y: 335, width: 80, height: 30)
+                self.gamesPlayedLabel.frame = CGRect(x: 55, y: 195, width: 365, height: 35)
+                self.gamesCompletedLabel.frame = CGRect(x: 55, y: 240, width: 365, height: 35)
+                self.winRateLabel.frame = CGRect(x: 55, y: 285, width: 365, height: 35)
+                self.betWinStreakLabel.frame = CGRect(x: 55, y: 330, width: 365, height: 35)
+                self.bestTimeLabel.frame = CGRect(x: 55, y: 435, width: 365, height: 35)
+                self.averageTimeLabel.frame = CGRect(x: 55, y: 490, width: 365, height: 35)
                 
-                self.resetButtonOutlet.frame = CGRect(x: 87, y: 390, width: 200, height: 30)
+                self.gamesPlayedLabelText.frame = CGRect(x: 285, y: 195, width: 80, height: 30)
+                self.gamesCompletedLabelText.frame = CGRect(x: 285, y: 240, width: 80, height: 30)
+                self.winRateLabelText.frame = CGRect(x: 285, y: 285, width: 80, height: 30)
+                self.bestWinStreakLabelText.frame = CGRect(x: 285, y: 330, width: 80, height: 30)
+                self.bestTimeLabelText.frame = CGRect(x: 285, y: 435, width: 80, height: 30)
+                self.averageTimeLabelText.frame = CGRect(x: 285, y: 490, width: 80, height: 30)
+                
+                
+                self.gamesPlayedIcon.frame = CGRect(x: 10, y: 198, width: 25, height: 25)
+                self.gamesCompletedIcon.frame = CGRect(x: 10, y: 243, width: 30, height: 30)
+                self.winRateIcon.frame = CGRect(x: 5, y: 282, width: 40, height: 40)
+                self.winStreakIcon.frame = CGRect(x: 10, y: 330, width: 30, height: 30)
+                self.bestTimeIcon.frame = CGRect(x: 5, y: 435, width: 40, height: 40)
+                self.averageTimeIcon.frame = CGRect(x: 10, y: 490, width: 30, height: 30)
+                
+                
+                self.resetButtonOutlet.frame = CGRect(x: 87, y: 750, width: 200, height: 30)
                 
             } else {
                 self.segmentedControl.frame = CGRect(x: 20, y: 120, width: 335, height: 32)

@@ -10,8 +10,10 @@ class StopGameViewController: UIViewController {
         //прозрачность фона
    //     self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         self.view.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.3000856164)
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.6620023545)
 
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
+        
         moveInStop()
         
         let MSAppCenter_Key = Bundle.init(for: AppDelegate.self).infoDictionary?["MSAppCenter_Key"] as! String
@@ -23,8 +25,8 @@ class StopGameViewController: UIViewController {
     @IBAction func playGameBitton(_ sender: Any) {
         self.view.removeFromSuperview()
         
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
-        
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
         //Таптик отклик
         let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
         impactFeedbackgenerator.prepare()

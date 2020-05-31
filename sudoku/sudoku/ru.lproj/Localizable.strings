@@ -10,8 +10,9 @@
 "continue" = "Продолжить";
 "settings" =  "Настройки";
 "statistics" = "Статистика";
-"game" = "Игра";
+"game" = "Новая игра";
 "custom game" = "Своя игра";
+"fastGame" = "Быстрая игра";
 
 //Настройки
 "sound_effects" = "Звуковые эффекты";
@@ -36,6 +37,14 @@
 
 
 //Статистика
+"segment_easy_level" = "Лёгкий";
+"segment_medium_level" = "Средний";
+"segment_hard_level" = "Сложный";
+"segment_expert_level" = "Эксперт";
+
+"gamesTitleLabel" = "Игры";
+"timeTitleLabel" = "Время";
+
 "games_played" = "Игр сыграно:";
 "games_completed" = "Игр завершено:";
 "win_rate" = "Коэффициент побед:";
@@ -45,6 +54,7 @@
 "reset_statistics" =  "Сбросить статистику";
 
 //Выбор уровня сложности
+"label_select_game_button" = "Выбрать уровень";
 "create_your_game" = "Создать свою игру:";
 "number_of_free_cells" = "* Количество свободных клеток";
 "level_of_difficulty" = "Уровень сложности:";
@@ -68,4 +78,6 @@
 "pop_level" = "Уровень:";
 "pop_custom_level" = "Своя игра";
 "pop_game_over" = "Проигрыш";
+"pop_game_end" = "Победа";
 "pop_time" = "Время:";
+"closeButtonTitle" = "Новая игра";

@@ -16,14 +16,16 @@ struct variables {
     static var timeArray = [Int]() // Массив с временами игр
     static var customGameNumber: Int = 35 //Количество свободных ячеек для кастомной игры
     
-    
+    //Выбор игры из списка
+    static var selectedDifficulty: Int = 0 //Выбранная сложность
+    static var selectedLevel: Int = 0 //Выбранный уровень
     
     static var hiddenCell: Bool = false
     
     //Заполнение цветом ячеек
-    static var color1: CGColor = #colorLiteral(red: 0.9366177917, green: 0.9310500026, blue: 0.9408977628, alpha: 1) //1 - Обычный стартовый фон всего поля
+    static var color1: CGColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) //1 - Обычный стартовый фон всего поля
     static var color2: CGColor = #colorLiteral(red: 0.7607843137, green: 0.8666666667, blue: 0.9725490196, alpha: 1) //2 - Фон выбранной ячейки
-    static var color3: CGColor = #colorLiteral(red: 0.8901960784, green: 0.9058823529, blue: 0.9294117647, alpha: 1) //3 - Фон выделения областей при выборе ячейки
+    static var color3: CGColor = #colorLiteral(red: 0.8901960784, green: 0.9058823529, blue: 0.9294117647, alpha: 0.6531464041) //3 - Фон выделения областей при выборе ячейки
     static var color4: CGColor = #colorLiteral(red: 0.8078431373, green: 0.8588235294, blue: 0.9215686275, alpha: 1) //4 - Фон выделения ячейки одинаковых чисел при выборе числа
     static var color7: CGColor = #colorLiteral(red: 0.9450980392, green: 0.8196078431, blue: 0.8392156863, alpha: 1) //5 - Фон выделения ячейки при ошибке
     //Цвет текста

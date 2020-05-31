@@ -13,19 +13,17 @@ class MainCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         self.nameLabel.layer.sublayers?.removeAll()
-        self.nameLabel.text = nil
-        self.miniNameLabel_1.text = nil
-        self.miniNameLabel_2.text = nil
-        self.miniNameLabel_3.text = nil
-        self.miniNameLabel_4.text = nil
-        self.miniNameLabel_5.text = nil
-        self.miniNameLabel_6.text = nil
-        self.miniNameLabel_7.text = nil
-        self.miniNameLabel_8.text = nil
-        self.miniNameLabel_9.text = nil
-
+//        self.nameLabel.text = nil
+//        self.miniNameLabel_1.text = nil
+//        self.miniNameLabel_2.text = nil
+//        self.miniNameLabel_3.text = nil
+//        self.miniNameLabel_4.text = nil
+//        self.miniNameLabel_5.text = nil
+//        self.miniNameLabel_6.text = nil
+//        self.miniNameLabel_7.text = nil
+//        self.miniNameLabel_8.text = nil
+//        self.miniNameLabel_9.text = nil
         
-
         isSelected = false
         
     }

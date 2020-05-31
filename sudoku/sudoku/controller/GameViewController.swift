@@ -18,6 +18,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var labelMinus: UILabel!
     @IBOutlet weak var labelPlus: UILabel!
     @IBOutlet weak var descriptionCustomGame: UILabel!
+    @IBOutlet weak var labelSelectGame: UILabel!
     
     
     override func viewDidLoad() {
@@ -30,8 +31,10 @@ class GameViewController: UIViewController {
         
         self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
-        view.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9961728454, green: 0.9902502894, blue: 1, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.9961728454, green: 0.9902502894, blue: 1, alpha: 1)
+        
+
         
         let MSAppCenter_Key = Bundle.init(for: AppDelegate.self).infoDictionary?["MSAppCenter_Key"] as! String
         MSAppCenter.start(MSAppCenter_Key, withServices:[
@@ -71,9 +74,14 @@ class GameViewController: UIViewController {
             impactFeedbackgenerator.impactOccurred()
             
             self.tabBarController?.tabBar.isHidden = true
+        
+//Копируем в mainArray.testArray дефолтные данные игрового поля
             mainArray.testArray = mainArray.defaultArray
-            random_level()
+//Делаем перемешения цифр на поле для mainArray.allNumbers
+            random_level_all()
+//Взяли mainArray.allNumbers и удалили из него часть цифр и скопировали всё это в mainArray.allNumbers_text
         mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 4, numCount: variables.customGameNumber)
+//Перемещаем все значения поля из mainArray.allNumbers_text в mainArray.testArray
             fill_array_all()
             variables.savedGame = true
             statistics.statisticsEasyGamesPlayed += 1
@@ -92,6 +100,23 @@ class GameViewController: UIViewController {
             self.navigationController!.pushViewController(newController, animated : true)
     }
     
+    
+    @objc func selectGameButton() {
+        //Таптик отклик
+        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+        impactFeedbackgenerator.prepare()
+        impactFeedbackgenerator.impactOccurred()
+        
+        self.tabBarController?.tabBar.isHidden = true
+        
+        MSAnalytics.trackEvent("Выбор уровня")
+        
+        let newController = self.storyboard!.instantiateViewController(withIdentifier: "selectGameView")
+        self.navigationController!.pushViewController(newController, animated : true)
+    }
+    
+    
+    
    @objc func easyGameButton() {
         //Таптик отклик
         let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
@@ -100,7 +125,7 @@ class GameViewController: UIViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         mainArray.testArray = mainArray.defaultArray
-        random_level()
+        random_level_all()
         mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 0, numCount: 0)
         fill_array_all()
         variables.savedGame = true
@@ -128,7 +153,7 @@ class GameViewController: UIViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         mainArray.testArray = mainArray.defaultArray
-        random_level()
+        random_level_all()
         mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 1, numCount: 0)
         fill_array_all()
         variables.savedGame = true
@@ -156,7 +181,7 @@ class GameViewController: UIViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         mainArray.testArray = mainArray.defaultArray
-        random_level()
+        random_level_all()
         mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 2, numCount: 0)
         fill_array_all()
         variables.savedGame = true
@@ -184,7 +209,7 @@ class GameViewController: UIViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         mainArray.testArray = mainArray.defaultArray
-        random_level()
+        random_level_all()
         mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 3, numCount: 0)
         fill_array_all()
         variables.savedGame = true
@@ -203,45 +228,8 @@ class GameViewController: UIViewController {
         self.navigationController!.pushViewController(newController, animated : true)
     }
     
-    func random_level () {
-        let a = Int.random(in: 1..<10)
-        let b = Int.random(in: 1..<100)
-        let c = Int.random(in: 1..<100)
-        let d = Int.random(in: 1..<100)
-        let e = Int.random(in: 1..<100)
-        var a_a: Int = 0
-        var b_b: Int = 0
-        var c_c: Int = 0
-        var d_d: Int = 0
-        var e_e: Int = 0
-        
-        repeat {
-            mainArray.allNumbers = transposing(array: mainArray.baseAllNumbers)
-            a_a += 1
-        } while a_a < a
-        
-        repeat {
-            mainArray.allNumbers = swap_rows_area_all(array: mainArray.allNumbers)
-            b_b += 1
-        } while b_b < b
-        
-        repeat {
-            mainArray.allNumbers = swap_rows_small_all(array: mainArray.allNumbers)
-            c_c += 1
-        } while c_c < c
-        
-        repeat {
-            mainArray.allNumbers = swap_colums_area_all(array: mainArray.allNumbers)
-            d_d += 1
-        } while d_d < d
-        
-        repeat {
-            mainArray.allNumbers = swap_colums_small_all(array: mainArray.allNumbers)
-            e_e += 1
-        } while e_e < e
-    }
     
-    
+    let softUIViewSelectGame = SoftUIView(frame: .init(x: 50, y: 130, width: 275, height: 60))
     let softUIViewEasyGame = SoftUIView(frame: .init(x: 50, y: 440, width: 275, height: 60))
     let softUIViewAverageGame = SoftUIView(frame: .init(x: 50, y: 520, width: 275, height: 60))
     let softUIViewHardGame = SoftUIView(frame: .init(x: 50, y: 600, width: 275, height: 60))
@@ -252,6 +240,8 @@ class GameViewController: UIViewController {
     let playCustomGame = SoftUIView(frame: .init(x: 215, y: 260, width: 120, height: 60))
     
     func buttonDesign () {
+        
+
         
         labelTitleLevel.text = NSLocalizedString("level_of_difficulty", comment: "")
         labelTitleLevel.font = labelTitleLevel.font.withSize(25)
@@ -266,12 +256,17 @@ class GameViewController: UIViewController {
         descriptionCustomGame.font = descriptionCustomGame.font.withSize(12)
 
 
+
         labelPlus.font = labelPlus.font.withSize(30)
         labelMinus.font = labelMinus.font.withSize(30)
 
+        
         labelCountCustomGame.text = "\(variables.customGameNumber)"
         labelCountCustomGame.font = labelEasyGame.font.withSize(30)
 
+        labelSelectGame.text = NSLocalizedString("label_select_game_button", comment: "")
+        labelSelectGame.font = labelSelectGame.font.withSize(30)
+        
         labelEasyGame.text = NSLocalizedString("easy", comment: "")
         labelEasyGame.font = labelEasyGame.font.withSize(30)
         
@@ -300,11 +295,13 @@ class GameViewController: UIViewController {
         self.view.bringSubviewToFront(labelPlus)
         self.view.bringSubviewToFront(labelMinus)
         
+        self.view.addSubview(softUIViewSelectGame)
         self.view.addSubview(softUIViewEasyGame)
         self.view.addSubview(softUIViewAverageGame)
         self.view.addSubview(softUIViewHardGame)
         self.view.addSubview(softUIViewExpertGame)
 
+        self.view.bringSubviewToFront(labelSelectGame)
         self.view.bringSubviewToFront(labelEasyGame)
         self.view.bringSubviewToFront(labelAverageGame)
         self.view.bringSubviewToFront(labelHardGame)
@@ -312,6 +309,7 @@ class GameViewController: UIViewController {
         self.view.bringSubviewToFront(labelCustomGame)
         
         playCustomGame.addTarget(self, action: #selector(customGameButton), for: .touchUpInside)
+        softUIViewSelectGame.addTarget(self, action: #selector(selectGameButton), for: .touchUpInside)
         softUIViewEasyGame.addTarget(self, action: #selector(easyGameButton), for: .touchUpInside)
         softUIViewAverageGame.addTarget(self, action: #selector(averageGameButton), for: .touchUpInside)
         softUIViewHardGame.addTarget(self, action: #selector(hardGameButton), for: .touchUpInside)
@@ -326,6 +324,7 @@ class GameViewController: UIViewController {
           case 375:
               if screenHeight == 812 {
                 
+                self.labelSelectGame.frame = CGRect(x: 50, y: 130, width: 275, height: 60)
                 self.labelEasyGame.frame = CGRect(x: 50, y: 440, width: 275, height: 60)
                 self.labelAverageGame.frame = CGRect(x: 50, y: 520, width: 275, height: 60)
                 self.labelHardGame.frame = CGRect(x: 50, y: 600, width: 275, height: 60)

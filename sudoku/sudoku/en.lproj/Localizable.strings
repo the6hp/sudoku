@@ -10,8 +10,9 @@
 "continue" = "Continue";
 "settings" =  "Settings";
 "statistics" = "Statistics";
-"game" = "Game";
+"game" = "New Game";
 "custom game" = "Custom game";
+"fastGame" = "Fast Game";
 
 //Настройки
 "sound_effects" = "Sound Effects";
@@ -33,6 +34,14 @@
 "description_auto_remove_notes" = "Deleting entered numbers from notes";
 
 //Статистика
+"segment_easy_level" = "Easy";
+"segment_medium_level" = "Medium";
+"segment_hard_level" = "Hard";
+"segment_expert_level" = "Expert";
+
+"gamesTitleLabel" = "Games";
+"timeTitleLabel" = "Time";
+
 "games_played" = "Games started:";
 "games_completed" = "Games completed:";
 "win_rate" = "Win rate:";
@@ -42,6 +51,7 @@
 "reset_statistics" =  "Reset Statistics";
 
 //Выбор уровня сложности
+"label_select_game_button" = "Select level";
 "create_your_game" = "Create your game:";
 "number_of_free_cells" = "Number of free cells";
 "level_of_difficulty" = "* Level of difficulty:";
@@ -64,4 +74,6 @@
 "pop_level" = "Level:";
 "pop_custom_level" = "Custom game";
 "pop_game_over" = "Game Over";
+"pop_game_end" = "Victory";
 "pop_time" = "Time:";
+"closeButtonTitle" = "New Game";

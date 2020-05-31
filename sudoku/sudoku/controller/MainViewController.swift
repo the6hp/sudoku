@@ -5,24 +5,17 @@ import AppCenterCrashes
 
 
 class MainViewController: UIViewController {
-    
-    
-    
-    
 
     @IBOutlet weak var resumeTimeLevel: UILabel!
-    
-    @IBOutlet weak var labelSettings: UILabel!
     @IBOutlet weak var imageSettings: UIImageView!
-    
-    @IBOutlet weak var labelStatistics: UILabel!
     @IBOutlet weak var imageStatistics: UIImageView!
-    
     @IBOutlet weak var labelGame: UILabel!
     @IBOutlet weak var imageGame: UIImageView!
-    
     @IBOutlet weak var labelResumeGame: UILabel!
     @IBOutlet weak var imageResumeGame: UIImageView!
+    @IBOutlet weak var labelFastGame: UILabel!
+    @IBOutlet weak var imageFastGame: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +30,8 @@ class MainViewController: UIViewController {
         //Красим заголовки навбара в черный
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
-        view.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.9961728454, green: 0.9902502894, blue: 1, alpha: 1)
         
         let MSAppCenter_Key = Bundle.init(for: AppDelegate.self).infoDictionary?["MSAppCenter_Key"] as! String
         MSAppCenter.start(MSAppCenter_Key, withServices:[
@@ -47,10 +40,12 @@ class MainViewController: UIViewController {
 
     }
     
-    let softUIViewResumeGame = SoftUIView(frame: .init(x: 50, y: 440, width: 275, height: 60))
-    let softUIViewGame = SoftUIView(frame: .init(x: 50, y: 520, width: 275, height: 60))
-    let softUIViewStatistics = SoftUIView(frame: .init(x: 50, y: 600, width: 275, height: 60))
-    let softUIViewSettings = SoftUIView(frame: .init(x: 50, y: 680, width: 275, height: 60))
+    let softUIViewResumeGame = SoftUIView(frame: .init(x: 50, y: 380, width: 275, height: 60))
+    let softUIViewGame = SoftUIView(frame: .init(x: 50, y: 460, width: 275, height: 60))
+    let softUIViewFastGame = SoftUIView(frame: .init(x: 50, y: 540, width: 275, height: 60))
+    let softUIViewStatistics = SoftUIView(frame: .init(x: 205, y: 720, width: 55, height: 55))
+    let softUIViewSettings = SoftUIView(frame: .init(x: 270, y: 720, width: 55, height: 55))
+    
     
     func buttonMain() {
         
@@ -83,40 +78,35 @@ class MainViewController: UIViewController {
         resumeTimeLevel.text = "\(levelGameLabel) \(timeGameLabel)"
         
         labelResumeGame.text =  NSLocalizedString("continue", comment: "")
-        labelResumeGame.font = labelSettings.font.withSize(30)
+        labelResumeGame.font = labelResumeGame.font.withSize(30)
         
-        labelSettings.text = NSLocalizedString("settings", comment: "")
-        labelSettings.font = labelSettings.font.withSize(30)
-        
-        labelStatistics.text = NSLocalizedString("statistics", comment: "")
-        labelStatistics.font = labelSettings.font.withSize(30)
-
         labelGame.text = NSLocalizedString("game", comment: "")
-        labelGame.font = labelSettings.font.withSize(30)
+        labelGame.font = labelGame.font.withSize(30)
         
+        labelFastGame.text = NSLocalizedString("fastGame", comment: "")
+        labelFastGame.font = labelGame.font.withSize(30)
 
         
         self.view.addSubview(softUIViewResumeGame)
         self.view.addSubview(softUIViewGame)
         self.view.addSubview(softUIViewStatistics)
         self.view.addSubview(softUIViewSettings)
+        self.view.addSubview(softUIViewFastGame)
         
         self.view.bringSubviewToFront(labelResumeGame)
         self.view.bringSubviewToFront(resumeTimeLevel)
         self.view.bringSubviewToFront(imageResumeGame)
-        
-        self.view.bringSubviewToFront(labelSettings)
         self.view.bringSubviewToFront(imageSettings)
-        
-        self.view.bringSubviewToFront(labelStatistics)
         self.view.bringSubviewToFront(imageStatistics)
-        
         self.view.bringSubviewToFront(labelGame)
         self.view.bringSubviewToFront(imageGame)
+        self.view.bringSubviewToFront(labelFastGame)
+        self.view.bringSubviewToFront(imageFastGame)
         
         softUIViewSettings.addTarget(self, action: #selector(openSettings), for: .touchUpInside)
         softUIViewStatistics.addTarget(self, action: #selector(openStatistics), for: .touchUpInside)
         softUIViewGame.addTarget(self, action: #selector(openGame), for: .touchUpInside)
+        softUIViewFastGame.addTarget(self, action: #selector(fastGame), for: .touchUpInside)
         softUIViewResumeGame.addTarget(self, action: #selector(continueGame), for: .touchUpInside)
 
         
@@ -156,6 +146,36 @@ class MainViewController: UIViewController {
         MSAnalytics.trackEvent("Главная: Игра")
     }
     
+        @objc func fastGame() {
+                //Таптик отклик
+                let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+                impactFeedbackgenerator.prepare()
+                impactFeedbackgenerator.impactOccurred()
+                
+                self.tabBarController?.tabBar.isHidden = true
+            
+                var itemCount = Int.random(in: 38..<66)
+    
+                mainArray.testArray = mainArray.defaultArray
+                random_level_all()
+                mainArray.allNumbers_text = new_remove_all(array: mainArray.allNumbers, difficulty: 4, numCount: itemCount)
+                fill_array_all()
+                variables.savedGame = true
+                statistics.statisticsEasyGamesPlayed += 1
+                statistics_fill_all(level: 0)
+                variables.countError = 0
+                variables.levelGame = 4
+                variables.countSec = 0
+                variables.countMin = 0
+                mainArray.oldCancelArray = [[]]
+            
+                saveData()
+                
+                MSAnalytics.trackEvent("Выбор сложности: Своя игра")
+                
+                let newController = self.storyboard!.instantiateViewController(withIdentifier: "mainGameView")
+                self.navigationController!.pushViewController(newController, animated : true)
+        }
 
     @objc func openStatistics () {
         let newController = self.storyboard!.instantiateViewController(withIdentifier: "statisticsView")
@@ -180,6 +200,12 @@ class MainViewController: UIViewController {
     }
 
     
+    
+    
+    
+    
+    
+    
     @IBOutlet weak var mainPic: UIImageView!
     
     
@@ -187,31 +213,31 @@ class MainViewController: UIViewController {
         
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
+        
         switch screenWidth {
         case 375:
             if screenHeight == 812 {
-                self.mainPic.frame = CGRect(x: 87, y: 140, width: 200, height: 200)
+                self.mainPic.frame = CGRect(x: 87, y: 120, width: 200, height: 200)
                 
-                self.labelSettings.frame = CGRect(x: 130, y: 680, width: 200, height: 60)
-                self.imageSettings.frame = CGRect(x: 70, y: 690, width: 40, height: 40)
+                self.imageSettings.frame = CGRect(x: 277, y: 727, width: 40, height: 40)
                 
-                self.labelStatistics.frame = CGRect(x: 130, y: 600, width: 200, height: 60)
-                self.imageStatistics.frame = CGRect(x: 70, y: 610, width: 40, height: 40)
-
-                self.labelGame.frame = CGRect(x: 170, y: 520, width: 200, height: 60)
-                self.imageGame.frame = CGRect(x: 70, y: 530, width: 40, height: 40)
+                self.imageStatistics.frame = CGRect(x: 212, y: 727, width: 40, height: 40)
                 
-                self.labelResumeGame.frame = CGRect(x: 130, y: 440, width: 200, height: 40)
-                self.resumeTimeLevel.frame = CGRect(x: 160, y: 480, width: 200, height: 15)
-                self.imageResumeGame.frame = CGRect(x: 70, y: 450, width: 40, height: 40)
+                self.labelGame.frame = CGRect(x: 70, y: 460, width: 275, height: 60)
+                self.imageGame.frame = CGRect(x: 70, y: 470, width: 40, height: 40)
+                
+                self.labelFastGame.frame = CGRect(x: 65, y: 540, width: 275, height: 60)
+                self.imageFastGame.frame = CGRect(x: 65, y: 550, width: 40, height: 40)
+                
+                self.labelResumeGame.frame = CGRect(x: 130, y: 380, width: 200, height: 40)
+                self.resumeTimeLevel.frame = CGRect(x: 160, y: 420, width: 200, height: 15)
+                self.imageResumeGame.frame = CGRect(x: 70, y: 390, width: 40, height: 40)
 
             } else if screenHeight == 667 {
                 self.mainPic.frame = CGRect(x: 87, y: 90, width: 200, height: 200)
                 
-                self.labelSettings.frame = CGRect(x: 130, y: 585, width: 200, height: 60)
                 self.imageSettings.frame = CGRect(x: 70, y: 595, width: 40, height: 40)
                 
-                self.labelStatistics.frame = CGRect(x: 130, y: 505, width: 200, height: 60)
                 self.imageStatistics.frame = CGRect(x: 70, y: 515, width: 40, height: 40)
 
                 self.labelGame.frame = CGRect(x: 170, y: 425, width: 200, height: 60)
@@ -235,10 +261,8 @@ class MainViewController: UIViewController {
             self.softUIViewStatistics.frame = CGRect(x: 23, y: 400, width: 274, height: 60)
             self.softUIViewSettings.frame = CGRect(x: 23, y: 480, width: 274, height: 60)
             
-            self.labelSettings.frame = CGRect(x: 113, y: 480, width: 200, height: 60)
             self.imageSettings.frame = CGRect(x: 43, y: 490, width: 40, height: 40)
             
-            self.labelStatistics.frame = CGRect(x: 113, y: 400, width: 200, height: 60)
             self.imageStatistics.frame = CGRect(x: 43, y: 410, width: 40, height: 40)
 
             self.labelGame.frame = CGRect(x: 133, y: 320, width: 200, height: 60)
@@ -258,10 +282,8 @@ class MainViewController: UIViewController {
                 self.softUIViewStatistics.frame = CGRect(x: 70, y: 520, width: 274, height: 60)
                 self.softUIViewSettings.frame = CGRect(x: 70, y: 600, width: 274, height: 60)
                 
-                self.labelSettings.frame = CGRect(x: 160, y: 600, width: 200, height: 60)
                 self.imageSettings.frame = CGRect(x: 90, y: 610, width: 40, height: 40)
                 
-                self.labelStatistics.frame = CGRect(x: 160, y: 520, width: 200, height: 60)
                 self.imageStatistics.frame = CGRect(x: 90, y: 530, width: 40, height: 40)
 
                 self.labelGame.frame = CGRect(x: 190, y: 440, width: 200, height: 60)
@@ -279,10 +301,8 @@ class MainViewController: UIViewController {
                 self.softUIViewStatistics.frame = CGRect(x: 70, y: 680, width: 274, height: 60)
                 self.softUIViewSettings.frame = CGRect(x: 70, y: 760, width: 274, height: 60)
                 
-                self.labelSettings.frame = CGRect(x: 160, y: 760, width: 200, height: 60)
                 self.imageSettings.frame = CGRect(x: 90, y: 770, width: 40, height: 40)
                 
-                self.labelStatistics.frame = CGRect(x: 160, y: 680, width: 200, height: 60)
                 self.imageStatistics.frame = CGRect(x: 90, y: 690, width: 40, height: 40)
 
                 self.labelGame.frame = CGRect(x: 190, y: 600, width: 200, height: 60)
