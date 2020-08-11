@@ -1701,10 +1701,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         switch screenWidth {
         case 375: //6
             if screenHeight == 667 { //6
-                self.errorLabel.frame = CGRect(x: 7, y: 70, width: 120, height: 20)
+                self.errorLabel.frame = CGRect(x: 127, y: 70, width: 120, height: 20)
                 self.labelTimer.frame = CGRect(x: 285, y: 70, width: 120, height: 20)
                 self.stopGameButtonOutlet.frame = CGRect(x: 340, y: 73, width: 15, height: 15)
                 self.collectionView.frame = CGRect(x: 7, y: 95, width: 360, height: 360) // Игровое поле
+                self.levelDifficultyLabel.frame = CGRect(x: 17, y: 70, width: 120, height: 20)
                 
                 self.cancelButtonOutlet.frame = CGRect(x: 47, y: 470, width: 35, height: 35) // Кнопка "Отменить"
                 self.removeButtonOutlet.frame = CGRect(x: 129, y: 470, width: 35, height: 35) // Кнопка "Удалить"
