@@ -12,7 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         loadData()
         saveData()
-        var window: UIWindow?
+     //   var window: UIWindow?
+        var _: UIWindow?
         let navigationAppearance = UINavigationBar.appearance()
         navigationAppearance.barTintColor = UIColor.init(cgColor: #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 1))
         

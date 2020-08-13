@@ -1583,7 +1583,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         case .changed:
             
             let path = collectionView.indexPathForItem(at: recognizer.location(in: collectionView))
-            print("path: ", path)
+          //  print("path: ", path)
 
             if path != nil {
                 variables.selectCell = path //получаем адрес выделенной ячейки
@@ -1770,9 +1770,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             self.mainButton_9_Outlet.frame = CGRect(x: 280, y: 490, width: 40, height: 40)
         case 414:
             if screenHeight == 736 { //7 plus
-                self.errorLabel.frame = CGRect(x: 7, y: 70, width: 120, height: 20)
+                self.errorLabel.frame = CGRect(x: 147, y: 70, width: 120, height: 20)
                 self.labelTimer.frame = CGRect(x: 330, y: 70, width: 120, height: 20)
                 self.stopGameButtonOutlet.frame = CGRect(x: 390, y: 73, width: 15, height: 15)
+                self.levelDifficultyLabel.frame = CGRect(x: 17, y: 70, width: 120, height: 20)
+
                 
                 self.collectionView.frame = CGRect(x: 27, y: 100, width: 360, height: 360) // Игровое поле
                 

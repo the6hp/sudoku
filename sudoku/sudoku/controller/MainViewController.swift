@@ -154,7 +154,7 @@ class MainViewController: UIViewController {
                 
                 self.tabBarController?.tabBar.isHidden = true
             
-                var itemCount = Int.random(in: 38..<66)
+                let itemCount = Int.random(in: 38..<66)  //раньше было var
     
                 mainArray.testArray = mainArray.defaultArray
                 random_level_all()
@@ -282,42 +282,45 @@ class MainViewController: UIViewController {
         case 414:
             if screenHeight == 736 {
                 self.mainPic.frame = CGRect(x: 107, y: 100, width: 200, height: 200)
-                self.resumeTimeLevel.frame = CGRect(x: 132, y: 467, width: 150, height: 40)
-                
-                self.softUIViewResumeGame.frame = CGRect(x: 70, y: 360, width: 274, height: 60)
-                self.softUIViewGame.frame = CGRect(x: 70, y: 440, width: 274, height: 60)
-                self.softUIViewStatistics.frame = CGRect(x: 70, y: 520, width: 274, height: 60)
-                self.softUIViewSettings.frame = CGRect(x: 70, y: 600, width: 274, height: 60)
-                
-                self.imageSettings.frame = CGRect(x: 90, y: 610, width: 40, height: 40)
-                
-                self.imageStatistics.frame = CGRect(x: 90, y: 530, width: 40, height: 40)
 
-                self.labelGame.frame = CGRect(x: 190, y: 440, width: 200, height: 60)
-                self.imageGame.frame = CGRect(x: 90, y: 450, width: 40, height: 40)
+                self.imageSettings.frame = CGRect(x: 337, y: 652, width: 40, height: 40)
+                self.softUIViewSettings.frame = CGRect(x: 330, y: 645, width: 55, height: 55)
                 
-                self.labelResumeGame.frame = CGRect(x: 155, y: 360, width: 200, height: 40)
-                self.resumeTimeLevel.frame = CGRect(x: 180, y: 400, width: 200, height: 15)
-                self.imageResumeGame.frame = CGRect(x: 90, y: 370, width: 40, height: 40)
+                self.imageStatistics.frame = CGRect(x: 272, y: 654, width: 40, height: 40)
+                self.softUIViewStatistics.frame = CGRect(x: 265, y: 645, width: 55, height: 55)
+
+                self.labelGame.frame = CGRect(x: 130, y: 435, width: 200, height: 60)
+                self.imageGame.frame = CGRect(x: 90, y: 445, width: 40, height: 40)
+                self.softUIViewGame.frame = CGRect(x: 70, y: 435, width: 275, height: 60)
+
+                self.labelFastGame.frame = CGRect(x: 85, y: 515, width: 275, height: 60)
+                self.imageFastGame.frame = CGRect(x: 85, y: 525, width: 40, height: 40)
+                self.softUIViewFastGame.frame = CGRect(x: 70, y: 515, width: 275, height: 60)
+                
+                self.labelResumeGame.frame = CGRect(x: 150, y: 355, width: 200, height: 40)
+                self.resumeTimeLevel.frame = CGRect(x: 180, y: 395, width: 200, height: 15)
+                self.imageResumeGame.frame = CGRect(x: 90, y: 355, width: 40, height: 40)
+                self.softUIViewResumeGame.frame = CGRect(x: 70, y: 355, width: 275, height: 60)
                 
             } else {
-                self.resumeTimeLevel.frame = CGRect(x: 132, y: 595, width: 150, height: 40)
+                self.imageSettings.frame = CGRect(x: 337, y: 812, width: 40, height: 40)
+                self.softUIViewSettings.frame = CGRect(x: 330, y: 805, width: 55, height: 55)
                 
-                self.softUIViewResumeGame.frame = CGRect(x: 70, y: 520, width: 274, height: 60)
-                self.softUIViewGame.frame = CGRect(x: 70, y: 600, width: 274, height: 60)
-                self.softUIViewStatistics.frame = CGRect(x: 70, y: 680, width: 274, height: 60)
-                self.softUIViewSettings.frame = CGRect(x: 70, y: 760, width: 274, height: 60)
-                
-                self.imageSettings.frame = CGRect(x: 90, y: 770, width: 40, height: 40)
-                
-                self.imageStatistics.frame = CGRect(x: 90, y: 690, width: 40, height: 40)
+                self.imageStatistics.frame = CGRect(x: 272, y: 812, width: 40, height: 40)
+                self.softUIViewStatistics.frame = CGRect(x: 265, y: 805, width: 55, height: 55)
 
-                self.labelGame.frame = CGRect(x: 190, y: 600, width: 200, height: 60)
-                self.imageGame.frame = CGRect(x: 90, y: 610, width: 40, height: 40)
+                self.labelGame.frame = CGRect(x: 130, y: 525, width: 200, height: 60)
+                self.imageGame.frame = CGRect(x: 90, y: 535, width: 40, height: 40)
+                self.softUIViewGame.frame = CGRect(x: 70, y: 525, width: 275, height: 60)
+
+                self.labelFastGame.frame = CGRect(x: 85, y: 605, width: 275, height: 60)
+                self.imageFastGame.frame = CGRect(x: 85, y: 615, width: 40, height: 40)
+                self.softUIViewFastGame.frame = CGRect(x: 70, y: 605, width: 275, height: 60)
                 
-                self.labelResumeGame.frame = CGRect(x: 155, y: 520, width: 200, height: 40)
-                self.resumeTimeLevel.frame = CGRect(x: 180, y: 560, width: 200, height: 15)
-                self.imageResumeGame.frame = CGRect(x: 90, y: 530, width: 40, height: 40)
+                self.labelResumeGame.frame = CGRect(x: 150, y: 445, width: 200, height: 40)
+                self.resumeTimeLevel.frame = CGRect(x: 180, y: 485, width: 200, height: 15)
+                self.imageResumeGame.frame = CGRect(x: 90, y: 455, width: 40, height: 40)
+                self.softUIViewResumeGame.frame = CGRect(x: 70, y: 445, width: 275, height: 60)
                 
             }
         default:
