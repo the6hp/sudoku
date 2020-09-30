@@ -7,13 +7,15 @@ import AppCenterCrashes
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         loadData()
         saveData()
-     //   var window: UIWindow?
-        var _: UIWindow?
+    //    var window: UIWindow?
+     //   var _: UIWindow?
         let navigationAppearance = UINavigationBar.appearance()
         navigationAppearance.barTintColor = UIColor.init(cgColor: #colorLiteral(red: 0.9215686275, green: 0.9215686275, blue: 0.9215686275, alpha: 1))
         

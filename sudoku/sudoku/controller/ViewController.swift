@@ -36,7 +36,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         variables.savedGame = true
         sizeViewButton()
         errorLabelCount()
-        
+                
         timerObserver()
         //Добавление правой кнопки в навбаре
         //self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Настройки", style: .plain, target: self, action: #selector(testButton))
@@ -1748,6 +1748,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             }
         case 320: //SE
             self.collectionView.frame = CGRect(x: 10, y: 95, width: 297, height: 297) // Игровое поле
+            
+            self.errorLabel.frame = CGRect(x: 90, y: 70, width: 135, height: 20)
+            self.labelTimer.frame = CGRect(x: 225, y: 70, width: 60, height: 20)
+            self.stopGameButtonOutlet.frame = CGRect(x: 285, y: 70, width: 15, height: 15)
+            self.levelDifficultyLabel.frame = CGRect(x: 17, y: 70, width: 120, height: 20)
             
             self.cancelButtonOutlet.frame = CGRect(x: 25, y: 410, width: 40, height: 40) // Кнопка "Отменить"
             self.removeButtonOutlet.frame = CGRect(x: 102, y: 410, width: 40, height: 40) // Кнопка "Удалить"

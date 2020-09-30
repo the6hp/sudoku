@@ -266,17 +266,20 @@ class MainViewController: UIViewController {
             self.labelGame.frame = CGRect(x: 83, y: 320, width: 200, height: 60)
             self.imageGame.frame = CGRect(x: 43, y: 330, width: 40, height: 40)
             
+            self.labelFastGame.frame = CGRect(x: 83, y: 400, width: 200, height: 60)
+            self.imageFastGame.frame = CGRect(x: 43, y: 410, width: 40, height: 40)
+            self.softUIViewFastGame.frame = CGRect(x: 23, y: 400, width: 275, height: 60)
             
-            self.softUIViewStatistics.frame = CGRect(x: 23, y: 400, width: 274, height: 60)
-            self.imageStatistics.frame = CGRect(x: 43, y: 410, width: 40, height: 40)
+            self.softUIViewStatistics.frame = CGRect(x: 194, y: 483, width: 60, height: 60)
+            self.imageStatistics.frame = CGRect(x: 200, y: 490, width: 40, height: 40)
 
             
-            self.softUIViewSettings.frame = CGRect(x: 23, y: 480, width: 274, height: 60)
-            self.imageSettings.frame = CGRect(x: 93, y: 490, width: 40, height: 40)
+            self.softUIViewSettings.frame = CGRect(x: 254, y: 483, width: 60, height: 60)
+            self.imageSettings.frame = CGRect(x: 260, y: 490, width: 40, height: 40)
             
             
             self.labelResumeGame.frame = CGRect(x: 108, y: 240, width: 200, height: 40)
-            self.resumeTimeLevel.frame = CGRect(x: 133, y: 280, width: 200, height: 15)
+            self.resumeTimeLevel.frame = CGRect(x: 113, y: 280, width: 200, height: 15)
             self.imageResumeGame.frame = CGRect(x: 43, y: 250, width: 40, height: 40)
             
         case 414:

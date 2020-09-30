@@ -422,28 +422,31 @@ class GameViewController: UIViewController {
                 
             }
           case 320:
+                                                
+            self.labelSelectGame.frame = CGRect(x: 20, y: 60, width: 274, height: 60)
+            self.softUIViewSelectGame.frame = CGRect(x: 20, y: 60, width: 274, height: 60)
             
-            self.softUIViewEasyGame.frame = CGRect(x: 28, y: 265, width: 264, height: 60)
-            self.softUIViewAverageGame.frame = CGRect(x: 28, y: 340, width: 264, height: 60)
-            self.softUIViewHardGame.frame = CGRect(x: 28, y: 415, width: 264, height: 60)
-            self.softUIViewExpertGame.frame = CGRect(x: 28, y: 490, width: 264, height: 60)
+            self.softUIViewEasyGame.frame = CGRect(x: 20, y: 265, width: 274, height: 50)
+            self.softUIViewAverageGame.frame = CGRect(x: 20, y: 340, width: 274, height: 50)
+            self.softUIViewHardGame.frame = CGRect(x: 20, y: 415, width: 274, height: 50)
+            self.softUIViewExpertGame.frame = CGRect(x: 20, y: 490, width: 274, height: 50)
             
-            self.plusView.frame = CGRect(x: 123, y: 115, width: 50, height: 50)
-            self.minusView.frame = CGRect(x: 13, y: 115, width: 50, height: 50)
-            self.playCustomGame.frame = CGRect(x: 188, y: 110, width: 120, height: 60)
+            self.plusView.frame = CGRect(x: 123, y: 170, width: 50, height: 50)
+            self.minusView.frame = CGRect(x: 13, y: 170, width: 50, height: 50)
+            self.playCustomGame.frame = CGRect(x: 188, y: 165, width: 50, height: 60)
             
-            self.labelEasyGame.frame = CGRect(x: 28, y: 265, width: 264, height: 60)
-            self.labelAverageGame.frame = CGRect(x: 28, y: 340, width: 264, height: 60)
-            self.labelHardGame.frame = CGRect(x: 28, y: 415, width: 264, height: 60)
-            self.labelExpertGame.frame = CGRect(x: 28, y: 490, width: 264, height: 60)
+            self.labelEasyGame.frame = CGRect(x: 40, y: 265, width: 240, height: 50)
+            self.labelAverageGame.frame = CGRect(x: 40, y: 340, width: 240, height: 50)
+            self.labelHardGame.frame = CGRect(x: 40, y: 415, width: 240, height: 50)
+            self.labelExpertGame.frame = CGRect(x: 40, y: 490, width: 240, height: 50)
             
-            self.labelCustomGame.frame = CGRect(x: 203, y: 110, width: 100, height: 60)
-            self.labelCountCustomGame.frame = CGRect(x: 68, y: 115, width: 50, height: 50)
-            self.labelTitleLevel.frame = CGRect(x: 3, y: 210, width: 314, height: 50)
-            self.labelTitleCustomGame.frame = CGRect(x: 3, y: 60, width: 314, height: 50)
-            self.labelMinus.frame = CGRect(x: 13, y: 115, width: 50, height: 50)
-            self.labelPlus.frame = CGRect(x: 123, y: 115, width: 50, height: 50)
-            self.descriptionCustomGame.frame = CGRect(x: 13, y: 175, width: 250, height: 20)
+            self.labelCustomGame.frame = CGRect(x: 203, y: 165, width: 100, height: 60)
+            self.labelCountCustomGame.frame = CGRect(x: 68, y: 170, width: 50, height: 50)
+            self.labelTitleLevel.frame = CGRect(x: 3, y: 210, width: 314, height: 450)
+            self.labelTitleCustomGame.frame = CGRect(x: 3, y: 120, width: 314, height: 50)
+            self.labelMinus.frame = CGRect(x: 13, y: 170, width: 50, height: 50)
+            self.labelPlus.frame = CGRect(x: 123, y: 170, width: 50, height: 50)
+            self.descriptionCustomGame.frame = CGRect(x: 13, y: 225, width: 250, height: 20)
             
           default:
               break
