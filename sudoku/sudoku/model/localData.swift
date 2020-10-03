@@ -77,14 +77,6 @@ func loadData() {
     }
     
     
-
-    
-    
-    
-    
-    
-    
-    
     variables.savedGame = UserDefaults.standard.bool(forKey: "SaveGame")
     variables.countSec = UserDefaults.standard.integer(forKey: "countSec")
     variables.countMin = UserDefaults.standard.integer(forKey: "countMin")
@@ -108,18 +100,18 @@ func loadData() {
         variables.customGameNumber = UserDefaults.standard.integer(forKey: "customGameNumber")
         store.countGame = UserDefaults.standard.integer(forKey: "countGame")
 
-        if let EasyGame = UserDefaults.standard.array(forKey: "listEasyGame") as? [[[Int]]] {
-            listArray.listEasyGame = EasyGame
-        }
-        if let AverageGame = UserDefaults.standard.array(forKey: "listAverageGame") as? [[[Int]]] {
-            listArray.listAverageGame = AverageGame
-        }
-        if let HardGame = UserDefaults.standard.array(forKey: "listHardGame") as? [[[Int]]] {
-            listArray.listHardGame = HardGame
-        }
-        if let ExpertGame = UserDefaults.standard.array(forKey: "listExpertGame") as? [[[Int]]] {
-            listArray.listExpertGame = ExpertGame
-        }
+//        if let EasyGame = UserDefaults.standard.array(forKey: "listEasyGame") as? [[[Int]]] {
+//            listArray.listEasyGame = EasyGame
+//        }
+//        if let AverageGame = UserDefaults.standard.array(forKey: "listAverageGame") as? [[[Int]]] {
+//            listArray.listAverageGame = AverageGame
+//        }
+//        if let HardGame = UserDefaults.standard.array(forKey: "listHardGame") as? [[[Int]]] {
+//            listArray.listHardGame = HardGame
+//        }
+//        if let ExpertGame = UserDefaults.standard.array(forKey: "listExpertGame") as? [[[Int]]] {
+//            listArray.listExpertGame = ExpertGame
+//        }
         
     } else {
         UserDefaults.standard.set(true, forKey: "launchedBefore")

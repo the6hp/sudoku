@@ -11,6 +11,10 @@ class SelectGameViewController: UIViewController {
         collectionSelectGameView.dataSource = self
         collectionSelectGameView.delegate = self
                 
+    //   collectionSelectGameView.reloadData()
+        
+        print("Количество игр на Эксперте: ", listArray.listExpertGame.count)
+        
         segmentListGame.setTitle(NSLocalizedString("segment_easy_level", comment: ""), forSegmentAt: 0)
         segmentListGame.setTitle(NSLocalizedString("segment_medium_level", comment: ""), forSegmentAt: 1)
         segmentListGame.setTitle(NSLocalizedString("segment_hard_level", comment: ""), forSegmentAt: 2)
@@ -60,6 +64,7 @@ class SelectGameViewController: UIViewController {
 extension SelectGameViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        
         if listArray.defoultListGameLevel == 0 {
             return listArray.listEasyGame.count
         } else if listArray.defoultListGameLevel == 1 {
@@ -69,7 +74,7 @@ extension SelectGameViewController: UICollectionViewDataSource, UICollectionView
         } else if listArray.defoultListGameLevel == 3 {
             return listArray.listExpertGame.count
         } else {
-            return listArray.listEasyGame.count
+            return 0
         }
     }
     
@@ -184,6 +189,8 @@ extension SelectGameViewController: UICollectionViewDataSource, UICollectionView
         
         variables.selectedLevel = indexPath.row
         
+        print("Ячейка: ", variables.selectedLevel)
+        
         //Сбрасываем всё
         mainArray.testArray = mainArray.defaultArray
 
@@ -219,6 +226,7 @@ extension SelectGameViewController: UICollectionViewDataSource, UICollectionView
         mainArray.oldCancelArray = [[]]
         
         saveData()
+        
         
         MSAnalytics.trackEvent("Выбор игры из списка")
             
